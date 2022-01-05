@@ -1,6 +1,6 @@
 ---
-title: "Assignments STT 3851 - Spring2021"
-author: "Dr. Lasanthi Watagoda"
+title: "Assignments STT 3851 - Spring 2022"
+author: "Dr. Hasthika Rupasinghe"
 date: 'Last Updated on: `r format(Sys.time(), "%b %d, %Y at %X")`'
 output: 
   bookdown::html_document2: 
