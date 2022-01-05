@@ -1,0 +1,77 @@
+---
+title: "ISLR Chapter 2, Question 09"
+author: "Lasanthi"
+date: "2/14/2018"
+output: html_document
+---
+
+## a)
+
+```{r}
+library(ISLR)
+#Auto 
+names(Auto)
+str(Auto)
+summary(Auto)
+sapply(Auto, is.factor)
+dim(Auto)
+head(Auto)
+?Auto
+```
+There are 7 quantitative variables: mpg, cylinders, displacement, horsepower, weight,acceleration, year.
+There are 2 qualitative variables: name, origin.
+
+## b)
+```{r}
+sapply(Auto[,1:7], range)
+```
+The range for mpg is $ 46.6-9.0 = 37.6 $ 
+## c)
+Means of all quantitative variables are:
+```{r}
+sapply(Auto[,1:7], mean)
+
+```
+
+Standard deviations of all quantitative variables are:
+```{r}
+sds <- sapply(Auto[,1:7], sd)
+sds
+```
+
+## d)
+
+```{r}
+newAuto <- Auto[-(10:85),]
+#newAuto
+sapply(newAuto[,1:7], range)
+sapply(newAuto[,1:7], mean)
+sapply(newAuto[,1:7], sd)
+lapply(newAuto[,1:7], sd)
+```
+
+
+## e)
+
+```{r}
+#?plot
+pairs(Auto[,1:7], col = "purple")
+
+plot(Auto$mpg, Auto$weight, col = "red")
+
+plot(Auto$mpg, Auto$cylinders, col = "green")
+
+plot(Auto$mpg, Auto$year, col = "blue")
+
+
+```
+
+## f)
+
+```{r}
+pie(table(Auto$origin))
+```
+
+
+
+

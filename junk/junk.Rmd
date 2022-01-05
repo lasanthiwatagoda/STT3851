@@ -1,0 +1,123 @@
+---
+title: "Writing Assignment"
+author: "Leave This Blank"
+bibliography: [packages.bib, ISLR.bib]
+output: 
+    bookdown::html_document2
+date: 'Last compiled: `r format(Sys.time(), "%b %d, %Y")`'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+```
+
+## Directions{-}
+Recreate this document exactly using [R Markdown](https://rmarkdown.rstudio.com/). A great reference for creating technical documents with R Markdown is [bookdown: Authoring Books and technical withR Markdown](https://bookdown.org/yihui/bookdown/). Your YAML should look similar to:
+
+```{r, eval=FALSE}
+---
+title: "Writing Assignment"
+author: "Leave This Blank"
+bibliography: [packages.bib, ISLR.bib]
+output: 
+    bookdown::html_document2
+date: 'Last compiled: `r format(Sys.time(), "%b %d, %Y")`'
+---
+```
+
+# From page 62 of [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf) [@james_introduction_2013]
+let $\hat y_i = \hat \beta_0 + \hat \beta_1 x_i$ be the prediction for $Y$ based on the $i^{\text{th}}$ value of $X$. Then $e_i=y_i+\hat y_i$ represents the $i^{\text{th}}$ *residual*---this is the difference between the $i^{\text{th}}$ observed response and the $i^{\text{th}}$ response value that is predicted by our linear model. We define the **residual sum of squares** (RSS) as
+\begin{equation}
+\mathrm{RSS} = e^2_1 + e^2_2 + ... + e^2_n.
+\end{equation}
+
+or equivalently as 
+
+\begin{equation}
+\mathrm{RSS}=(y_1-\hat \beta_0 - \hat \beta_1 x_i)^2+(y_2- \hat \beta_0 + \hat \beta_1 x_2)^2+...+(y_n - \hat \beta_0 + \hat \beta_1 x_n)^2
+(\#eq:RSS)
+\end{equation}
+
+The least squares approach chooses $\hat \beta_0$ and $\hat \beta_1$ to minimize the RSS. Using some calculus,one can show that the minimizers are 
+
+\begin{equation}
+\begin{split}
+\hat \beta_1 = \frac{\sum^n_{i=1}(x_i-\bar x)(y_i- \bar y)}{\sum^n_{i=1}(x_i-\bar x)^2} ,\\
+\hat \beta_0 = \bar y - \hat \beta_1 \bar x,\\
+\end{split}
+(\#eq:b1b0)
+\end{equation}
+
+where $\bar y \equiv \frac{1}{n}\sum^n_{i=1}y_i$ and $\bar x \equiv \frac{1}{n}\sum^n_{i=1}x_i$ are the sample means.
+
+
+# From Page 63 of [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)[@james_introduction_2013]
+
+Recall that we assume that the true relationship between $X$ and $Y$ takes the form $Y=f(X)+\epsilon$ for some unknown function $f$, where $ϵ$ is a mean-zero random error term. If $f$ is to be approximated by a linear function, then we write this relationship as
+
+\begin{equation}
+\mathrm{Y}= \beta_0 + \beta_1 + \epsilon,\\
+(\#eq:Y)
+\end{equation}
+
+Here $\beta_0$ is the intercept term---that is, the expected values of  $Y$ when $X=0$, and $\beta_1$ is the slope--- thw average increase in $Y$ associated with one-unit increase in $X$. The error term is a catch-all for what we miss with this simple model: the true relationship is probably not linear, there may be other variables that cause variation in $Y$, and there may be measurment error. We typically assume that the error term is independent of $X$.
+
+# From page 143 of [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf) [@james_introduction_2013]
+
+To indicate that a $p-dimensional$ random variable $X$ has a multivariate Gaussian distribution, we write $X$ ~ $N(\mu,\sum)$. Here $E(X) = \mu$ is the mean of $X$ (a vector with p components), and $Cov(X)= \sum$  is the p x p covariance matrix of $X$. Formally, the multivariate Gaussian density is defined as
+
+\begin{equation}
+\mathrm{f(x)} = \frac{1}{2\pi}^{p/2} \sum exp(\frac{1}{2}(x-\mu)^T \sum^{-1}(x-\mu
+(\#eq:1)
+\end{equation}
+
+In the case of p>1 predictors, the LDA classifier assumes that the observatons in the k^th^ class are drawn from a multivariate Gaussian distribution $N(\mu_\kappa, \sum)$, where $\mu_\kappa$ is a class-specific mean vector, and $\sum$ is the covariance matrix that is common to all $K$ classes. Plugging the density function for the k^th^ class, $f_k(X=x)$, into ([3.1](https://lasanthi-asu.github.io/STT3851ClassRepo/Rmarkdown/WritingAssignment.html#eq:mgd)) and performing a little bit of algebra reveals that the Bayes classifier assigns an observation $X=x$ to the class for which
+
+\begin{equation}
+\mathrm{\delta_\kappa(x)}= x^T \sum^{-1} \mu_\kappa - \frac{1}{2}\mu^T_\kappa\sum^{-1}\mu_\kappa + log\pi_\kappa
+(\#eq:2)
+\end{equation}
+
+is the largest
+
+
+
+
+
+
+# Inserting a graph
+
+```{r, label= "hist", fig.align='center', fig.cap= "Your descriptive caption here"}
+set.seed(123)
+x <- rnorm(1000, 100, 15)
+DF <- data.frame(x = x)
+library(ggplot2)
+ggplot(data = DF, aes(x = x)) + 
+  geom_histogram(fill = "blue", color = "black", binwidth = 5) + 
+  theme_bw()
+
+xbar <- mean(x)
+SD <- sd(x)
+c(xbar, SD)
+```
+
+figure \@ref(fig:hist) is unimodal with amean of `r round(mean(x),4)` and a stendard deviation of `r round(sd(x),4)`
+
+#Automagically Creating References
+
+```{r, echo=FALSE, results='hide'}
+packagesUsed <- c("ggplot2", "bookdown")
+#write bib information
+knitr::write_bib(packagesUsed, file = "./packages.bib")
+#Load packages
+lapply(packagesUsed, library, character.only = TRUE)
+```
+
+Review your last assignment to create a file named `packages.bib` to cite the `ggplot2` package used to create Figure \@ref(fig:hist). Figure \@ref(fig:hist) was created with `ggplot2` by Wickham and Chang (2016). This document specifies the output as `bookdown::html_document2`. The function  `bookdown::html_document2` is from `bookdown` written by Xie (2016).
+
+```{r}
+sessionInfo()
+```
+
+
+written by @-bookdown

@@ -1,0 +1,353 @@
+---
+title: "Assignments STT 3851 - Spring 2019"
+author: "Lasanthi Pelawa-Watagoda"
+date: 'Last Updated on: `r format(Sys.time(), "%b %d, %Y at %X")`'
+output: 
+  bookdown::html_document2: 
+    highlight: textmate
+    theme: yeti
+    css: "../CSS/style.css"
+---
+
+**Jan 16:**
+
+* Go over syllabus.
+* Become familiar with the Appstate [RStudio server](https://mathr.math.appstate.edu/). You will use your Appstate user name and password to log in to the server.  You must be registered in the class to access the server.
+* Sign-up for free accounts on [GitHub](https://github.com) and [Rpubs](https://rpubs.com).
+* When you register for a free individual GitHub account, request a [student discount](https://education.github.com) to obtain a few private repositories as well as unlimited public repositories.  Please use something similar to **first_name_last_name** as your username when you register with GitHub.  For example, my username on GitHub is *lasanthiwatagoda*. If you have a popular name such as John Smith, you may need to provide some other distinquishing characteristic in your username.  Please use the same **username** for your account on Rpubs. 
+* Once you have a GitHub account, send an email to lasanthi@appstate.edu with a Subject line of **STT3851 - GitHub Username**, and tell me in the body of your email your first name, last name, and your GitHub username.  I will then manually add you as a team member to the repository in the Lasanthi-ASU organization that has your name (**Last_name-First_name**).  This repository will be where you store all of your work for this course.  I will also change your repository to a private repository.
+* [Statistics Review](../Rmarkdown/StatReview.html)--- take notes
+* Homework: 
+    + Watch this [video](https://www.youtube.com/watch?v=ZFaWxxzouCY&list=PLjTlxb-wKvXNSDfcKPFH2gzHGyjpeCZmJ&index=3) which provides some background on asking questions.  
+    + Read this stackoverflow thread details how to create a [minimal R reproducible example](http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example/5963610#5963610). 
+    + Read [How To Ask Questions The Smart Way](http://www.catb.org/~esr/faqs/smart-questions.html) by Eric Raymond and Rick Moen and heed their advice.
+    + Read [Getting used to R, RStudio, and R Markdown](https://ismayc.github.io/rbasics-book/)
+    
+    ```{block2, note-text, type='rmdnote'}
+1.  Most due dates are 5 p.m. Friday for [CrowdGrader](https://www.crowdgrader.org/) assignments.
+
+2.  Most [CrowdGrader](https://www.crowdgrader.org/) peer reviews will be due by 11 p.m. on Tuesdays.
+```  
+
+**Jan 18:**
+
+* Before class watch the following Videos:
+    + [Phillip Guo's Unix-like command line tutorials (Four tutorials about 10 minutes each)](http://www.pgbovine.net/command-line-tutorial.htm)
+    + [Phillip Guo's Basic Git and Github tutorials (Three tutorials about 10 minutes each)](http://www.pgbovine.net/git-tutorial.htm)
+    + [Clone a GitHub Repo with RStudio (Video)](https://www.youtube.com/watch?v=YxZ8J2rqhEM) (5:05)
+ 
+* [Statistics Review](../Rmarkdown/StatReview.html)--- take notes
+
+* Read Chapters 1-2 of [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
+* Link to [Day One Activity and Code](../Rmarkdown/DayOne.html)
+
+**Jan 23:**
+
+* Before class:
+    + Read/review [Getting used to R, RStudio, and R Markdown](https://ismayc.github.io/rbasics-book/)
+    + Read the [Git and GitHub](http://r-pkgs.had.co.nz/git.html) chapter from Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/)
+* Follow the directions from [Happy Git and GitHub for the useR](http://happygitwithr.com/) to [Introduce yourself to Git](http://happygitwithr.com/hello-git.html), [Connect to GitHub](http://happygitwithr.com/push-pull-github.html), and [Cache credentials for HTTPS](http://happygitwithr.com/credential-caching.html).
+* Read/review Chapters 1-2 of [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
+
+
+**Jan 25:**
+
+* Before class:
+    + [Watch Managing Change with RStudio]( https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-managing-change-part-1/) (37 minutes)
+* [Statistics Review](../Rmarkdown/StatReview.html) --- take notes
+<!-- * [Schistosomiasis](../Rmarkdown/Schistosomiasis.html) -->
+* Update README file in private repository
+* Use an avatar or picture on your GitHub account
+
+
+
+**Jan 30:**
+
+* Before class:
+    + Read chapter 1 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
+    + Watch [Opening Remarks and Examples](https://www.youtube.com/watch?v=2wLfFB_6SKI) (18:18)
+    + Watch [Supervised and Unsupervised Learning](https://www.youtube.com/watch?v=LvaTokhYnDw) (12:12)
+    + Read Section 3.4 of [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
+* Lecture - [Rmarkdown example](../Rmarkdown/FlowControl.html)
+<!--* Bootstrap - [Rmarkdown example](../Rmarkdown/TheBootstrap.html)-->
+<!--* [Overplotting Examples and possible Solutions](../Rmarkdown/HousingData.html)-->
+
+* Clone the repository to your local machine using RStudio by following these instructions:
+
+1. [Fork](https://help.github.com/articles/fork-a-repo/) the repository.
+2. Copy the clone URL to the clipboard.
+3. Click `File > New Project > Version Control > Git`
+4. Paste the clone URL (`https://github.com/YourUserName/Lasanthi-ASU/STT3851ClassRepo.git`) in the `Repository URL:` box.
+5. Use the name (`STT3851ClassRepo`) in the `Project directory name:` box.
+6. Change if needed the location in the `Create project as subdirectory of:` box.
+7. Click the `Create Project` box.  You should now have a local copy of the forked repository on your local machine.  Congratulations!  
+* Set the upstream remote in your fork to this repository with the command
+```
+git remote add upstream https://github.com/Lasanthi-ASU/STT3851ClassRepo.git
+```
+* Verify with
+```
+git remote -v
+```
+* To obtain updates from the upstream repository type
+```
+git pull upstream master
+```
+* If the upstream repository is using `gh-pages`, use `gh-pages` instead of `master` to obtain updates.
+```
+git pull upstream gh-pages
+```
+* If there are conflicts, you will need to resolve them before proceeding.
+
+
+**Feb 1:**
+
+* Before class:
+    + Read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
+    + Watch [Statistical Learning and Regression](https://www.youtube.com/watch?v=WjyuiK5taS8) (11:41)
+    + Watch [Curse of Dimensionality and Parametric Models](https://www.youtube.com/watch?v=UvxHOkYQl8g) (11:40)
+    + Watch [Assessing Model Accuracy and Bias-Variance Trade-off](https://www.youtube.com/watch?v=VusKAosxxyk) (10:04)
+<!--* Lecture - Bias Variance Tradeoff - Take notes-->
+* Lecture - Chapter 02 - Take Notes
+* Quiz #1
+
+**Feb 6:**
+
+* Before class: 
+    + Review/read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
+    + Watch [Classification Problems and K-Nearest Neighbors](https://www.youtube.com/watch?v=vVj2itVNku4) (15:37)
+    + Watch [Lab: Introduction to R](https://www.youtube.com/watch?v=jwBgGS_4RQA) (14:12)
+<!--* Lecture - Bias Variance Tradeoff - Take notes - [Slides](../Rmarkdown/BiasVarDer.pdf) -->
+* Lecture - Chapter 02 - Take Notes
+* Reproduce [Modified Introduction to R by Dr. Arnholt](https://stat-ata-asu.github.io/STT5812CourseRepo/Rmarkdown/RmarkdownAssignment.html).  
+
+<!--Submit your html file to [CrowdGrader](	https://www.crowdgrader.org/crowdgrader/venues/view_venue/2743) no later than 5 pm Feb 09.-->
+
+
+**Feb 8:**
+
+* Before class: 
+    + Review/read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
+<!--* Go over [Bias Variance Graphs](../Rmarkdown/BiasVariance.html)--> 
+* Lecture - Chapter 02 - Take Notes
+<!--* Go over [Chapter 2 Graphs](../Rmarkdown/Chap2Slides.html)-->
+* Discuss flexible models and when to use them
+* Reproduce [Modified Introduction to R](../Rmarkdown/LabChap2.html).  Submit your html file to [CrowdGrader](	https://www.crowdgrader.org/crowdgrader/venues/view_venue/2743) no later than 5 pm Feb 10.
+* Quiz #2
+
+
+**Feb 13:**
+
+* Before class:
+    + Refer to [_bookdown: Authoring Books and Technical Documents with R Markdown_](https://bookdown.org/yihui/bookdown/) as needed
+* [Bias-Variance Trade-Off](../Rmarkdown/BiasVariance.pdf)
+* [K-Nearest Neighbors Algorithm](../2-13-18/KNN.html)
+* Chapter 02 Lab
+
+
+**Feb 15:**
+
+* Chapter 02 Lab
+* Quiz #3
+
+**Feb 20:**
+
+* Before class:
+    + Read pages 59-82 of [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
+    + Watch [Simple Linear Regression and Confidence Intervals](https://www.youtube.com/watch?v=PsE9UqoWtS4) (13:01)
+    + Watch [Hypothesis Testing ](https://www.youtube.com/watch?v=J6AdoiNUyWI) (8:24)
+    + Watch [Multiple Linear Regression and Interpreting Regression Coefficients ](https://www.youtube.com/watch?v=1hbCJyM9ccs) (15:38)
+<!--* Discuss [Chapter 2 and 3 material](../Rmarkdown/Chap2Slides.html)-->
+* Lecture - Chapter 03 (3.1, 3.2)
+* Reproduce [Writing Assignment](../Rmarkdown/WritingAssignment.html).  Submit your html file to github 2-20-18 folder, no later than 5 pm Feb 22.
+
+
+
+**Feb 22:**
+
+* Before class:
+    + Read pages 82-120 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
+    + Watch [Model Selection and Qualitative Predictors](https://www.youtube.com/watch?v=3T6RXmIHbJ4) (14:51)
+    + Watch [Interactions and Nonlinearity](https://www.youtube.com/watch?v=IFzVxLv0TKQ) (14:16)
+    + Watch [Lab: Linear Regression](https://www.youtube.com/watch?v=5ONFqIk3RFg) (22:10)
+* Lecture - Chapter 03 (3.1, 3.2) - Take Notes
+* Quiz #4
+
+**Feb 27:**
+
+* Lecture - Chapter 03 (3.2, 3.3) - Take Notes
+* Reproduce [Lab: Linear Regression](../Rmarkdown/LabChap3.html).  Submit your html file to github no later than 5 pm Mar 3.
+
+
+**Mar 1:**
+
+* Before class:
+    + [Start Project 1](http://www.amstat.org/publications/jse/v16n2/datasets.pardoe.html) - Read the hyperlinked paper.  
+    + The data set can be downloaded from http://www.amstat.org/publications/jse/datasets/homes76.dat.txt, while the code book is available from http://www.amstat.org/publications/jse/datasets/homes76.txt
+* Reproduce [Lab: Linear Regression](../Rmarkdown/LabChap3.html).  Submit your html file to github no later than 5 pm Mar 13.
+* Lecture - Chapter 03 (3.3, 3.4) - Take Notes
+* Quiz #5
+
+**~~Mar 05 - Mar 09:~~ ** **No Class - Spring Break**
+
+**Mar 13:**
+
+* [Directions for the complete project 1](../Rmarkdown/DirectionsMHP2018.html). Project Due Thursday the 15th before 5pm.
+* Lecture - Chapter 03 (3.4, 3.5) - Take Notes
+<!--* [Work on Project 1](../Rmarkdown/DirectionsMHP.html)-->
+<!--* [Code for class notes](../Rmarkdown/BodyTemperatures.html)-->
+
+
+**Mar 15:**
+
+* Lecture - Chapter 03 (3.4, 3.5) - Take Notes
+* [Chapter 3 Applied Problems](../3-15-18/ch3_applied.pdf)
+* Quiz 06
+
+
+
+**Mar 20:**
+
+* Before class:
+    + Read chapter 5 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
+    + Watch [Estimating Prediction Error and Validation Set Approach](https://www.youtube.com/watch?v=_2ij6eaaSl0) (14:01)
+    + Watch [K-fold Cross-Validation](https://www.youtube.com/watch?v=nZAM5OXrktY) (13:33)
+    + Watch [Cross-Validation: The Right and Wrong Ways](https://www.youtube.com/watch?v=S06JpVoNaA0) (10:07)
+
+* Lecture - Chapter 05 - Take Notes
+
+<!-- * Start Project #1. Commit your final changes for Project 1 to your private repository and email the instructor your SHA prior to 10am April 05, 2018.  Use the subject line "Project 1-STT3851-Last_name First_name-SHA#" in your email. -->
+
+
+**Mar 22:**
+
+* Before class:
+    + Read/re-read chapter 5 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
+    + Watch [Lab: Cross-Validation](https://www.youtube.com/watch?v=6dSXlqHAoMk) (11:21)
+
+* Lecture - Chapter 05 - Take Notes
+
+* [Reproduce _Lab: Cross-Validation_](../Rmarkdown/LabCrossValidation.html)
+
+ 
+
+**Mar 27:**
+
+* Test 1 (Coveres Ch 2 and Ch 3)
+
+
+
+**Mar 29:**
+
+
+
+* Lecture - Chapter 06 - Take Notes
+<!-- [Finish Cross-Validation Hand Out](../Rmarkdown/Cross-ValidationInClassHO.html)-->
+
+* Complete [Reproduce _Lab: Cross-Validation_](../Rmarkdown/LabCrossValidation.html).  Submit your html file  no later than 5 pm April 05th.
+
+* Quiz #7
+
+**~~Apr 02-03:~~ No Class - State Holidays**
+
+**Apr 5:**
+
+* Before class:
+    + Watch [Estimating Test Error Using Mallow’s Cp, AIC, BIC, Adjusted R-squared](https://www.youtube.com/watch?v=LkifE44myLc) (14:06)
+    + Watch [Estimating Test Error Using Cross-Validation](https://www.youtube.com/watch?v=3p9JNaJCOb4) (8:43)
+* [Notes on Credit Problem](../Rmarkdown/CreditProblemMore.html)
+<!--* Commit your final changes for Project 1 to your private repository and email the instructor your SHA prior to 10am April 05, 2018.  Use the subject line "Project 1-STT3851-Last_name First_name-SHA#" in your email.-->
+
+* Quiz 8
+
+* Lecture - Chapter 06 - Take Notes
+
+<!--* Start Project 2 
+* [Example Template Directory](https://github.com/STAT-ATA-ASU/STT3851Spring2016/blob/gh-pages/BDbetaTemplate)
+* Use the [housedata.csv](https://github.com/STAT-ATA-ASU/STT3851Spring2016/raw/gh-pages/Data/housedata.csv) file - See [King County Housing Data](../Rmarkdown/KingCounty.html) -->
+
+
+
+
+**Apr 10:**
+
+* Before class:
+    + Watch [Linear Model Selection and Best Subset Selection](https://www.youtube.com/watch?v=91si52nk3LA) (13:44)
+    + [Forward Stepwise Selection](https://www.youtube.com/watch?v=nLpJd_iKmrE) (12:26)
+    + [Backward Stepwise Selection ](https://www.youtube.com/watch?v=NJhMSpI2Uj8) (5:26)
+
+
+* Lecture - Chapter 06 - Take Notes
+
+**Apr 12:**
+
+* Before class:
+
+    + Watch [Shrinkage Methods and Ridge Regression](https://www.youtube.com/watch?v=cSKzqb0EKS0) (12:37)
+    + Watch [The Lasso](https://www.youtube.com/watch?v=A5I1G1MfUmA) (15:21)
+    + Watch [Tuning Parameter Selection for Ridge Regression and Lasso](https://www.youtube.com/watch?v=xMKVUstjXBE) (5:27)
+
+
+* Lecture - Chapter 06 - Take Notes
+* Quiz #9
+
+
+
+**Apr 17:**
+
+* Before class review [Book Down](https://bookdown.org/yihui/bookdown/)
+* Before class 
+    + Watch [Dimension Reduction](https://www.youtube.com/watch?v=QlyROnAjnEk) (4:45)
+    + Watch [Principal Components Regression and Partial Least Squares ](https://www.youtube.com/watch?v=eYxwWGJcOfw) (15:48)
+   
+   
+* Lecture - Chapter 06 - Take Notes
+
+
+
+
+**Apr 19:**
+
+* Before class
+    + Watch [Lab: Best Subset Selection](https://www.youtube.com/watch?v=3kwdDGnV8MM) (10:36)
+    + Watch [Lab: Forward Stepwise Selection and Model Selection Using Validation Set](https://www.youtube.com/watch?v=mv-vdysZIb4) (10:32)
+    + Watch [Lab: Model Selection Using Cross-Validation](https://www.youtube.com/watch?v=F8MMHCCoALU) (5:32)
+    + Watch [Lab: Ridge Regression and Lasso ](https://www.youtube.com/watch?v=1REe3qSotx8) (16:34)
+    
+* Lecture - Chapter 06 - Take Notes
+* Quiz #10
+
+
+**Apr 24:**
+
+* Project 2: [Start Here](../Rmarkdown/Project2.html)
+
+
+**Apr 26:**
+
+* Lecture - Chapter 06 - Take Notes  
+* Quiz 11
+* Work on Project 2
+
+
+
+**May 1:**
+
+* Turn in Project 2 - NLT May 02, 10 am
+* Make sure a single `.Rmd` with the sections outlined in the [Example Paper](../BDbetaTemplate/TemplateBookDown.html) is in your `Project2` directory under your private course repository.
+* Send an email to the instructor using a subject of "House Data Predictions" with an attached vector (csv file) of your predictions using the data set `housedataTEST.csv`.  Note: your vector should contain 4229 predictions. 
+
+* [Project 2 Leaderboard](../StudentPredictions2018ForWeb/TestError.html)
+
+
+**May TBA:**
+
+* Final Exam 
+
+<!--* [data file 1](SMELTPOT.txt)
+* [data file 2](STREETVN.txt) -->
+
+#[Home Page](http://Lasanthi-ASU.github.io/STT3851ClassRepo/) - [Syllabus](https://lasanthi-asu.github.io/STT3851ClassRepo/Syllabus/STT3851Spring2017Syllabus.html) {-}  
+
+
+

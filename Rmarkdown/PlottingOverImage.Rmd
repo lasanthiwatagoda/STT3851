@@ -1,0 +1,26 @@
+---
+title: "Plotting With a PNG Background"
+author: "Alan Arnholt"
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+output:
+  html_document:
+    css: ../CSS/asu.css
+    highlight: textmate
+    theme: yeti
+---
+
+```{r, label = "gg", fig.width = 8, fig.height = 4}
+library(png)
+img <- readPNG("../PNG/ece.png")
+plot(1, 1, type = "n", main = "Plotting Over an Image", axes = FALSE, xlab = "", ylab = "", xlim = c(0, 2), ylim = c(0, 4))
+axis(1)
+axis(2)
+lim <- par()
+rasterImage(img, lim$usr[1], lim$usr[3], lim$usr[2], lim$usr[4])
+grid()
+set.seed(1)
+rd <- rnorm(30, 1, 0.3)
+hist(rd, add = TRUE, col = "pink", freq = FALSE)
+plot(ecdf(rd), add = TRUE, col = "red")
+lines(c(0.0, 0.5, 0.6, 1.5, 2.0), c(0, 2, 4, 2, 4), type="b", lwd=2, col="yellow")
+```

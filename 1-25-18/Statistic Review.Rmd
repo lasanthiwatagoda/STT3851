@@ -1,0 +1,13 @@
+---
+title: "Statistic Review"
+author: "Lasanthi"
+date: "1/25/2018"
+output: html_document
+---
+
+#1.Notation
+
+```{r}
+# Standard Nomal
+curve(dnorm(x), -3.5, 3.5)
+```

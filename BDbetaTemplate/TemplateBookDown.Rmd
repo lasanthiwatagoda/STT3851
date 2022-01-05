@@ -1,0 +1,308 @@
+---
+title: "Modeling the interest rate charged by the [Lending Club](http://www.lendingclub.com/)"
+author: "Lasanthi Watagoda"
+date: '`r format(Sys.time(), "%b %d, %Y")`'
+bibliography:
+- ./BIB/CV.bib
+- ./BIB/TemplateRefs.bib
+- ./BIB/PackagesUsed.bib
+output:
+  bookdown::html_document2:
+    highlight: textmate
+    theme: yeti
+---
+
+```{r, label = "setup", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+library(knitr)
+library(ggplot2)
+library(car)
+knitr::opts_chunk$set(comment = NA, fig.align = 'center', fig.height = 5, fig.width = 5, prompt = FALSE, highlight = TRUE, tidy = FALSE, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff = 80))
+```
+
+# Introduction
+
+
+The [Lending Club](http://www.lendingclub.com/) @leader says it uses technology and innovation to reduce the cost of traditional banking and to offer borrowers better rates and investors better returns.  Literature on the [Lending Club](http://www.lendingclub.com/) web site states that the interest rate the [Lending Club](http://www.lendingclub.com/) charges borrowers is based on a club base rate with an adjustment for risk and volatility with further modifiers based on the amount of the loan and the length of the loan.  
+
+Modeling the relationship between interest rate and other recorded data allows the reader to gain an understanding behind the so called "proprietary model" used by the [Lending Club](http://www.lendingclub.com/) to set interest rates for the loans it administers.  The analysis and model used in this paper suggest that the interest rate charged by the [Lending Club](http://www.lendingclub.com/)  is indeed related to the amount and the length of the loan.  Individuals with identical FICO scores can use the model in this paper to predict the interest rate the [Lending Club](http://www.lendingclub.com/) would charge them based on a combination of the applicant's monthly income, open credit lines, and inquiries in the last six months.
+
+```{r, label = "coolpic", fig.align = 'center', echo = FALSE}
+knitr::include_graphics('images/LendingClub.png', dpi = 126)
+```
+
+# Methods
+
+## Data Collection
+
+Data used in this paper was originally downloaded from 
+
+[https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv](https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv)
+
+February 16, 2013,  and again `r format(Sys.time(), "%B %d, %Y")`, using the `R` programming language [@R-base].  It is not clear from the available information how, from whom, or when the data was collected, nor is it clear what entity or organization did the collecting.  Thirty loans were removed that had either questionable values or missing data.  Loans were removed when their recorded data conformed to the "Decline Criteria" given at the bottom of the 
+[https://www.lendingclub.com/public/how-we-set-interest-rates.action](https://www.lendingclub.com/public/how-we-set-interest-rates.action) web page.
+
+```{r, echo = FALSE, results = "hide", warning = FALSE, message = FALSE}
+download.file(url = "https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv", destfile = "./Data/ProjectTwo.csv", method = "curl")
+# Information is now in 'data' folder
+FD <- read.csv("./Data/ProjectTwo.csv")
+summary(FD)
+dim(FD)
+str(FD)
+xtabs(~Loan.Length + Loan.Purpose,data = FD)
+# NOTE interest should be numeric
+tapply(FD$Interest.Rate, FD$Loan.Length, mean, na.rm= TRUE)
+# Need to get rid of % symbol in 'Interest.Rate' and Debt.To.Income.Ratio' variables.
+# removed % signs and moved header over, removed row.identifier column stored in ProjectTwoClean.csv
+#
+FD$Interest.Rate <- as.numeric(gsub("%", "", FD$Interest.Rate))
+FD$Debt.To.Income.Ratio <- as.numeric(gsub("%", "", FD$Debt.To.Income.Ratio))
+str(FD)
+head(FD)
+write.csv(FD, file = "./Data/FD.csv", row.names = FALSE)
+FD <- read.csv("./Data/FD.csv")
+str(FD)
+head(FD)
+# A bunch of data cleaning not shown here...and eventually we get FD5.csv
+# Note it does not make sense to have negative or zero amount funded by investors with an Interest.Rate value---this is the case with rows:
+which(FD$Amount.Funded.By.Investors <= 0)
+# 402, 1633, 253, 1000, 1423, 1764
+
+FD3 <- FD[-which(FD$Amount.Funded.By.Investors <= 0), ]
+# Since Decline Criteria specifies less than 660 is automatic no...we will subset only those scores grater than of equal to 660.
+levels(FD3$FICO.Range)
+as.numeric(FD3$FICO.Range)
+NEW <- FD3[as.numeric(FD3$FICO.Range) > 4,]
+xtabs(~FICO.Range, data = NEW)
+xtabs(~FICO.Range, data = FD3)
+summary(FD3)
+summary(NEW)
+tail(FD3[order(FD3$Monthly.Income), c("Amount.Funded.By.Investors", "Amount.Requested", "Interest.Rate", "Debt.To.Income.Ratio", "Monthly.Income", "Revolving.CREDIT.Balance")], n= 20)
+tail(FD3[order(FD3$Open.CREDIT.Lines), c("Amount.Funded.By.Investors", "Amount.Requested", "Interest.Rate", "Debt.To.Income.Ratio", "Monthly.Income", "Revolving.CREDIT.Balance","Open.CREDIT.Lines")], n= 20)
+FD4 <- na.omit(NEW)
+summary(FD4)
+FD4[FD4$Home.Ownership == "OTHER", ]
+head(FD3[order(FD3$Debt.To.Income.Ratio), c("Amount.Funded.By.Investors", "Amount.Requested", "Interest.Rate", "Debt.To.Income.Ratio", "Monthly.Income", "Revolving.CREDIT.Balance","Open.CREDIT.Lines")], n= 20)
+
+# plot(density(FD4$Amount.Funded.By.Investors))  # skewed right
+# plot(density(FD4$Interest.Rate)) # relatively symmetric
+# plot(density(FD4$Debt.To.Income.Ratio)) # symmteric - 0-.4
+# plot(density(FD4$Monthly.Income))  # very skew right
+# plot(density(FD4$Open.CREDIT.Lines)) # skew right
+# plot(density(FD4$Revolving.CREDIT.Balance)) # very right skewed
+# plot(density(FD4$Inquiries.in.the.Last.6.Months))  # very multimodal skew right
+#
+# plot(density(log10(FD4$Inquiries.in.the.Last.6.Months))) 
+#
+summary(FD4)
+prop.table(xtabs(~Home.Ownership + Loan.Purpose, data = FD4),1)
+totmod <- lm(Interest.Rate ~ Amount.Requested + Loan.Length + Loan.Purpose + Debt.To.Income.Ratio + State + Home.Ownership + Monthly.Income + FICO.Range + Open.CREDIT.Lines + Revolving.CREDIT.Balance + Inquiries.in.the.Last.6.Months + Employment.Length, data =FD4)
+summary(totmod)
+modnostate <- update(totmod, .~. -State)
+summary(modnostate)
+modnopur <- update(modnostate, .~. - FICO.Range - Loan.Purpose - Open.CREDIT.Lines - Revolving.CREDIT.Balance - Employment.Length)
+summary(modnopur)
+modF <- update(modnopur, .~. + FICO.Range)
+summary(modF)
+#### Write FD4 to data directory now...
+write.table(FD4, file ="./Data/FD4")
+##
+xtabs(~Home.Ownership + Loan.Purpose, data = FD4)
+###########################################################################
+# renewable energy is suspicious to me
+FD4[FD4$Loan.Purpose =="renewable_energy",]
+# We will leave it at that...just suspicious.
+summary(FD4)
+FD4[FD4$Revolving.CREDIT.Balance > 100000, ]
+##############################################################
+FD5 <- subset(FD4, subset = Inquiries.in.the.Last.6.Months <= 6)
+summary(FD5)
+dim(FD5)
+write.table(FD5, file="./Data/FD5")
+table(FD5$FICO.Range) # 34 levels of FICO.Range Now
+```
+
+
+## Exploratory Analysis
+
+Exploratory analysis was performed by examining contingency tables, density plots, and scatter-plots of the "cleaned" data.  The quality of the "cleaned" data was also evaluated for additional discrepancies, and none were noted.  To correct the positive skew of monthly income, a base 10 logarithm was applied to monthly income.  Added-variable (partial-regression) plots as described in @fox2011 were used in the selection of appropriate variables. Diagnostic plots were used to assess different models including Box-Cox transformations on the response variable (interest rate) as described in @kutner2005.      
+
+## Statistical Modeling
+
+Standard multivariate regression techniques such as those described in @fox2011 and @kutner2005 were used to develop a model to predict the interest rate of loans awarded by the [Lending Club](http://www.lendingclub.com/).
+
+## Reproducibility
+
+All analyses performed in this paper can be reproduced by running the original `.Rmd` file with RStudio, assuming the link to the original data remains current and the contents thereof remain unchanged. The `R` packages `car` [@R-car], `ggplot2` [@R-ggplot2], `knitr` [@R-knitr], `rmarkdown` [@R-rmarkdown], and `bookdown` [@R-bookdown]  will need to be installed on the user's computer.  Since `bookdown` is being actively developed and is not yet on [CRAN](https://cran.r-project.org/), you will need to install `bookdown` from [GitHub](https://github.com)
+by typing the following at the `R` prompt:
+
+```{r, eval = FALSE}
+devtools::install_github("rstudio/bookdown")
+```
+
+
+# Results
+
+```{r, echo = FALSE}
+# Note data was cleaned outside of this document
+CLEANED <- read.table("./Data/FD5")
+mod8 <- lm(formula = I(Interest.Rate^0.5) ~  Amount.Requested + log10(Monthly.Income) + Open.CREDIT.Lines + I(Open.CREDIT.Lines^2) + Inquiries.in.the.Last.6.Months + I(Inquiries.in.the.Last.6.Months^2) + Loan.Length + FICO.Range  + Amount.Requested:Loan.Length, data = CLEANED)
+```
+
+The data used to develop the final model includes information on interest rate (`IR`), amount requested in dollars (`AR`), monthly income in dollars (`MI`), number of open credit lines (`OCL`), number of inquiries in the last six months (`IL6M`), loan length in months (`LL`), and a measure of the creditworthiness of the applicant (`FICO`).  There were no missing values in the "cleaned" data, which had `r dim(CLEANED)[1]` loans.  Since the distribution of monthly income was skewed right, a log base 10 transformation was applied to monthly income.  Variables were added based on partial regression plots and residual analyses.  The linear relationship between the square root of the interest rate and the amount of money requested can be seen in Figure \@ref(fig:fico).
+
+
+```{r, label = "fico", fig.width=7, fig.height= 7, echo = FALSE, fig.cap = "The top panel shows lines obtained from regressing the square root of the interest rate on the amount requested for 36 month loans and the bottom panel shows lines obtained from regressing the square root of the interest rate on the amount requested for 60 month loans.  The points and lines are color coded according to FICO scores.  The FICO score legend is shown on the right side of the Figure.  Higher interest rates generally correspond to lower FICO scores, and the interest rates increase with the dollar amount requested.  Interest rates are generally higher for all levels of FICO scores for 60 month loans versus 36 month loans."}
+ggplot(data = CLEANED, aes(x = Amount.Requested, y = I(Interest.Rate^.5), colour = FICO.Range)) + 
+  geom_point() +
+  geom_smooth(method = lm, se= FALSE) + 
+  facet_grid(Loan.Length~.) + 
+  labs(x = "Amount Requested in Dollars", y = expression(sqrt("Interest Rate")), colour = "FICO Score") +
+  theme_bw()
+```
+  
+Although the final model includes variables that may measure similar quantities (confounding), the highest variance inflation factor was `r round(vif(mod8)[3,1],2)` for the variable `OCL`.  All other variance inflation factors were less than 10, suggesting multicollinearity is not a significant problem with the final model (@fox2011 and @kutner2005).  The coefficients in the final model also make sense and are in agreement (sign wise $\pm$) with how the Lending Club claims to award its loans. 
+
+The final model used was
+
+
+\begin{align}
+\sqrt{\text{IR}} &= \beta_0 + \beta_1 \text{AR} + \beta_2 \text{log10(MI)} + \beta_3 \text{OCL} + \beta_4 \text{OCL}^2 + \beta_5 \text{IL6M} \nonumber \\
+&\qquad{} + \beta_6 \text{IL6M}^2 + \beta_7 \text{f(LL)} + \beta_8 \text{f(FICO)} + \beta_9 \text{f(AR:LL)} + \varepsilon
+(\#eq:final)
+\end{align}
+
+
+The variables `f(LL)`, `f(FICO)`, and `f(AR:LL)` are factors for loan length (2 levels 36 months and 60 months), credit score (34 levels), and the interaction between amount requested and the loan length, respectively.  The error term $\varepsilon$ is assumed to follow a normal distribution with mean 0 and constant variance.  A graph of the residuals versus the fitted model, shown in Figure \@ref(fig:residplot), shows a constant variance for the majority of the range of the fitted values, suggesting the fitted model satisfies the assumptions required for inferential techniques to work with ordinary least squares.  
+
+```{r, label = "readit", echo = FALSE}
+GG <- fortify(mod8)
+```
+
+```{r, label = "residplot", fig.height = 3.5, echo = FALSE, fig.cap = "Residuals versus fitted model"}
+ggplot(data = GG, aes(x = .fitted, y = .resid)) + 
+  geom_point() + 
+  labs(x = "Fitted Model", y = "Residuals") + 
+  geom_smooth() + 
+  theme_bw()
+```
+
+
+There is a highly statistically significant relationship ($p$-value $< 0.0001$) between the square root of interest rate and all of the variables in model \@ref(eq:final) with the exception of the interaction between the amount requested and the loan length which has a $p$-value of `r round(summary(mod8)$coef[42,4],4)`.  See Table \@ref(tab:ANOVA) for complete ANOVA results.
+
+```{r, label = "ANOVA", echo = FALSE}
+kable(
+  anova(mod8), digits = 4,
+  caption ="ANOVA table for the full model fit using ordinary least squares"
+)
+```
+
+# Conclusions
+
+```{r,  label = "BIGTabCI", echo = FALSE}
+NEW1 <- data.frame(FICO.Range = c("755-759","755-759","755-759"), Monthly.Income = c(3500, 5000, 6800), 
+                   Amount.Requested = c(10000,10000,10000), Open.CREDIT.Lines = c(9,9,9), 
+                   Loan.Length = c('36 months','36 months','36 months'),
+                   Inquiries.in.the.Last.6.Months=c(0,0,0))
+PNEW1 <- predict(mod8, newdata = NEW1, interval = 'confidence')^2
+TNEW1 <- cbind(NEW1, PNEW1)
+# TNEW1
+NEW1A <- data.frame(FICO.Range = c("755-759","755-759","755-759"), Monthly.Income = c(3500, 5000, 6800), 
+                   Amount.Requested = c(10000,10000,10000), Open.CREDIT.Lines = c(9,9,9), 
+                   Loan.Length = c('60 months','60 months','60 months'),
+                   Inquiries.in.the.Last.6.Months=c(0,0,0))
+PNEW1A <- predict(mod8, newdata = NEW1A, interval = 'confidence')^2
+TNEW1A <- cbind(NEW1A, PNEW1A)
+# TNEW1A
+NEW2 <- data.frame(FICO.Range = c("685-689","755-759","785-789"), Monthly.Income = c(5000, 5000, 5000), 
+                   Amount.Requested = c(10000,10000,10000), Open.CREDIT.Lines = c(9,9,9), 
+                   Loan.Length = c('36 months','36 months','36 months'),
+                   Inquiries.in.the.Last.6.Months=c(0,0,0))
+PNEW2 <- predict(mod8, newdata = NEW2, interval = 'confidence')^2
+TNEW2 <- cbind(NEW2, PNEW2)
+# TNEW2
+NEW2A <- data.frame(FICO.Range = c("685-689","755-759","785-789"), Monthly.Income = c(5000, 5000, 5000), 
+                    Amount.Requested = c(10000,10000,10000), Open.CREDIT.Lines = c(9,9,9), 
+                    Loan.Length = c('60 months','60 months','60 months'),
+                    Inquiries.in.the.Last.6.Months=c(0,0,0))
+PNEW2A <- predict(mod8, newdata = NEW2A, interval = 'confidence')^2
+TNEW2A <- cbind(NEW2A, PNEW2A)
+# TNEW2A
+NEW3 <- data.frame(FICO.Range = c("755-759","755-759","755-759"), Monthly.Income = c(5000, 5000, 5000), 
+                   Amount.Requested = c(10000,10000,10000), Open.CREDIT.Lines = c(7,9,13), 
+                   Loan.Length = c('36 months','36 months','36 months'),
+                   Inquiries.in.the.Last.6.Months=c(0,0,0))
+PNEW3 <- predict(mod8, newdata = NEW3, interval = 'confidence')^2
+TNEW3 <- cbind(NEW3, PNEW3)
+# TNEW3
+NEW3A <- data.frame(FICO.Range = c("755-759","755-759","755-759"), Monthly.Income = c(5000, 5000, 5000), 
+                    Amount.Requested = c(10000,10000,10000), Open.CREDIT.Lines = c(7,9,13), 
+                    Loan.Length = c('60 months','60 months','60 months'),
+                    Inquiries.in.the.Last.6.Months=c(0,0,0))
+PNEW3A <- predict(mod8, newdata = NEW3A, interval = 'confidence')^2
+TNEW3A <- cbind(NEW3A, PNEW3A)
+# TNEW3A
+NEW4 <- data.frame(FICO.Range = c("755-759","755-759","755-759"), Monthly.Income = c(5000, 5000, 5000), 
+                   Amount.Requested = c(6000,10000,17000), Open.CREDIT.Lines = c(9,9,9), 
+                   Loan.Length = c('36 months','36 months','36 months'),
+                   Inquiries.in.the.Last.6.Months=c(0,0,0))
+PNEW4 <- predict(mod8, newdata = NEW4, interval = 'confidence')^2
+TNEW4 <- cbind(NEW4, PNEW4)
+# TNEW4
+NEW4A <- data.frame(FICO.Range = c("755-759","755-759","755-759"), Monthly.Income = c(5000, 5000, 5000), 
+                    Amount.Requested = c(6000,10000,17000), Open.CREDIT.Lines = c(9,9,9), 
+                    Loan.Length = c('60 months','60 months','60 months'),
+                    Inquiries.in.the.Last.6.Months=c(0,0,0))
+PNEW4A <- predict(mod8, newdata = NEW4A, interval = 'confidence')^2
+TNEW4A <- cbind(NEW4A, PNEW4A)
+# TNEW4A
+NEW5 <- data.frame(FICO.Range = c("755-759","755-759"), Monthly.Income = c(5000, 5000), 
+                   Amount.Requested = c(10000,10000), Open.CREDIT.Lines = c(9,9), 
+                   Loan.Length = c('36 months','60 months'),
+                   Inquiries.in.the.Last.6.Months=c(0,0))
+PNEW5 <- predict(mod8, newdata = NEW5, interval = 'confidence')^2
+TNEW5 <- cbind(NEW5, PNEW5)
+# TNEW5
+NEW6 <- data.frame(FICO.Range = c("755-759","755-759","755-759"), Monthly.Income = c(5000, 5000, 5000), 
+                   Amount.Requested = c(10000,10000,10000), Open.CREDIT.Lines = c(9,9,9), 
+                   Loan.Length = c('36 months','36 months','36 months'),
+                   Inquiries.in.the.Last.6.Months=c(0,0,1))
+PNEW6 <- predict(mod8, newdata = NEW6, interval = 'confidence')^2
+TNEW6 <- cbind(NEW6, PNEW6)
+# TNEW6
+NEW6A <- data.frame(FICO.Range = c("755-759","755-759","755-759"), Monthly.Income = c(5000, 5000, 5000), 
+                    Amount.Requested = c(10000,10000,10000), Open.CREDIT.Lines = c(9,9,9), 
+                    Loan.Length = c('60 months','60 months','60 months'),
+                    Inquiries.in.the.Last.6.Months=c(0,0,1))
+PNEW6A <- predict(mod8, newdata = NEW6A, interval = 'confidence')^2
+TNEW6A <- cbind(NEW6A, PNEW6A)
+# TNEW6A
+TPDATA <- rbind(TNEW1, TNEW1A, TNEW2, TNEW2A, TNEW3, TNEW3A, TNEW4, TNEW4A, TNEW6, TNEW6A, TNEW5)
+names(TPDATA) <- c("FICO", "MI", "AR", "OCL", "LL", "IL6M", "E(IR)", "LB", "UB")
+```
+
+Since the goal of the analysis is to predict interest rates, a table showing the mean interest rate, $E(\text{IR}_{h})$, given a vector of inputs $h$ is given along with lower (`LB`) and upper (`UB`) confidence bounds for $95\%$ confidence intervals for each $E(\text{IR}_{h})$ in Table \@ref(tab:BPT). There is a clear relationship between amount requested, length of loan, and the interest rate charged as evidenced by Figure \@ref(fig:fico). The expected mean interest rate, $E(\text{IR}_{h})$, for a 36 month loan where the values of the input vector $h$ are all at the 0.50 quantile of their respective distributions is `r round(TPDATA[2, 7],2)`% (the second row of Table \@ref(tab:BPT)). The expected mean interest rate for the same values of the input vector $h$ for a 60 month loan is `r round(TPDATA[5, 7],2)`% (the fifth row of Table \@ref(tab:BPT)).  Similar comparisons can be made by studying the values in Table \@ref(tab:BPT) for changes in FICO scores, monthly incomes, amount requested, open credit lines, loan length, and the number of inquiries in the last six months.  The reader should note that the confidence intervals reported in Table \@ref(tab:BPT) are individual (not family wise) 95\% confidence intervals for the expected mean interest rate computed from an appropriate back transformation so that values are reported on the same scale as the original measurements instead of the square root of the interest rate.  
+
+The model used to develop Table \@ref(tab:BPT) has an $R^2_{adj}$ value of `r round(summary(mod8)$adj.r.squared, 4)`.  However, base interest rates change with market conditions and the model in this paper may not work as well for loans made in time periods other than when the data in this paper was obtained.
+
+
+
+```{r, label= "BPT", echo = FALSE}
+kable(
+  TPDATA,
+  digits = 2,
+  row.names = FALSE,
+  caption = "Each row of the first six columns represent different vectors of values ($h$) passed to the fitted model. The predicted mean interest rate \\%, $E(\\text{IR}_{h})$, for each vector $h$  is shown in the column labeled $E(\\text{IR})$.  The lower and upper bounds on a 95\\% confidence interval for $E(\\text{IR}_{h})$ are labeled $\\text{LB}$ and $\\text{UB}$, respectively. The values selected for all quantitative variables are the 0.25, 0.50, and 0.75 quantiles of their respective distributions."
+)
+```
+
+
+
+```{r, echo = FALSE, message = FALSE, results = 'hide', warning = FALSE}
+PackagesUsed <- c("rmarkdown", "knitr", "base", "xtable", "ggplot2", "car", "bookdown")
+# Write bib information
+knitr::write_bib(PackagesUsed, file = "./BIB/PackagesUsed.bib")
+# Load packages
+lapply(PackagesUsed, library, character.only = TRUE)
+```
+
+# References

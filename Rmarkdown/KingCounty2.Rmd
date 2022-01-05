@@ -1,0 +1,209 @@
+---
+title: "King County Housing Data"
+author: "Alan Arnholt"
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+output:
+  html_document:
+    css: ../CSS/asu.css
+    highlight: textmate
+    theme: yeti
+---
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+set.seed(123)
+library(knitr)
+knitr::opts_chunk$set(comment = NA,  fig.align = 'center', fig.height = 5, fig.width = 5, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff= 75))
+```
+
+Reading the comma separated file from the `Data` directory one level up from where this document is stored using the `read.csv()` function.  Variable descriptions were obtained from [King County, Department of Assessments](http://your.kingcounty.gov/assessor/eRealProperty/ResGlossaryOfTerms.html).  All feature engineering should be done in one the first code chunks of your document.
+
+```{r, label = "READIN", cache = TRUE}
+housedata <- read.csv("../Data/housedata.csv", 
+                      colClasses = c(id = "character", date = "character", 
+                                     yr_built = "character", zipcode = "factor", grade = "factor"))
+housedata$date <- as.Date(housedata$date, "%Y%m%d")
+housedata$waterfront <- factor(housedata$waterfront, labels = c("No", "Yes"))
+housedata$condition <- factor(housedata$condition, labels = c("poor", "fair", "average", "good", "very good"))
+housedata$yr_renovated <- ifelse(housedata$yr_renovated == 0, housedata$yr_built, housedata$yr_renovated)
+housedata$yr_built <- as.Date(ISOdate(housedata$yr_built, 9, 1))  # Complete Year, Sept 1
+housedata$yr_renovated <- as.Date(ISOdate(housedata$yr_renovated, 9, 1))  # Last renovated Year, Sept 1
+housedata <- housedata[, -1]
+#### Perform same steps with test set
+housedataT <- read.csv("../Data/housedataTEST.csv", 
+                      colClasses = c(id = "character", date = "character", 
+                                     yr_built = "character", zipcode = "factor", grade = "factor"))
+housedataT$date <- as.Date(housedataT$date, "%Y%m%d")
+housedataT$waterfront <- factor(housedataT$waterfront, labels = c("No", "Yes"))
+housedataT$condition <- factor(housedataT$condition, labels = c("poor", "fair", "average", "good", "very good"))
+housedataT$yr_renovated <- ifelse(housedataT$yr_renovated == 0, housedataT$yr_built, housedataT$yr_renovated)
+housedataT$yr_built <- as.Date(ISOdate(housedataT$yr_built, 9, 1))  # Complete Year, Sept 1
+housedataT$yr_renovated <- as.Date(ISOdate(housedataT$yr_renovated, 9, 1))  # Last renovated Year, Sept 1
+housedataT <- housedataT[, -1]
+```
+
+```{r , message = FALSE, warning = FALSE}
+library(DT)
+datatable(housedata[, 2:10], rownames = FALSE)
+```
+
+Consider predicting the price (`price`) of a house based on a certain feature (`sqft_living`).  Start by graphing the relationship.
+
+```{r}
+library(ggplot2)
+p1 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+  geom_point() + 
+  theme_bw()
+p1
+```
+
+Overplotting is problematic.  What should we do?
+
+* Consider making the plotting shape smaller.
+* Make the points semitransparent (`alpha`).
+* Bin the data into rectangles.
+* Bin the data into hexagons.
+
+
+### Using `alpha`
+
+```{r}
+p2 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        geom_point(alpha = 0.05, color = "blue") + 
+        theme_bw() 
+p2
+```
+
+### Using rectangles
+
+```{r, fig.width = 6}
+p3 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_bin2d(bins = 50) + 
+        theme_bw()
+p3
+p4 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_bin2d(bins = 50) + 
+        scale_fill_gradient(low = "lightblue", high = "red", 
+                            limits = c(0, 1000)) +
+        theme_bw()
+p4
+```
+
+### Using hexagons
+
+```{r, fig.width = 6}
+p5 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_binhex(bins = 50) + 
+        scale_fill_gradient(low = "lightblue", high = "red", 
+                            limits = c(0, 800), breaks = seq(0, 800, by = 200)) +
+        theme_bw()
+p5
+```
+
+**Note*  For both `stat_bin2d` and `stat_binhex`, if you manually specify the range, and there is a bin that falls outside that range because it has too many or too few points, that bin will show up as grey rather than the color at the high or low end of the range. Observe the gray hexagons in the lower left corner of the above graph.
+
+```{r, fig.width = 6}
+p6 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_binhex(bins = 50) + 
+        scale_fill_gradient(low = "lightblue", high = "red", 
+                            limits = c(0, 1000), breaks = seq(0, 1000, by = 200)) +
+        theme_bw()
+p6
+```
+
+## What features might be visible in a scatterplot?
+
+* Causal relationships (linear and nonlinear) - One variable may have a direct influence on another in some way.  
+* Associations - Variables may be associated with on another without being directly causally related.
+* Outliers of groups of outliers - Cases can be outliers in two dimensions without being outliers in either dimension separately.
+* Clusters - Sometimes there are groups of cases which are separate from the rest of the data.
+* Gaps - Occasionally, particular combinations of values do not occur.
+* Barriers - Some combinations of values may not be possible
+* Conditional relationship - Sometimes the relationship between two variables is better summarized by a conditional description that by a function.
+
+Use a simple linear model to predict the price of a house with 2,500 $\text{ft}^2$.
+
+```{r}
+slm <- lm(price ~ sqft_living, data = housedata)
+summary(slm)
+predict(slm, newdata = data.frame(sqft_living = 2500))
+```
+
+```{r, fig.width=10, fig.height = 10}
+p6 + geom_smooth(method = "lm") + 
+  geom_vline(xintercept = 2500,linetype = "dashed", color = "red") +
+  geom_hline(yintercept = predict(slm, newdata = data.frame(sqft_living = 2500)), linetype = "dashed", color = "red") + 
+  labs(x = "Living Space (square feet)", y = "Price ($)")
+```
+
+`mod.zip` most basic model.
+
+```{r}
+mod.zip <- lm(price ~ 1, data = housedata)
+summary(mod.zip)
+```
+
+`mod.all` all current features except `sqft_basement`.
+
+```{r}
+mod.all <- lm(price ~ . - sqft_basement, data = housedata)
+summary(mod.all)
+```
+
+Your goal is to create a model with as small a test error as possible.  Note that the square root of the training RSS from model `mod.all` is $`r anova(mod.all)[19, 3]^.5`$.
+
+
+
+```{r, fig.width=10, fig.height = 10}
+library(ggmap)
+KingMap <-
+  get_map(
+    location = c(lon = -122.1, lat = 47.48),
+    zoom = 10,
+    source = "google",
+    maptype = "roadmap"
+  )
+ggmap(KingMap) +
+  geom_point(
+    aes(x = housedata$long, y = housedata$lat),
+    data = housedata,
+    alpha = .2,
+    color = "blue",
+    size = 0.01
+  ) +
+  geom_point(
+    aes(x = housedataT$long, y = housedataT$lat),
+    data = housedataT,
+    alpha = .2,
+    color = "red",
+    size = 0.01
+  ) +
+  ggtitle("Houses Sold in King County, Wa (2014-2015)") +
+  labs(x = "longitute", y = "latitude")
+```
+
+## Prediction
+
+* Submit a vector named (`yourlastname_yourfirstname`) with the predicted house prices for your model using the data frame `housedataT`.
+
+* Suppose your final model is `mod.all`.
+
+```{r}
+yourlastname_yourfirstname <- predict(mod.all, newdata = housedataT)
+head(yourlastname_yourfirstname)
+```
+
+I will compute your $\sqrt{MSPE}$.
+
+```{r}
+SMSPE <- sqrt(mean((head(yourlastname_yourfirstname) - c(310000, 650000, 233000, 580500, 535000, 605000))^2))
+SMSPE
+```
+
+```{r}
+plot(price ~ grade, data = housedata)
+```
+```{r}
+housedata$grade <- factor(housedata$grade, levels = c("1", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"))
+levels(housedata$grade)
+plot(price~grade, data = housedata)
+```

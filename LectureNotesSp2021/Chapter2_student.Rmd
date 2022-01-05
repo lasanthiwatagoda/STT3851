@@ -1,0 +1,180 @@
+---
+title: Chapter 2 - Statistical Learning
+author: Dr. Lasanthi Watagoda
+date: January 19, 2021
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: github
+    math: katex
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(ISLR)
+```
+
+# Statistical learning?
+
+Statistical learning is the use of past data to find how a variable depends on other variables, or how data can be summarized or represented. 
+
+For example, an insurance company may want to estimate the claim costs (_________) for an insured
+based on various features (_________) of the insured-age, sex, income, credit rating, past claim experience, and other similar features. If ____ is claim costs and ____ are the various features, we would like to find the function ____ for which
+
+&nbsp;
+
+There is no perfect $f$, so we have to allow for error. Let ____ the error. Then we want a function $f$ for which
+
+&nbsp; 
+  
+Where, 
+  * $\epsilon$ is independent of $X$
+  
+  * $E(\epsilon) = 0$ 
+  
+We would like to pick the $f$ that makes the error $\epsilon$ as small as possible. The remaining error is the ________ error.
+
+  * The input variables $X_i$ are called ________ variables, ________ variables, ________, or ________. (Usually, the term "features" is only used if $X_i$ is a discrete random variable with a finite number of possible values.) 
+
+  * The output variable $Y$ is called the ________ variable or the ________.
+  
+  * Sample size is usually denoted by $n$
+  
+  * The number of predictors is denoted by ____
+  
+
+```{example}
+Example:
+  Suppose that we are statistical consultants hired by a client to provide advice on 
+how to improve sales of a particular product. The Advertising data set consists of 
+the sales of that product in 200 different markets, along with advertising budgets 
+for the product in each of those markets for three different media: TV, radio, and 
+newspaper.
+
+  1) What is the response variable in this senario?
+  
+  2) What is the sample size?
+  
+  3) How many predictor variables are there? (what is $p$?)
+
+  4) List the predictor variables
+```
+
+It is not possible for our client to directly increase
+sales of the product. On the other hand, they can control the advertising
+expenditure in each of the three media. Therefore, if we determine that
+there is an association between advertising and sales, then we can instruct
+our client to adjust advertising budgets, thereby indirectly increasing sales.
+In other words, our goal is to develop an accurate model that can be used
+to predict sales on the basis of the three media budgets.
+
+## Why estimate $f$?
+
+There are two main reasons that we may wish to estimate f: prediction
+and inference.
+
+  1) 
+  
+  2) 
+  
+
+### Prediction
+
+In many situations, a set of inputs ___ are readily available, but the output
+___ cannot be easily obtained. In this setting, since the error term averages
+to zero, we can predict $Y$ using 
+
+&nbsp; 
+
+where ___ represents our estimate for ___, and ___ represents the resulting prediction
+for ___.
+
+The accuracy of $\hat{Y}$ as a prediction for $Y$ depends on two quantities
+
+  1) 
+  
+&nbsp; 
+
+  2) 
+  
+&nbsp; 
+
+
+**Let's look at this mathematically**
+
+$$E(Y-\hat{Y})^2 = E[f(X) + \epsilon - \hat{f}(X)]^2$$
+&nbsp; 
+
+The focus of this class is on techniques for estimating $f$ with the aim of
+minimizing the reducible error.
+
+### Inference
+
+Here we want to understand
+the relationship between $X$ and $Y$ , or more specifically, to understand how
+$Y$ changes as a function of $X_1, . . .,X_p.$
+
+In this case, we are
+interested in answering the following questions:
+
+  1) 
+  &nbsp;
+  
+  2) 
+  &nbsp;
+  
+  3)
+  &nbsp;
+  
+```{example}
+Example:
+  
+Consider a company that is interested in conducting a
+direct-marketing campaign. The goal is to identify individuals who will
+respond positively to a mailing, based on observations of demographic variables
+measured on each individual. In this case, the demographic variables
+serve as predictors, and response to the marketing campaign (either positive
+or negative) serves as the outcome. 
+
+  a) Is this a prediction problem or an inference problem?
+  
+  b) Explain why.
+```
+
+<!--
+This is an example of modeling for prediction.
+
+The company is not interested in obtaining a deep understanding of the relationships between each individual predictor and the response; instead, the company simply wants an accurate model to predict the response using the predictors. 
+-->
+
+```{example}
+Example:
+  
+Now consider the above company is interested in answering questions such as:
+– Which media contribute to sales?
+– Which media generate the biggest boost in sales? or
+– How much increase in sales is associated with a given increase in TV
+advertising?
+  
+  a) Is this a prediction problem or an inference problem?
+  
+  b) Explain why.
+  
+```
+
+```{example}
+Example:
+  
+Consider modeling the brand of a product that a customer might purchase based on
+variables such as price, store location, discount levels, competition price,
+and so forth. In this situation one might really be most interested in how
+each of the individual variables affects the probability of purchase. For
+instance, what effect will changing the price of a product have on sales? Is this a prediction problem or an inference problem?
+
+```
+
+## How Do We Estimate $f$?
+

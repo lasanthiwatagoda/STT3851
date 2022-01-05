@@ -1,0 +1,134 @@
+---
+title: "Test Error Project 2 - Leader Board"
+author: ""
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+output: html_document
+---
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+set.seed(389)
+library(knitr)
+knitr::opts_chunk$set(comment = NA, fig.show = 'as.is', fig.height = 4, fig.width = 4, prompt = TRUE, highlight = TRUE, tidy = FALSE, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff= 75, cache = TRUE))
+```
+
+
+```{r, echo = FALSE}
+APRICE <- read.csv("price.csv")
+#########################################################################
+#
+#Doe_John <- read.csv("Doe_John.csv")
+#DoeJohn <- sqrt(mean((Doe_John$x - APRICE$price)^2))
+#names(DoeJohn) <- "DoeJohn"
+#
+
+
+### You should at least beat what I gave to start with
+yourlastname_yourfirstname <- read.csv("yourlastname_yourfirstname.csv")
+BeatThis <- sqrt(mean((yourlastname_yourfirstname$x - APRICE$price)^2))
+names(BeatThis) <- "BeatThis"
+
+#
+Allen_Will <- read.csv("Allen_Will.csv")
+AllenWill <- sqrt(mean((Allen_Will$x - APRICE$price)^2))
+names(AllenWill) <- "AllenWill"
+
+#
+Campbell_Max <- read.csv("Campbell_Max.csv")
+CampbellMax <- sqrt(mean((Campbell_Max$x - APRICE$price)^2))
+names(CampbellMax) <- "CampbellMax"
+
+#
+Vandenberg_Andrew <- read.csv("Vandenberg_Andrew.csv")
+VandenbergAndrew <- sqrt(mean((Vandenberg_Andrew$x - APRICE$price)^2))
+names(VandenbergAndrew) <- "VandenbergAndrew"
+
+#
+Dube_Will <- read.csv("Dube_Will.csv")
+DubeWill <- sqrt(mean((Dube_Will$x - APRICE$price)^2))
+names(DubeWill) <- "DubeWill"
+
+
+#
+Sharma_Alyssa <- read.csv("Sharma_Alyssa.csv")
+SharmaAlyssa <- sqrt(mean((Sharma_Alyssa$x - APRICE$price)^2))
+names(SharmaAlyssa) <- "SharmaAlyssa"
+
+#
+Voyer_Michelle <- read.csv("Voyer_Michelle.csv")
+VoyerMichelle <- sqrt(mean((Voyer_Michelle$x - APRICE$price)^2))
+names(VoyerMichelle) <- "VoyerMichelle"
+
+
+#
+gaffney_grace <- read.csv("gaffney_grace.csv")
+GaffneyGrace <- sqrt(mean((gaffney_grace$x - APRICE$price)^2))
+names(GaffneyGrace) <- "GaffneyGrace"
+
+
+#
+Bass_Nick <- read.csv("Bass_Nick.csv")
+BassNick <- sqrt(mean((Bass_Nick$x - APRICE$price)^2))
+names(BassNick) <- "BassNick"
+
+
+#
+Haack_Adelaide <- read.csv("Haack_Adelaide.csv")
+HaackAdelaide <- sqrt(mean((Haack_Adelaide$x - APRICE$price)^2))
+names(HaackAdelaide) <- "HaackAdelaide"
+
+#
+Grosse_Lauren <- read.csv("Grosse_Lauren.csv")
+GrosseLauren <- sqrt(mean((Grosse_Lauren$x - APRICE$price)^2))
+names(GrosseLauren) <- "GrosseLauren"
+
+#
+Melia_Sean <- read.csv("Melia_Sean.csv")
+MeliaSean <- sqrt(mean((Melia_Sean$x - APRICE$price)^2))
+names(MeliaSean) <- "MeliaSean"
+
+#
+Bartlein_Samantha <- read.csv("Bartlein_Samantha.csv")
+BartleinSamantha <- sqrt(mean((Bartlein_Samantha$x - APRICE$price)^2))
+names(BartleinSamantha) <- "BartleinSamantha"
+
+
+#
+Church_Hailey <- read.csv("Church_Hailey.csv")
+ChurchHailey <- sqrt(mean((Church_Hailey$x - APRICE$price)^2))
+names(ChurchHailey) <- "ChurchHailey"
+
+#
+Baxter_Jamie <- read.csv("Baxter_Jamie.csv")
+BaxterJamie <- sqrt(mean((Baxter_Jamie$x - APRICE$price)^2))
+names(BaxterJamie) <- "BaxterJamie"
+
+#
+#Mackie_Tucker <- read.csv("Mackie_Tucker.csv")
+#MackieTucker <- sqrt(mean((Mackie_Tucker$x - APRICE$price)^2))
+#names(MackieTucker) <- "MackieTucker"
+
+#
+Granowsky_Nicholas <- read.csv("Granowsky_Nicholas.csv")
+GranowskyNicholas <- sqrt(mean((Granowsky_Nicholas$x - APRICE$price)^2))
+names(GranowskyNicholas) <- "GranowskyNicholas"
+
+#
+Seaton_Reynolds <- read.csv("Seaton_Reynolds.csv")
+SeatonReynolds <- sqrt(mean((Seaton_Reynolds$x - APRICE$price)^2))
+names(SeatonReynolds) <- "SeatonReynolds"
+
+
+```
+
+
+```{r, echo = FALSE}
+Leader <- data.frame(SMSPE = c(BeatThis, AllenWill, CampbellMax, VandenbergAndrew, DubeWill, BassNick, GaffneyGrace, VoyerMichelle, SharmaAlyssa, HaackAdelaide, GrosseLauren, MeliaSean, SeatonReynolds, GranowskyNicholas, BaxterJamie, ChurchHailey, BartleinSamantha))
+```
+
+```{r, echo = FALSE}
+#Leader <- data.frame(SMSPE = c(BeatThis, AllenWill, CampbellMax, VandenbergAndrew, DubeWill))
+```
+
+```{r, echo = FALSE}
+knitr::kable(Leader[order(Leader$SMSPE), , drop = FALSE], col.names = "$\\sqrt{MSPE}$", align = "l")
+```

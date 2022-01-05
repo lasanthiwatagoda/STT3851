@@ -1,0 +1,62 @@
+---
+title: "Ch2-Q8"
+author: "Lasanthi"
+date: "2/8/2018"
+output: html_document
+---
+
+## Ch2 Question 8 Help
+
+* Go to http://www-bcf.usc.edu/~gareth/ISL/data.html and download College.csv.
+* Then upload it into your folder in RStudio server.
+* Click your dataset and then click "Import dataset".
+* Then copy the following R code in to your .Rmd file.
+
+
+```{r}
+
+# Get data from the ISLR library.
+# No need to import data.
+
+#a) 
+
+library(ISLR)
+data(College)
+
+#b) Skip rownames and fix functions. fix function seems to be broken.
+College = College[,-1]
+College
+pairs(College[,1:10])
+
+boxplot(College$Outstate ~ College$Private, col = c("blue", "green"), main = "Outstate versus Private", 
+    xlab = "Private", ylab = "Outstate")
+
+Elite <- rep("No",nrow(College))
+Elite[College$Top10perc>50] = "Yes"
+Elite<-as.factor(Elite)
+College=data.frame(College,Elite)
+summary(College)
+
+boxplot(Outstate ~ Elite, col = c("blue", "green"), main = "Outstate versus Private", 
+    xlab = "Private", ylab = "Outstate")
+
+par(mfrow=c(2,2))
+hist(College$Apps, breaks=50, xlim=c(0,25000), main="Apps")
+hist(College$Enroll, breaks=25, main="Enroll")
+hist(College$Expend, breaks=25, main="Expend")
+hist(College$Outstate, main="Outstate")
+
+```
+
+
+```{r}
+attach(College)
+College <- as.data.frame(College)
+summary(College)
+rownames(College) <- College[,1]
+
+fix(College)
+College=College[,-1]
+fix(College)
+```
+

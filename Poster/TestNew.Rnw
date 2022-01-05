@@ -1,0 +1,17 @@
+\documentclass{article}
+
+\begin{document}
+
+
+<<MAPdude, echo = FALSE>>=
+library(ggplot2)
+library(ggmap)
+KingMap <- get_map(location = c(lon = -122.1, lat = 47.48), zoom = 10, source = "google", maptype = "roadmap", messaging = TRUE)
+@
+
+<<KCmap, echo = FALSE, fig.width = 12, fig.height = 12>>=
+ggmap(KingMap) 
+@
+
+
+\end{document}

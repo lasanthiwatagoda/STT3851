@@ -1,0 +1,126 @@
+---
+title: "Housing Data"
+author: "Alan Arnholt"
+date: 'Last Updated on: `r format(Sys.time(), "%b %d, %Y at %X")`'
+output:
+  html_document:
+    css: ../CSS/asu.css
+    highlight: textmate
+    theme: yeti
+---
+
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+set.seed(123)
+library(knitr)
+knitr::opts_chunk$set(comment = NA,  fig.align = 'center', fig.height = 5, fig.width = 5, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff= 75))
+```
+
+Reading the comma separated file from the `Data` directory one level up from where this document is stored using the `read.csv()` function.
+
+```{r, label = "READIN", cache = TRUE}
+housedata <- read.csv("../Data/housedata.csv", 
+                      colClasses = c(id = "character", date = "character", yr_built = "character",
+                                     zipcode = "character"))
+housedata$date <- as.Date(housedata$date, "%Y%m%d")
+housedata$waterfront <- factor(housedata$waterfront, labels = c("No", "Yes"))
+# housedata$yr_built <- as.Date(housedata$yr_built, "%Y")
+housedata$yr_built <- as.Date(ISOdate(housedata$yr_built, 9, 1))  # Complete Year, Sept 1
+housedata$yr_renovated <- ifelse(housedata$yr_renovated == 0, NA, housedata$yr_renovated)
+housedata$yr_renovated <- as.character(housedata$yr_renovated)
+housedata$yr_renovated <- as.Date(housedata$yr_renovated, "%Y")
+```
+
+```{r , message = FALSE, warning = FALSE}
+library(DT)
+datatable(housedata[, 2:10], rownames = FALSE)
+```
+
+Consider predicting the price (`price`) of a house based on a certain feature (`sqft_living`).  Start by graphing the relationship.
+
+```{r}
+library(ggplot2)
+p1 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+  geom_point() + 
+  theme_bw()
+p1
+```
+
+Overplotting is problematic.  What should we do?
+
+* Consider making the plotting shape smaller.
+* Make the points semitransparent (`alpha`).
+* Bin the data into rectangles.
+* Bin the data into hexagons.
+
+
+### Using `alpha`
+
+```{r}
+p2 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        geom_point(alpha = 0.05, color = "blue") + 
+        theme_bw() 
+p2
+```
+
+### Using rectangles
+
+```{r, fig.width = 6}
+p3 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_bin2d(bins = 50) + 
+        theme_bw()
+p3
+p4 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_bin2d(bins = 50) + 
+        scale_fill_gradient(low = "lightblue", high = "red", 
+                            limits = c(0, 1000)) +
+        theme_bw()
+p4
+```
+
+### Using hexagons
+
+```{r, fig.width = 6}
+p5 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_binhex(bins = 50) + 
+        scale_fill_gradient(low = "lightblue", high = "red", 
+                            limits = c(0, 800), breaks = seq(0, 800, by = 200)) +
+        theme_bw()
+p5
+```
+
+**Note*  For both `stat_bin2d` and `stat_binhex`, if you manually specify the range, and there is a bin that falls outside that range because it has too many of too few points, that bin will show up as grey rather than the color at the high or low end of the range. Observe the gray hexagons in the lower left corner of the above graph.
+
+```{r, fig.width = 6}
+p6 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_binhex(bins = 50) + 
+        scale_fill_gradient(low = "lightblue", high = "red", 
+                            limits = c(0, 1000), breaks = seq(0, 1000, by = 200)) +
+        theme_bw()
+p6
+```
+
+## What features might be visible in a scatterplot?
+
+* Causal relationships (linear and nonlinear) - One variable may have a direct influence on another in some way.  
+* Associations - Variables may be associated with on another without being directly causally related.
+* Outliers of groups of outliers - Cases can be outliers in two dimensions without being outliers in either dimension separately.
+* Clusters - Sometimes there are groups of cases which are separate from the rest of the data.
+* Gaps - Occasionally, particular combinations of values do not occur.
+* Barriers - Some combinations of values may not be possible
+* Conditional relationship - Sometimes the relationship between two variables is better summarized by a conditional description that by a function.
+
+Use a simple linear model to predict the price of a house with 2,500 $\text{ft}^2$.
+
+```{r}
+slm <- lm(price ~ sqft_living, data = housedata)
+summary(slm)
+predict(slm, newdata = data.frame(sqft_living = 2500))
+```
+
+```{r, fig.width=10, fig.height = 10}
+p6 + geom_smooth(method = "lm") + 
+  geom_vline(xintercept = 2500,linetype = "dashed", color = "red") +
+  geom_hline(yintercept = predict(slm, newdata = data.frame(sqft_living = 2500)), linetype = "dashed", color = "red") + 
+  labs(x = "Living Space (square feet)", y = "Price ($)")
+```

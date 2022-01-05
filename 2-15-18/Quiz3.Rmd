@@ -1,0 +1,85 @@
+---
+title: "Quiz3-Answer key"
+author: "Lasanthi"
+date: "2/14/2018"
+output: html_document
+---
+
+```{r}
+# Boston data set
+library(MASS)
+#Boston
+head(Boston)
+str(Boston)
+?Boston
+dim(Boston)
+pairs(Boston)
+
+```
+
+
+```{r}
+# (c)
+plot(Boston$age, Boston$crim)
+
+plot(Boston$dis, Boston$crim)
+
+plot(Boston$rad, Boston$crim)
+
+plot(Boston$tax, Boston$crim)
+
+plot(Boston$ptratio, Boston$crim)
+
+```
+
+<!--
+ Older homes, more crime
+ Closer to work-area, more crime
+ Higher index of accessibility to radial highways, more crime
+ Higher tax rate, more crime
+ Higher pupil:teacher ratio, more crime
+-->
+
+```{r}
+# (d)
+par(mfrow=c(1,3))
+hist(Boston$crim[Boston$crim>1], breaks=25)
+
+hist(Boston$tax, breaks=25)
+
+hist(Boston$ptratio, breaks=25)
+
+
+```
+<!--
+# most cities have low crime rates, but there is a long tail: 18 suburbs appear
+# to have a crime rate > 20, reaching to above 80
+# there is a large divide between suburbs with low tax rates and a peak at 660-680
+# a skew towards high ratios, but no particularly high ratios
+
+-->
+
+
+```{r}
+# (e)
+sum(Boston$chas)
+```
+
+```{r}
+#(f)
+median(Boston$ptratio)
+```
+
+```{r}
+#(g)
+subset(Boston, medv == min(Boston$medv))
+```
+
+```{r}
+# (h)
+nrow(subset(Boston, rm > 7))
+nrow(subset(Boston, rm > 8))
+summary(subset(Boston, rm > 8))
+summary(Boston)
+```
+

@@ -1,0 +1,257 @@
+---
+title: "Statistics Review"
+author: "Dr. Lasanthi Watagoda"
+date: 'Last Updated on: `r format(Sys.time(), "%b %d, %Y at %X")`'
+output:
+  bookdown::html_document2:
+    highlight: textmate
+    theme: yeti
+---
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+
+set.seed(123)
+
+library(knitr)
+
+knitr::opts_chunk$set(comment = NA,  fig.align = 'center', fig.height = 5, fig.width = 5, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff= 75))
+
+```
+
+# Notation
+
+```{definition, label = "notation", name = "General Notation"}
+$X \sim N(\mu_X, \sigma_X)$ and $Y \sim N(\mu_Y, \sigma_Y)$
+```
+
+```{r}
+# Standard Nomal
+curve(dnorm(x), -3.5, 3.5)
+```
+
+## Z-score
+
+```{definition, label = "zscore", name = "Z-score"}
+
+$Z = \frac{\text{stat} - \mu_{\text{stat}}}{\sigma_{\text{stat}}} \sim N(0, 1)$
+```
+
+```{example}
+Suppose $n = 1$ and $X \sim N(100, 10) \rightarrow \bar{X} \sim N(100, 10)$.
+```
+
+## Normal distribution
+
+$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{\frac{-(x - \mu)^2}{2\sigma^2}}$
+
+```{example, label = "ex1"}
+Given $X \sim(100, 10)$, find $P(X \geq 120)$.
+```
+
+```{r}
+MU <- 100
+SIG <- 10
+f <- function(x){(1/(sqrt(2*pi*SIG^2)))*exp(-(x - MU)^2/(2*SIG^2))}
+integrate(f, 120, Inf)
+ans <- integrate(f, 120, Inf)$value
+```
+
+The $P(X \geq 120) = \int_{120}^{\infty}f(x)\,dx = `r ans`.$
+
+```{r}
+# Using pnorm
+pnorm(120, 100, 10, lower = FALSE)
+```
+
+# Plots
+
+```{r message = FALSE, warning = FALSE, fig.align = "center"}
+library(PASWR2)
+summary(CALCULUS)
+head(CALCULUS)
+library(ggplot2)
+ggplot(data = CALCULUS, aes(sample = score, color = calculus)) + 
+  geom_qq() + 
+  theme_bw()
+```
+
+
+
+```{r echo=FALSE}
+ggplot(data = CALCULUS, aes(x = score)) + 
+  geom_histogram() 
+
+```
+
+```{r echo=FALSE}
+ggplot(data = CALCULUS, aes(x = score)) + 
+  geom_histogram(binwidth = 5, color = "green") + 
+facet_wrap(~calculus)
+```
+
+
+```{r echo=FALSE}
+ggplot(data = CALCULUS, aes(y = score)) + 
+  geom_boxplot(color = "red", fill = "steelblue")
+??geom_boxplot
+  
+```
+
+
+# Testing Hypothesis.
+
+Assume $\sigma_X = 5$ and $\sigma_Y=12$.
+
+
+
+<!-- # TidyVerse
+#library(dplyr)
+#CALCULUS %>%
+#  group_by(calculus) %>%
+#  summarize(MeanScore = mean(score))
+# sigX = 5, sigY = 12 -->
+
+
+
+
+```{r fig.align = "center"}
+
+tapply(CALCULUS$score, CALCULUS$calculus, mean)
+
+```
+
+
+## The harder way!
+
+Let's take $X$ to be the scores of the students who have **taken calculus** before and $Y$ to be the scores of the students who have *not taken calculus* before.
+
+Test the hypothesis $H_0: \mu_X = \mu_Y$ with the appropriate alternative.
+
+```{r}
+X <- CALCULUS$score[CALCULUS$calculus == "Yes"]
+Y <- CALCULUS$score[CALCULUS$calculus == "No"]
+Zobs <- (mean(X) - mean(Y) -(0)) / (sqrt(25/18 + 144/18))
+Zobs
+
+pval <- 1 - pnorm(Zobs)
+pval
+```
+
+## Consider using `z.test()` from `PASWR2` (The easy way!)
+
+```{r}
+z.test(x = X, sigma.x = 5, y = Y, sigma.y = 12, mu = 0, alternative = "greater")
+```
+
+## T-test now
+
+```{r}
+t.test(X, Y, alternative = "greater")
+
+```
+<!--
+# Discuss: Why is the alternative "less" now...
+t.test(score ~ calculus, data = CALCULUS, alternative = "less")
+-->
+
+## Draw $t_{df}$
+
+```{r}
+curve(dt(x, 20.585), from = -4, to = 4, n = 500, col = "blue", ylab = "")
+curve(dt(x, 2), from = -4, to = 4, n = 500, col = "purple", add = TRUE)
+curve(dnorm(x), from = -4, to = 4, n = 500, col = "pink", add = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+<!--
+## Randomization test
+
+#### Distribute Cards and go through example before this code {-}
+
+```{r}
+obsDIFF <- diff(tapply(CALCULUS$score, CALCULUS$calculus, mean))
+obsDIFF
+R <- 1000
+TS <- numeric(R)
+set.seed(123)
+for(i in 1:R){
+  index <- sample(length(CALCULUS$score), 18, replace = FALSE)
+  TS[i] <- mean(CALCULUS$score[index]) - mean(CALCULUS$score[-index])
+}
+pvalue <- (sum(TS >= obsDIFF) + 1)/(R + 1)
+pvalue
+```
+
+## Another approach using the standardized t
+
+```{r}
+obsDIFF <- t.test(score ~ calculus, data = CALCULUS, alternative = "less")$stat
+obsDIFF
+R <- 1000
+TS <- numeric(R)
+set.seed(123)
+for(i in 1:R){
+  TS[i] <- t.test(score ~ sample(calculus), data = CALCULUS, alternative = "less")$stat
+}
+pvalue <- (sum(TS <= obsDIFF) + 1)/(R + 1)
+pvalue
+```
+
+## What about a Confidence Interval? --- Bootstrap
+**Key concept sample with replacement!**
+
+```{r}
+R <- 1000
+TS <- numeric(R)
+set.seed(123)
+for(i in 1:R){
+  xbar1 <- mean(sample(X, 18, replace = TRUE))
+  xbar2 <- mean(sample(Y, 18, replace = TRUE))
+  TS[i] <- xbar1 - xbar2
+}
+hist(TS, breaks = "Scott")
+# With ggplot2 (note have to pass Data Frame)
+DF <- data.frame(x = TS)
+library(ggplot2)
+ggplot(data = DF, aes(x = x)) + 
+  geom_density(fill = "purple", alpha = 0.2) + 
+  theme_bw()
+#
+CI <- quantile(TS, probs = c(0.025, 0.975))  # 95% Percentile Boostrap CI
+CI 
+#
+p <- ggplot(data = DF, aes(x = x, y = ..density..)) + 
+  geom_density(fill = "red", alpha = 0.8) + 
+  theme_bw()
+x.dens <- density(TS)
+df.dens <- data.frame(x = x.dens$x, y = x.dens$y)
+p + geom_area(data = subset(df.dens, x >= CI[1] & x <= CI[2]), aes(x = x, y = y), fill = "blue", alpha = .3)
+```
+
+## Simple Linear Regression
+
+```{r message = FALSE, warning = FALSE}
+library(ggvis)
+ggvis(data = GRADES, x = ~sat, y = ~gpa) %>% 
+  layer_points() %>% 
+  layer_model_predictions(model = "lm", formula = gpa ~ sat)
+```
+
+```{r}
+slr.mod <- lm(gpa ~ sat, data = GRADES)
+summary(slr.mod)
+par(mfrow = c(2, 2))
+plot(slr.mod)
+par(mfrow = c(1, 1))
+```
+
+-->

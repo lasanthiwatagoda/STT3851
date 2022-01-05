@@ -1,0 +1,414 @@
+---
+title: "Project 2: King County Housing Data"
+author: "Dr. Lasanthi Watagoda"
+date: "4/24/2018"
+output: 
+  bookdown::html_document2: 
+    highlight: textmate
+    theme: yeti
+---
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+set.seed(123)
+library(knitr)
+knitr::opts_chunk$set(comment = NA,  fig.align = 'center', fig.height = 5, fig.width = 5, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff= 75))
+```
+
+Variable descriptions were obtained from King County, Department of Assessments.  All feature engineering should be done in the first code chunks of your document.
+
+  * id - Unique ID for each home sold 
+  * date - Date of the home sale 
+  * price - Price of each home sold 
+  * bedrooms - Number of bedrooms 
+  * bathrooms - Number of bathrooms, where .5 accounts for a room with a toilet but no shower 
+  * sqft_living - Square footage of the apartments interior living space 
+  * sqft_lot - Square footage of the land space 
+  * floors - Number of floors 
+  * waterfront - A dummy variable for whether the apartment was overlooking the waterfront or not    * 1’s represent a waterfront property, 0’s represent a non-waterfront property 
+  * view - An index from 0 to 4 of how good the view of the property was, 0 - lowest, 4 - highest 
+  * condition - An index from 1 to 5 on the condition of the apartment, 1 - lowest, 4 - highest 
+  * grade - An index from 1 to 13, where 1-3 falls short of building construction and design, 7 has an average level of construction and design, and 11-13 have a high quality level of construction and design. 
+  * sqft_above - The square footage of the interior housing space that is above ground level 
+  * sqft_basement - The square footage of the interior housing space that is below ground level 
+  * yr_built - The year the house was initially built 
+  * yr_renovated - The year of the house’s last renovation 
+  * zipcode - What zipcode area the house is in 
+  * lat - Lattitude 
+  * long - Longitude 
+  * sqft_living15 - The square footage of interior housing living space for the nearest 15 neighbors 
+  * sqft_lot15 - The square footage of the land lots of the nearest 15 neighbors
+
+
+```{r, label = "READIN", cache = TRUE}
+housedata <- read.csv("~/git_repositories/STT3851ClassRepo/Rmarkdown/Data/housedata.csv", 
+                      colClasses = c(id = "character", date = "character", 
+                                     yr_built = "character", zipcode = "factor", grade = "factor"))
+housedata$date <- as.Date(housedata$date, "%Y%m%d")
+housedata$waterfront <- factor(housedata$waterfront, labels = c("No", "Yes"))
+housedata$condition <- factor(housedata$condition, labels = c("poor", "fair", "average", "good", "very good"))
+housedata$yr_renovated <- ifelse(housedata$yr_renovated == 0, housedata$yr_built, housedata$yr_renovated)
+housedata$yr_built <- as.Date(ISOdate(housedata$yr_built, 9, 1))  # Complete Year, Sept 1
+housedata$yr_renovated <- as.Date(ISOdate(housedata$yr_renovated, 9, 1))  # Last renovated Year, Sept 1
+housedata <- housedata[, -1]
+#### Perform same steps with test set
+housedataT <- read.csv("~/git_repositories/STT3851ClassRepo/Rmarkdown/Data/housedataTEST.csv", 
+                      colClasses = c(id = "character", date = "character", 
+                                     yr_built = "character", zipcode = "factor", grade = "factor"))
+housedataT$date <- as.Date(housedataT$date, "%Y%m%d")
+housedataT$waterfront <- factor(housedataT$waterfront, labels = c("No", "Yes"))
+housedataT$condition <- factor(housedataT$condition, labels = c("poor", "fair", "average", "good", "very good"))
+housedataT$yr_renovated <- ifelse(housedataT$yr_renovated == 0, housedataT$yr_built, housedataT$yr_renovated)
+housedataT$yr_built <- as.Date(ISOdate(housedataT$yr_built, 9, 1))  # Complete Year, Sept 1
+housedataT$yr_renovated <- as.Date(ISOdate(housedataT$yr_renovated, 9, 1))  # Last renovated Year, Sept 1
+housedataT <- housedataT[, -1]
+attach(housedataT)
+attach(housedata)
+```
+
+```{r , message = FALSE, warning = FALSE}
+library(DT)
+datatable(housedata[, 12:20], rownames = FALSE)
+```
+
+Consider predicting the price (`price`) of a house based on a certain feature (`sqft_living`).  Start by graphing the relationship.
+
+```{r}
+library(ggplot2)
+p1 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+  geom_point() + 
+  theme_bw()
+p1
+```
+
+Overplotting is problematic.  What should we do?
+
+* Consider making the plotting shape smaller.
+* Make the points semitransparent (`alpha`).
+* Bin the data into rectangles.
+* Bin the data into hexagons.
+
+
+### Using `alpha`
+
+```{r}
+p2 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        geom_point(alpha = 0.05, color = "blue") + 
+        theme_bw() 
+p2
+```
+
+### Using rectangles
+
+```{r, fig.width = 6}
+p3 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_bin2d(bins = 50) + 
+        theme_bw()
+p3
+p4 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_bin2d(bins = 50) + 
+        scale_fill_gradient(low = "lightblue", high = "red", 
+                            limits = c(0, 1000)) +
+        theme_bw()
+p4
+```
+
+### Using hexagons
+
+```{r, fig.width = 6}
+p5 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_binhex(bins = 50) + 
+        scale_fill_gradient(low = "lightblue", high = "red", 
+                            limits = c(0, 800), breaks = seq(0, 800, by = 200)) +
+        theme_bw()
+p5
+```
+
+**Note*  For both `stat_bin2d` and `stat_binhex`, if you manually specify the range, and there is a bin that falls outside that range because it has too many or too few points, that bin will show up as grey rather than the color at the high or low end of the range. Observe the gray hexagons in the lower left corner of the above graph.
+
+```{r, fig.width = 6}
+p6 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
+        stat_binhex(bins = 50) + 
+        scale_fill_gradient(low = "lightblue", high = "red", 
+                            limits = c(0, 1000), breaks = seq(0, 1000, by = 200)) +
+        theme_bw()
+p6
+```
+
+
+
+
+
+
+<!-- LAB 2 HELP FOR STUDENTS
+
+```{r}
+library(car)     # red line affected by outlier, green ignoring the outlier (robust)
+scatterplot(x =housedata$price, y=housedata$bedrooms)       #( not much dependent)
+
+scatterplot(x =housedata$bedrooms, y=housedata$bathrooms)   #( dependent excluding the 33 outlier)
+scatterplot(x =housedata$price, y=housedata$bathrooms)      #( dependent)
+scatterplot(x =housedata$price, y=housedata$sqft_lot)       #( not dependent)
+scatterplot(x =housedata$price, y=housedata$view)           #( dependent but mostly view is 0 so not dependent)
+scatterplot(x =housedata$price, y=housedata$grade)          #( dependent)
+scatterplot(x =housedata$price, y=housedata$floors)         #( not dependent from boxplot)
+scatterplot(x =housedata$price, y=housedata$condition)      #( nearly not dependent)
+scatterplot(x =housedata$price, y=housedata$waterfront)     #( not dependent as nearly no waterfront)
+scatterplot(x =housedata$price, y=housedata$bedrooms)       #( not much dependent)
+scatterplot(x =housedata$price, y=housedata$sqft_above)     #( dependent)
+scatterplot(x =housedata$price, y=housedata$sqft_basement)  #( dependent)
+#scatterplot(x =housedata$price, y=housedata$age)            #( low negative dependent)
+scatterplot(x =housedata$price, y=housedata$zipcode)        
+#scatterplot(x =housedata$price, y=housedata$renage)         #( not dependent as very less houses are renovated)
+# scatterplot using ggplot
+ggplot(data = housedata, mapping = aes(x = sqft_living, y = price)) + geom_point(colour = 'skyblue') + geom_smooth(method = 'lm')
+
+
+```
+
+-->
+
+
+```{r include=FALSE}
+
+# creating a data frame excluding id,date,sqft_living15,sqft_lot15, lat,long,yr_built,yr_renovated,rate
+housedata1<- housedata[ ,c(2:7,9,12,13,17:20)]
+```
+
+```{r}
+# Correlation matric
+cor(housedata1)
+
+# Corrplot
+library(corrplot)
+corrplot(cor(housedata1))
+
+```
+
+<!--
+
+```{r}
+# converting catagorical variables from numeric variables ( bedroom, bathroom, grade ,zipcode)
+#housedata$bedrooms <- as.factor(housedata$bedrooms)
+#housedata$bathrooms <- as.factor(housedata$bathrooms)
+#housedata$grade <- as.factor(housedata$grade)
+#housedata$zipcode <- as.factor(housedata$zipcode)
+
+# Checking structure now
+str(housedata)
+
+```
+
+```{r}
+model1 <- lm(price~ sqft_living + bedrooms + bathrooms + grade + sqft_above,data = housedata)
+summary(model1)
+anova(model1)
+```
+
+
+```{r}
+model2 <- lm(price~ sqft_living + bedrooms + bathrooms + grade + sqft_above + zipcode,data = housedata)
+summary(model2)
+anova(model2)
+```
+
+```{r}
+library(randomForest)
+model3 <- randomForest(price ~  bathrooms + sqft_above,
+                            data = housedata)
+
+```
+
+-->
+
+
+## What features might be visible in a scatterplot?
+
+* Causal relationships (linear and nonlinear) - One variable may have a direct influence on another in some way.  
+* Associations - Variables may be associated with on another without being directly causally related.
+* Outliers of groups of outliers - Cases can be outliers in two dimensions without being outliers in either dimension separately.
+* Clusters - Sometimes there are groups of cases which are separate from the rest of the data.
+* Gaps - Occasionally, particular combinations of values do not occur.
+* Barriers - Some combinations of values may not be possible
+* Conditional relationship - Sometimes the relationship between two variables is better summarized by a conditional description that by a function.
+
+Use a simple linear model to predict the price of a house with 2,500 $\text{ft}^2$.
+
+```{r include=FALSE}
+slm <- lm(price ~ sqft_living, data = housedata)
+summary(slm)
+predict(slm, newdata = data.frame(sqft_living = 2500))
+```
+
+```{r, fig.width=10, fig.height = 10}
+p6 + geom_smooth(method = "lm") + 
+  geom_vline(xintercept = 2500,linetype = "dashed", color = "red") +
+  geom_hline(yintercept = predict(slm, newdata = data.frame(sqft_living = 2500)), linetype = "dashed", color = "red") + 
+  labs(x = "Living Space (square feet)", y = "Price ($)")
+```
+
+`mod.zip` most basic model.
+
+```{r include=FALSE}
+mod.zip <- lm(price ~ 1, data = housedata)
+summary(mod.zip)
+```
+
+`mod.all` all current features except `sqft_basement`.
+
+```{r include=FALSE}
+mod.all <- lm(price ~ . - sqft_basement, data = housedata)
+summary(mod.all)
+anova(mod.all)
+```
+
+
+```{r include=FALSE}
+#Stepwise regression
+library(MASS)
+#dim(housedata)
+#stepAIC(lm(price ~. , data = housedata), direction = "both")
+#mod.stepwise <- lm(price ~ date + bedrooms + bathrooms + sqft_living + sqft_lot + 
+ #  floors + waterfront + view + condition + grade + sqft_above + 
+ #  yr_built + yr_renovated + zipcode + lat + long + sqft_living15 + 
+#sqft_lot15)
+#anova(mod.stepwise)
+```
+
+```{r include=FALSE}
+#Ridge Regression
+set.seed(1)
+train = sample(c(TRUE, FALSE), size = nrow(housedata), replace = TRUE)
+test <- (!train)
+library(glmnet)
+x <- model.matrix(price ~ ., data = housedata)[, -1] # Remove (Intercept) column
+str(x)
+dim(x[train,])
+dim(x[test,])
+y <- housedata$price
+grid <- 10^seq(10, -2, length = 100)
+ridge.mod <- glmnet(x[train,], y[train], alpha = 0, lambda = grid)
+
+
+cv.out <- cv.glmnet(x[train,], y[train], alpha = 0)
+plot(cv.out)
+
+
+bestlambda <- cv.out$lambda.min
+bestlambda
+
+ridge.pred <- predict(ridge.mod, s = bestlambda, newx = x[test, ])
+RE <- sqrt(mean((y[test] - ridge.pred)^2))  # RMSPE
+RE
+
+final.ridge <- glmnet(x, y, alpha = 0)
+predict(final.ridge, type = "coefficients", s = bestlambda)
+```
+
+
+
+```{r include=FALSE}
+#Lasso Regression
+set.seed(1)
+train = sample(c(TRUE, FALSE), size = nrow(housedata), replace = TRUE)
+test <- (!train)
+library(glmnet)
+x <- model.matrix(price ~ ., data = housedata)[, -1] # Remove (Intercept) column
+str(x)
+dim(x[train,])
+dim(x[test,])
+y <- housedata$price
+grid <- 10^seq(10, -2, length = 100)
+lasso.mod <- glmnet(x[train,], y[train], alpha = 1, lambda = grid)
+
+
+cv.out <- cv.glmnet(x[train,], y[train], alpha = 1)
+plot(cv.out)
+
+
+bestlambda <- cv.out$lambda.1se
+bestlambda
+
+lasso.pred <- predict(ridge.mod, s = bestlambda, newx = x[test, ])
+RE <- sqrt(mean((y[test] - ridge.pred)^2))  # RMSPE
+RE
+
+final.lasso <- glmnet(x, y, alpha = 1)
+predict(final.lasso, type = "coefficients", s = bestlambda)
+```
+
+
+```{r include=FALSE}
+housedataT
+```
+
+
+
+Your goal is to create a model with as small a test error as possible.  Note that the square root of the training RSS from model `mod.all` is $`r anova(mod.all)[19, 3]^.5`$.
+
+
+
+```{r, fig.width=10, fig.height = 10, eval=FALSE}
+library(ggmap)
+KingMap <-
+  get_map(
+    location = c(lon = -122.1, lat = 47.48),
+    zoom = 10,
+    source = "google",
+    maptype = "roadmap"
+  )
+ggmap(KingMap) +
+  geom_point(
+    aes(x = housedata$long, y = housedata$lat),
+    data = housedata,
+    alpha = .2,
+    color = "blue",
+    size = 0.01
+  ) +
+  geom_point(
+    aes(x = housedataT$long, y = housedataT$lat),
+    data = housedataT,
+    alpha = .2,
+    color = "red",
+    size = 0.01
+  ) +
+  ggtitle("Houses Sold in King County, Wa (2014-2015)") +
+  labs(x = "longitute", y = "latitude")
+```
+
+<!--
+## Prediction
+
+* Submit a vector named (`Yourlastname_Yourfirstname`) with the predicted house prices for your model using the data frame `housedataT`.
+
+* Suppose your final model is `mod.all`.
+
+
+```{r}
+Yourlastname_Yourfirstname <- predict(mod.all, newdata = housedataT)
+head(Yourlastname_Yourfirstname)
+```
+
+```{r}
+#Doe_John <- predict(mod.stepwise, newdata = housedataT)
+#head(Doe_John)
+```
+
+* Use `write.csv()` to create the vector `Yourlastname_Yourfirstname.csv`
+
+
+```{r, eval = FALSE}
+write.csv(Yourlastname_Yourfirstname, file = "Yourlastname_Yourfirstname.csv")
+```
+
+```{r, eval = FALSE}
+#write.csv(Doe_John, file = "Doe_John.csv")
+```
+
+* I will compute your $\sqrt{MSPE}$.
+
+```{r}
+SMSPE <- sqrt(mean((head(Yourlastname_Yourfirstname) - c(310000, 650000, 233000, 580500, 535000, 605000))^2))
+SMSPE
+```
+
+-->
+

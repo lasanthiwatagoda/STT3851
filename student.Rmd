@@ -1,0 +1,21 @@
+---
+title: "Student"
+author: "Lasanthi"
+date: "1/15/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Statistics Review
+
+```{r}
+MU <- 100
+SIG <- 10
+f <- function(x){(1/(sqrt(2*pi*SIG^2)))*exp(-(x - MU)^2/(2*SIG^2))}
+integrate(f, 120, Inf)
+```
+ 
+

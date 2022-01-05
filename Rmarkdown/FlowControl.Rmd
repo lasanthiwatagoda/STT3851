@@ -1,0 +1,205 @@
+---
+title: "Flow Control"
+author: "Probability and Statistics with R, Second Edition"
+date: 'Last Updated on: `r format(Sys.time(), "%b %d, %Y at %X")`'
+output:
+  html_document:
+    css: ../CSS/asu.css
+    highlight: textmate
+    theme: yeti
+---
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+set.seed(123)
+library(knitr)
+knitr::opts_chunk$set(comment = NA,  fig.align = 'center', fig.height = 5, fig.width = 5, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff= 75))
+```
+
+# Flow Control
+
+`R`, like most programming languages, has the ability to control the execution of code with programming statements such as `for`, `while`,`repeat`, and `break`. As an example, consider how `for` is used in to add the values 10, 20, and 30.
+
+```{r c01FlowControlFor}
+sum.a <- 0
+for(i in c(10, 20, 30)){
+  sum.a <- i + sum.a
+}
+sum.a
+```
+
+
+The `for` statement allows one to specify that a certain operation will be repeated a fixed number of times.  The syntax for the `for` statement is 
+
+```
+for (name in vector) {
+    statements
+    }  
+```
+
+Statements can be grouped using braces `{}`.  When several statements are grouped, the standard `R` syntax is to start with a left brace `{`, then place each statement on its own line and close the group of statements with a right brace `}` on its own line.  
+
+### Example:
+
+A Lucas number is defined as 
+$$
+L_n = 
+\begin{cases}
+2 & \text{if } n =1\\
+1 & \text{if } n =2\\
+L_{n-1} + L_{n-2} & \text{if } n \geq 3.
+\end{cases}
+$$
+Use a `for` loop to compute the first 15 Lucas numbers.
+
+The first 15 Lucas numbers after allocating space using the `numeric()` function for the answers.
+
+```{r c01LucasNumbers}
+Number <- 15              # Number of Lucas numbers desired 
+Lucas <- numeric(Number)  # Storage for Lucas numbers
+Lucas[1] <- 2             # First Lucas number 
+Lucas[2] <- 1             # Second Lucas number
+for(i in 3:Number){
+  Lucas[i] <- Lucas[i - 1] + Lucas[i - 2]
+}
+Lucas
+```
+
+
+The `while` statement is useful for repeating a set of statements when the exact number of repeats is not known in advance.  The syntax for the `while` statement is `while (condition) {statements}`. The statements are evaluated as long as the condition is `TRUE`.  Once the condition evaluates to `FALSE`, nothing more is done.  An alternative to the `while` statement is the `repeat` statement with a break statement.  The syntax for using a `repeat` statement is `repeat {statements}`. The `statements` generally include a `break` statement of the form `if (condition) break`. Statements are repeated as long as the condition is `TRUE`.  Once the condition evaluates to `FALSE`, nothing more is done. 
+
+The square root of a positive number, $x$, can be approximated iteratively using 
+$x_{n+1} = (x_n + x/x_n)/2$ where $x_n$ is the initial guess for the value of $\sqrt{x}$. 
+Approximating the $\sqrt{113734}$ to within  0.00001 can be accomplished 
+using a `while` statement or a `repeat` statement.  Using a `while` statement to approximate $\sqrt{113734}$ to within a 0.00001 is shown below.
+
+```{r, c01FlowControlWhile}
+options(digits = 8)
+x <- 113734
+tolerance <- 0.00001
+oldapp <- x/2
+newapp <- (oldapp + x/oldapp)/2 
+i <- 0
+while( abs(newapp - oldapp) > tolerance){
+  oldapp <- newapp
+  newapp <- (oldapp + x/oldapp)/2
+  i <- i + 1         # Iteration number
+}
+c(newapp, i)
+options(digits = 7)  # reset to default
+```
+
+Using a `repeat` statement to approximate $\sqrt{113734}$ to within a 0.00001 is shown next.
+
+```{r, c01FlowControlRepeat}
+options(digits = 8)
+x <- 113734
+tolerance <- 0.00001
+oldapp <- x/2
+newapp <- (oldapp + x/oldapp)/2 
+i <- 0
+repeat{
+  oldapp <- newapp
+  newapp <- (oldapp + x/oldapp)/2
+  i <- i + 1
+  if(abs(newapp - oldapp) < tolerance)
+    break
+}
+c(newapp, i)
+options(digits = 7) # reset to default
+```
+
+The approximate $\sqrt{113734}$ (`r round(newapp, 5)`) is achieved in $i = `r i`$ iterations regardless of the type of statement used. 
+
+
+
+The `if` statement allows one to control which statements are executed.  The syntax for the `if` statement has two forms:
+
+```
+if (condition) {statements when TRUE}
+```
+and
+```
+if (condition) {
+statements when TRUE
+} else {
+statements when FALSE
+}
+```
+
+One needs to pay close attention to how the second form is typed.  In particular, entering
+
+```
+if(condition) {statements when TRUE}
+else {statements when FALSE}
+```
+
+may not do what you expect.  `R` will execute the first line before seeing the second line.
+
+### Example: 
+Write three separate programs to simulate throwing a pair of dice 99,999 times. Compute the mean of each of the 99,999 throws, and create a table of the means using a for loop, a while statement, and a repeat statement.
+
+
+### Solution:
+The function `sample()` is used to sample 2 values with replacement from 1 to 6.
+
+**Using a for loop:** Each time the loop cycles, the mean of the two dice is stored in the $i^{\text{th}}$ position of the `means` vector.  The tabled results are stored in `T1` and subsequently printed.
+
+```{r, c01Example3FOR}
+set.seed(3)           # setting seed for reproducibility
+N <- 10^5 - 1         # N = number of simulations
+means <- numeric(N)   # Defining numeric vector of size N
+for(i in 1:N){
+  means[i] <- mean(sample(x = 1:6, size = 2, replace = TRUE))
+  }
+T1 <- table(means)
+T1
+```
+
+**Using a while statement:** The command `matrix(0, N, 2)` creates a 99,999 by 2 matrix of zeros.  While $i \leq N$, the results from simulating tossing two dice  are stored in the $i^\text{th}$ row of the `N2mat` matrix.  The function `apply()` is used to compute the mean of each of the rows of `N2mat` and to store the result in the vector `means`.  The tabled results are stored in `T2` and subsequently printed.
+
+```{r, c01Example3WHILE}
+set.seed(3)                 # setting seed for reproducibility
+i <- 1
+N <- 10^5 - 1               # N = number of simulations
+N2mat <- matrix(0, N, 2)    # initialize N*2 matrix to all 0's
+while(i <= N){
+  N2mat[i, ] <- sample(x = 1:6, size = 2, replace = TRUE)
+  i <- i + 1
+}
+means <- apply(N2mat, 1, mean)
+T2 <- table(means)
+T2
+```
+
+**Using a repeat statement:**  The line `N2mat[i, ] <- sample(1:6, 2, replace = TRUE)` is repeated, filling in the $i^\text{th}$ row of the matrix with values that simulate throwing two dice until $i = N$, at which point the repeat ends.  The function `apply()` is used to compute the mean of each of the rows of `N2mat` and to store the result in the vector `means`.  The tabled results are stored in `T3` and subsequently printed.
+
+```{r, rc01Example3REPEAT}
+set.seed(3)                  # setting seed for reproducibility
+i <- 1
+N <- 10^5 - 1                # N = number of simulations
+N2mat <- matrix(0, N, 2)     # initialize N*2 matrix to all 0's
+repeat{
+  N2mat[i, ] <- sample(1:6, 2, replace = TRUE)
+  if (i == N) break
+  i <- i + 1
+}
+means <- apply(N2mat, 1, mean)
+T3 <- table(means)
+T3
+```
+
+The function `plot()` is applied to `T3` after dividing its contents by `N`.  
+
+```{r, ploter, fig.align = "center"}
+par(yaxt = "n")
+plot(T3/N, xlab = "Mean of Two Dice", ylab = "", 
+     main="Simulated Sampling Distribution \n of the Sample Mean",
+     ylim=c(0, 6.1/36), lwd = 2, cex.main = 1)
+par(yaxt = "s")
+axis(side = 2, at = c(0, 1/36, 2/36, 3/36, 4/36, 5/36, 6/36, 5/36, 4/36, 3/36, 2/36, 1/36), 
+     labels = c("0","1/36", "2/36", "3/36", "4/36", "5/36", "6/36", "5/36", 
+              "4/36", "3/36", "2/36", "1/36"), las=1 )
+abline(h = c(0:6)/36, lty = 2, col = "gray")
+```
+
+

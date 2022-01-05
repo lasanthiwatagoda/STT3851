@@ -1,0 +1,364 @@
+---
+title: "Bias Variance Tradeoff"
+author: "Alan Arnholt"
+date: 'Last Updated on: `r format(Sys.time(), "%b %d, %Y at %X")`'
+output:
+  bookdown::html_document2:
+    css: ../CSS/asu.css
+    highlight: textmate
+    theme: yeti
+---
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+set.seed(123)
+library(knitr)
+knitr::opts_chunk$set(comment = NA, fig.show = 'as.is', fig.align = 'center', fig.height = 7, fig.width = 7, prompt = TRUE, highlight = TRUE, tidy = FALSE, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff= 75, cache = TRUE))
+```
+# Bias Variance Tradeoff
+
+## Four Training Sets
+
+```{r echo = FALSE, fig.width = 8.5, fig.height = 8.5, fig.align = "center"}
+Ntrains <- 250    # Number of training sets to generate
+n <- 40           # Number of observations to generate for each training set
+dpt <- 5*9*5      # Number of x points to predict over
+SD <- 0.5
+#
+xs <- sort(runif(n, 5, 9))
+ys <- sin(xs) + rnorm(n, 0, SD)
+DF <- data.frame(xs, ys)
+library(ggplot2)
+p1 <- ggplot(data = DF, aes(x = xs, y = ys)) + 
+  geom_point(size = 1, color = "lightblue") + 
+  geom_smooth(method = "lm", formula = y ~ 1, linetype = "dashed", se = FALSE) + 
+  theme_bw() +
+  lims(y = c(-2.5, 2.5)) + 
+  labs(x = "X", y = "Y")
+#
+xs <- sort(runif(n, 5, 9))
+ys <- sin(xs) + rnorm(n, 0, SD)
+DF <- data.frame(xs, ys)
+library(ggplot2)
+p2 <- ggplot(data = DF, aes(x = xs, y = ys)) + 
+  geom_point(size = 1, color = "lightblue") + 
+  geom_smooth(method = "lm", formula = y ~ 1, linetype = "dashed", se = FALSE) + 
+  theme_bw() +
+  lims(y = c(-2.5, 2.5)) + 
+  labs(x = "X", y = "Y")
+#
+xs <- sort(runif(n, 5, 9))
+ys <- sin(xs) + rnorm(n, 0, SD)
+DF <- data.frame(xs, ys)
+library(ggplot2)
+p3 <- ggplot(data = DF, aes(x = xs, y = ys)) + 
+  geom_point(size = 1, color = "lightblue") + 
+  geom_smooth(method = "lm", formula = y ~ 1, linetype = "dashed", se = FALSE) + 
+  theme_bw() +
+  lims(y = c(-2.5, 2.5)) + 
+  labs(x = "X", y = "Y")
+#
+xs <- sort(runif(n, 5, 9))
+ys <- sin(xs) + rnorm(n, 0, SD)
+DF <- data.frame(xs, ys)
+library(ggplot2)
+p4 <- ggplot(data = DF, aes(x = xs, y = ys)) + 
+  geom_point(size = 1, color = "lightblue") + 
+  geom_smooth(method = "lm", formula = y ~ 1, linetype = "dashed", se = FALSE) + 
+  theme_bw() +
+  lims(y = c(-2.5, 2.5)) + 
+  labs(x = "X", y = "Y")
+#
+gridExtra::grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+## Fitting a simple model with just an intercept
+
+```{r echo = FALSE}
+library(ggplot2)
+p <- ggplot(data = data.frame(x = 5:9), aes(x = x)) + 
+  stat_function(fun = sin, size = 0, n = 225) + 
+  theme_bw() +
+  lims(y = c(-2, 2)) + 
+  labs(x = "X", y = "Y")
+# curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ 1)
+  ysn <- predict(mod1)
+  NDF <- data.frame(xs, ysn)
+  # lines(xs, nys, col = "pink", lty = "dashed")
+  p <- p + geom_line(data = NDF, aes(x = xs, y = ysn), size = 0.1, color = "pink")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - ysn)^2)
+  MSEtrain[i] <- mean((ys - ysn)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+# curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+p <- p + stat_function(fun = sin, size = 1, n = 225, color = "blue")
+# lines(nxs, yhnbar, col = "red", lwd = 2)
+NDF2 <- data.frame(nxs, yhnbar)
+p + geom_line(data = NDF2, aes(x = nxs, y = yhnbar), size = 1, color = "red")
+avgMSEtest <- mean(MSEtest)
+avgMSEtrain <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a simple model that includes only an intercept.  The black line is the true function, the red line is the average of the `r Ntrains` fitted simple models consisting of only an intercept.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain`, and the average testing MSE for this model is `r avgMSEtest`.
+
+## Fitting a straight line model
+
+```{r, echo = FALSE}
+p <- ggplot(data = data.frame(x = 5:9), aes(x = x)) + 
+   stat_function(fun = sin, size = 0, n = 225) + 
+   theme_bw() +
+   lims(y = c(-2, 2)) + 
+   labs(x = "X", y = "Y")
+# curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ xs)
+  ysn <- predict(mod1)
+  NDF <- data.frame(xs, ysn)
+  # lines(xs, nys, col = "pink", lty = "dashed")
+  p <- p + geom_line(data = NDF, aes(x = xs, y = ysn), size = 0.1, color = "pink")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - ysn)^2)
+  MSEtrain[i] <- mean((ys - ysn)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+# curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+p <- p + stat_function(fun = sin, size = 1, n = 225, color = "blue")
+# lines(nxs, yhnbar, col = "red", lwd = 2)
+NDF2 <- data.frame(nxs, yhnbar)
+p + geom_line(data = NDF2, aes(x = nxs, y = yhnbar), size = 1, color = "red")
+avgMSEtest1 <- mean(MSEtest)
+avgMSEtrain1 <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a simple straight line model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain1`, and the average testing MSE for this model is `r avgMSEtest1`.
+
+## Fitting a second order polynomial model
+
+```{r echo = FALSE}
+p <- ggplot(data = data.frame(x = 5:9), aes(x = x)) + 
+  stat_function(fun = sin, size = 0, n = 225) + 
+  theme_bw() +
+  lims(y = c(-2, 2)) + 
+  labs(x = "X", y = "Y")
+# curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ poly(xs, 2))
+  ysn <- predict(mod1)
+  NDF <- data.frame(xs, ysn)
+  # lines(xs, nys, col = "pink", lty = "dashed")
+  p <- p + geom_line(data = NDF, aes(x = xs, y = ysn), size = 0.1, color = "pink")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - ysn)^2)
+  MSEtrain[i] <- mean((ys - ysn)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+# curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+p <- p + stat_function(fun = sin, size = 1, n = 225, color = "blue")
+# lines(nxs, yhnbar, col = "red", lwd = 2)
+NDF2 <- data.frame(nxs, yhnbar)
+p + geom_line(data = NDF2, aes(x = nxs, y = yhnbar), size = 1, color = "red")
+avgMSEtest2 <- mean(MSEtest)
+avgMSEtrain2 <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a second order polynomial model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain2`, and the average testing MSE for this model is `r avgMSEtest2`.
+
+## Fitting a third order polynomial model
+
+```{r, echo = FALSE}
+p <- ggplot(data = data.frame(x = 5:9), aes(x = x)) + 
+  stat_function(fun = sin, size = 0, n = 225) + 
+  theme_bw() +
+  lims(y = c(-2, 2)) + 
+  labs(x = "X", y = "Y")
+# curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ poly(xs, 3))
+  ysn <- predict(mod1)
+  NDF <- data.frame(xs, ysn)
+  # lines(xs, nys, col = "pink", lty = "dashed")
+  p <- p + geom_line(data = NDF, aes(x = xs, y = ysn), size = 0.1, color = "pink")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - ysn)^2)
+  MSEtrain[i] <- mean((ys - ysn)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+# curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+p <- p + stat_function(fun = sin, size = 1, n = 225, color = "blue")
+# lines(nxs, yhnbar, col = "red", lwd = 2)
+NDF2 <- data.frame(nxs, yhnbar)
+p + geom_line(data = NDF2, aes(x = nxs, y = yhnbar), size = 1, color = "red")
+avgMSEtest3 <- mean(MSEtest)
+avgMSEtrain3 <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with third order polynomial model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain3`, and the average testing MSE for this model is `r avgMSEtest3`.
+
+## Fitting a fifth order polynomial model
+
+```{r echo = FALSE}
+p <- ggplot(data = data.frame(x = 5:9), aes(x = x)) + 
+  stat_function(fun = sin, size = 0, n = 225) + 
+  theme_bw() +
+  lims(y = c(-2, 2)) + 
+  labs(x = "X", y = "Y")
+# curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ poly(xs, 5))
+  ysn <- predict(mod1)
+  NDF <- data.frame(xs, ysn)
+  # lines(xs, nys, col = "pink", lty = "dashed")
+  p <- p + geom_line(data = NDF, aes(x = xs, y = ysn), size = 0.1, color = "pink")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - ysn)^2)
+  MSEtrain[i] <- mean((ys - ysn)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+# curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+p <- p + stat_function(fun = sin, size = 1, n = 225, color = "blue")
+# lines(nxs, yhnbar, col = "red", lwd = 2)
+NDF2 <- data.frame(nxs, yhnbar)
+p + geom_line(data = NDF2, aes(x = nxs, y = yhnbar), size = 1, color = "red")
+avgMSEtest5 <- mean(MSEtest)
+avgMSEtrain5 <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a fifth order polynomial model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain5`, and the average testing MSE for this model is `r avgMSEtest5`.
+
+
+
+## Fitting a tenth order polynomial model
+
+```{r echo = FALSE}
+p <- ggplot(data = data.frame(x = 5:9), aes(x = x)) + 
+  stat_function(fun = sin, size = 0, n = 225) + 
+  theme_bw() +
+  lims(y = c(-2, 2)) + 
+  labs(x = "X", y = "Y")
+# curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ poly(xs, 10))
+  ysn <- predict(mod1)
+  NDF <- data.frame(xs, ysn)
+  # lines(xs, nys, col = "pink", lty = "dashed")
+  p <- p + geom_line(data = NDF, aes(x = xs, y = ysn), size = 0.1, color = "pink")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - ysn)^2)
+  MSEtrain[i] <- mean((ys - ysn)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+# curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+p <- p + stat_function(fun = sin, size = 1, n = 225, color = "blue")
+# lines(nxs, yhnbar, col = "red", lwd = 2)
+NDF2 <- data.frame(nxs, yhnbar)
+p + geom_line(data = NDF2, aes(x = nxs, y = yhnbar), size = 1, color = "red")
+avgMSEtest10 <- mean(MSEtest)
+avgMSEtrain10 <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a tenth order polynomial model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain10`, and the average testing MSE for this model is `r avgMSEtest10`.
+
+
+
+```{r, echo = FALSE}
+library(ggplot2)
+MSEDF <- data.frame(MSE = c(avgMSEtest, avgMSEtest1, avgMSEtest2, avgMSEtest3, avgMSEtest5, avgMSEtest10,
+                    avgMSEtrain, avgMSEtrain1, avgMSEtrain2, avgMSEtrain3, avgMSEtrain5, avgMSEtrain10), flexibility = c(0, 1, 2, 3, 5, 10, 0, 1, 2, 3, 5, 10), Group = c(rep("Test", 6), rep("Train", 6)) ) 
+ggplot(data = MSEDF) + 
+  geom_point(aes(x = flexibility, y = MSE, color = Group)) + 
+  theme_bw() + 
+  geom_hline(yintercept = SD^2, linetype = "dashed")
+
+```

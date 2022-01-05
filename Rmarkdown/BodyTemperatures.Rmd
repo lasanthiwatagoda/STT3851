@@ -1,0 +1,178 @@
+---
+title: "Review"
+author: "Alan T. Arnholt"
+date: "3/3/2017"
+output: 
+  bookdown::html_document2:
+    highlight: textmate
+    theme: yeti
+---
+
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(comment = NA, fig.show = 'as.is', fig.align = 'center', fig.height = 7, fig.width = 7, prompt = TRUE, highlight = TRUE, tidy = FALSE, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff= 75, cache = TRUE))
+```
+
+# Body Temperatures
+
+```{r}
+BT <- read.csv("http://www.lock5stat.com/datasets1e/BodyTemp50.csv")
+library(dplyr)
+BT %>%
+  summarize(mean(BodyTemp), sd(BodyTemp), n())
+library(ggplot2)
+ggplot(data = BT, mapping = aes(x = BodyTemp)) + 
+  geom_dotplot(fill = "lightblue") + 
+  theme_bw()
+```
+
+## Null and Alternative Hypothesis
+
+\begin{equation}
+H_O: \mu = 98.6 \\
+H_A: \mu \neq 98.6
+(\#eq:nullalt)
+\end{equation}
+
+**Note:** In order to construct a **sampling distribution** to assess the evidence in `BT`, one must generate new samples consistent with the null hypothesis $(\mu = 98.6)$.  One way to generate samples that are consistent with the null hypothesis is to add 0.34 to all of the values in `BodyTemp`.
+
+```{r}
+BT <- BT %>%
+  mutate(NBT = BodyTemp + 0.34) 
+head(BT)
+summarize(BT, mean(NBT))
+```
+
+### Generate bootstrap distribution
+
+```{r}
+B <- 10000 - 1
+xbarstarA <- numeric(B)
+xbarstar <- numeric(B)
+for(i in 1:B){
+  BSA <- sample(BT$NBT, size = 50, replace = TRUE)
+  BS <- sample(BT$BodyTemp, size = 50, replace = TRUE)
+  xbarstarA[i] <- mean(BSA)
+  xbarstar[i] <- mean(BS)
+}
+mean(xbarstarA)
+mean(xbarstar)
+sd(xbarstarA)
+sd(xbarstar)
+ggplot(data = data.frame(x = xbarstarA), aes(x = x)) + 
+  geom_density(fill = "pink") + 
+  theme_bw() + 
+  geom_vline(xintercept = 98.26)
+p_value <- (sum(xbarstarA <= 98.26) + 1)/(B + 1)
+p_value
+ggplot(data = data.frame(x = xbarstar), aes(x = x)) + 
+  geom_density(fill = "pink") + 
+  theme_bw()
+```
+
+### Two bootstrap CIs
+
+#### Percentile CI
+
+```{r}
+PCI <- quantile(xbarstar, probs = c(0.025, 0.975))
+PCI
+```
+
+#### Bootstrap SE
+
+```{r}
+CIB <- mean(BT$BodyTemp) + c(-1, 1)*qnorm(.975)*sd(xbarstar)
+CIB
+```
+
+## Classical Sampling Distribution
+
+**Assume** $X \sim\mathcal{N}(98.6, 0.77) \rightarrow \bar{X}\sim\mathcal{N}(98.6, 0.77/\sqrt{50} = `r 0.77/sqrt(50)`)$
+
+### Simulation approach
+
+```{r}
+SIMS <- 10000 - 1
+xbarC <- numeric(SIMS)
+xbarA <- numeric(SIMS)
+for(i in 1:SIMS){
+  xbarC[i] <- mean(rnorm(50, 98.26, 0.77))
+  xbarA[i] <- mean(rnorm(50, 98.26 + 0.34, 0.77))
+}
+xbarS <- mean(xbarC)
+SES <- sd(xbarC)
+c(xbarS, SES)
+# Simulation
+ggplot(data = data.frame(x = xbarA), aes(x = x)) + 
+  geom_density(fill = "lightblue") + 
+  theme_bw()
+p_value <- (sum(xbarA <= 98.26) + 1)*2/(SIMS + 1)
+p_value
+CIS <- quantile(xbarC, probs = c(0.025, 0.975))
+CIS
+# Theoretical
+p_value <- pnorm(98.26, 98.6, 0.77/sqrt(50))*2
+p_value
+CIT <- mean(BT$BodyTemp) + c(-1, 1)*qnorm(0.975)*0.77/sqrt(50)
+CIT
+## Or
+PASWR2::z.test(x = BT$BodyTemp, sigma.x = 0.77, mu = 98.6)
+```
+
+## Data Tweaking
+
+```{r}
+BT <- BT %>%
+  mutate(Gender = factor(Gender, levels = c(0, 1), labels = c( "Male", "Female")))
+DT::datatable(BT)
+BT %>%
+  group_by(Gender) %>%
+  summarize(mean(BodyTemp), sd(BodyTemp), n())
+```
+
+\begin{equation}
+H_O: \mu_{\text{Female}} - \mu_{\text{Male}} = 0 \\
+H_O: \mu_{\text{Female}} - \mu_{\text{Male}} \neq 0 
+(\#eq:nullalt2)
+\end{equation}
+
+### Classical Approach
+
+```{r}
+t.test(BodyTemp ~ Gender, data = BT)
+STUFF <- BT %>%
+  group_by(Gender) %>%
+  summarize(MA = mean(BodyTemp))
+obsdiff <- diff(tapply(BT$BodyTemp, BT$Gender, mean))
+obsdiff
+```
+
+### Randomization Approach
+
+```{r}
+SIMS <- 10^4 - 1
+diffmeans <- numeric(SIMS)
+for(i in 1:SIMS){
+  diffmeans[i] <- diff(tapply(BT$BodyTemp, sample(BT$Gender), mean))
+}
+mean(diffmeans)
+sd(diffmeans)
+pvalue <- ((sum(diffmeans >= obsdiff) + 1)/(SIMS + 1))*2
+pvalue
+```
+
+### Bootstrap CI
+
+```{r}
+B <- 10^4 - 1
+bsd <- numeric(B)
+for(i in 1:B){
+  bsm <- sample(BT$BodyTemp[BT$Gender == "Male"], size = 25, replace = TRUE)
+  bsf <- sample(BT$BodyTemp[BT$Gender == "Female"], size = 25, replace = TRUE)
+  bsd[i] <- mean(bsf) - mean(bsm)
+}
+CI <- quantile(bsd, probs = c(0.025, 0.975))
+CI
+```

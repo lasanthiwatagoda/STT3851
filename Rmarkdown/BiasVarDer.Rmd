@@ -1,0 +1,94 @@
+---
+title: "Bias Variance Outline"
+author: |
+  | [\textcolor{blue}{Alan T. Arnholt}](https://alanarnholt.github.io)
+institute: |
+  | [\textcolor{blue}{Department of Mathematical Sciences}](http://mathsci.appstate.edu)
+  | [\textcolor{blue}{Appalachian State University}](http://appstate.edu)
+date: 'January 30, 2017'
+output:
+  beamer_presentation:
+    theme: "Malmoe"
+    colortheme: "seahorse"
+    fonttheme: "professionalfonts"
+---
+
+```{r, label = "setup", include = FALSE}
+knitr::opts_chunk$set(fig.align = "center", fig.width = 4, fig.height = 3, comment = NA)
+```
+
+## Average Prediction Error at $x_0$
+
+$$
+E_{\text{train}}\left[\left(y_0 - f_{\hat{\beta}}(x_0)\right)^2 \right] = \sigma^2 + \left[\text{Bias}\left(f_{\hat{\beta}}(x_0) \right) \right]^2 + \text{Var}\left(f_{\hat{\beta}}(x_0) \right)
+$$
+The notation $E_{\text{train}}\left[\left(y_0 - f_{\hat{\beta}}(x_0)\right)^2 \right]$ defines the _expected test MSE_, and refers to the average test MSE that we would obtain if we repeatedly estimated $f$ using a large number of training sets, and tested each at $x_0$.  The overall expected test MSE can be computed by averaging $E_{\text{train}}\left[\left(y_0 - f_{\hat{\beta}}(x_0)\right)^2 \right]$ over all possible values of $x_0$ in the test set.
+
+## Derivation
+
+\begin{equation*}
+E_{\text{train}}\left[\left(y_0 - f_{\hat{\beta}}(x_0)\right)^2 \right] =
+E_{\text{train}} \left[ \left( ( y_0 - f_{\beta}(x_0) ) + (f_{\beta}(x_0) - f_{\hat{\beta}}(x_0)) \right)^2 \right]
+\end{equation*}
+
+Note that
+
+$$
+E\left[(a + b)^2\right] = E\left[a^2 + 2ab + b^2 \right]
+$$
+
+## Derivation Continued
+
+\begin{align*}
+E_{\text{train}}\left[ \big(y_0 - f_{\beta}(x_0)\big)^2 \right]  &+  2E_{\text{train}} \left[ \big( y_0 - f_{\beta}(x_0) \big) \big( f_{\beta}(x_0) - f_{\hat{\beta}}(x_0) \big) \right] \\
+&+ E_{\text{train}}\left[ \left(f_{\beta}(x_0) - f_{\hat{\beta}}(x_0)\right)^2\right]
+\end{align*}
+
+## Bullet
+
+Consider shortening the notation for the middle term:
+
+$$
+2E_{\text{train}} \left[ \big( y_0 - f_{\beta}(x_0) \big) \big( f_{\beta}(x_0) - f_{\hat{\beta}}(x_0) \big) \right] = 2E \left[ \big( y - f \big) \big(f - \hat{f} \big) \right]
+$$
+Note that $y - f = \epsilon$ and that $E(\epsilon) = 0$ so the middle term is 0 and we are left with the first and third terms.
+
+## First and Third Terms
+
+$$
+E\left[ (y - f)^2 \right] + E\left[(f - \hat{f})^2 \right]
+$$
+Note that: 
+
+ - $E\left[ (y - f)^2 \right] = E\left[(\epsilon - E(\epsilon))^2 \right] = \sigma^2$
+ 
+ - $E\left[(f - \hat{f})^2 \right] = MSE(\hat{f})$. 
+ 
+ - $MSE(\hat{f}) = E\left[(f - \hat{f})^2 \right] = E\left[ \left((f - \bar{f}) + (\bar{f} -\hat{f})\right)^2 \right]$
+
+## MSE
+
+Using the same trick as before...the middle term drops out!
+
+\begin{equation*}
+E\left[ \left((f - \bar{f}) + (\bar{f} -\hat{f})\right)^2 \right] = E\left[(f - \bar{f})^2 \right] + E\left[ (\bar{f}-\hat{f})^2\right]
+\end{equation*}
+
+That is $2E\left[ (f - \bar{f})(\bar{f}- \hat{f})\right] = 0$ since $E\left[\bar{f} -\hat{f} \right] = \bar{f} -\bar{f} =0$.
+
+## More
+
+- $MSE(\hat{f}) = E\left[ (f- \bar{f})^2\right] + E\left[ (\bar{f} - \hat{f})^2\right]$
+- $MSE(\hat{f}) = \left[\text{Bias}(\hat{f}) \right]^2 + \text{Var}\left[ \hat{f}\right]$
+
+So,
+
+$$
+E_{\text{train}}\left[\left(y_0 - f_{\hat{\beta}}(x_0)\right)^2 \right] = \sigma^2 + \left[\text{Bias}\left(f_{\hat{\beta}}(x_0) \right) \right]^2 + \text{Var}\left(f_{\hat{\beta}}(x_0) \right)
+$$
+
+Or 
+
+$$
+E\left[\left(y - \hat{f}\right)^2 \right] = \sigma^2 + \left[\text{Bias}\left(\hat{f} \right) \right]^2 + \text{Var}\left(\hat{f}\right)
+$$

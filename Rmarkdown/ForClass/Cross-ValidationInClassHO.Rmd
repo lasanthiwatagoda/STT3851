@@ -1,0 +1,498 @@
+---
+title: "Cross-Validation"
+author: "Alan Arnholt"
+date: 'Last Updated on: `r format(Sys.time(), "%b %d, %Y at %X")`'
+bibliography: ./BIB/CV.bib
+output: 
+  bookdown::html_document2: 
+    highlight: textmate
+    theme: yeti
+---
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+set.seed(389)
+library(knitr)
+knitr::opts_chunk$set(fig.show = 'as.is', fig.height = 4, fig.width = 4, prompt = FALSE, highlight = TRUE, tidy = FALSE, warning = FALSE, message = FALSE, fig.align = "center", comment = NA, tidy.opts=list(blank = TRUE, width.cutoff= 75, cache = TRUE))
+```
+
+# Cross-Validation Handout 
+
+*Note: Working definitions and graphs are taken from @ugarte_probability_2016* 
+
+## The Validation Set Approach
+
+The basic idea behind the validation set approach is to split the available data into a training set and a testing set. A regression model is developed using only the training set. Consider Figure \@ref(fig:vsa) which illustrates a split of the available data into a training set and a testing set. 
+
+```{r, label = "vsa", echo = FALSE, fig.cap = "Validation set approach"}
+knitr::include_graphics("./PNG/valdset.png", dpi = 96)
+```
+
+The percent of values that are allocated into training and testing may vary based on the size of the available data. It is not unusual to allocate 70–75% of the available data as the training set and the remaining 25–30% as the testing set. The predictive performance of a regression model is assessed using the testing set. One of the more common methods to assess the predictive performance of a regression model is the mean square prediction error (MSPE). The MSPE is defined as
+
+\begin{equation}
+\textrm{MSPE} = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2
+(\#eq:mspe)
+\end{equation}
+
+## Leave-One-Out Cross Validation
+
+The leave-one-out cross-validation (LOOCV) eliminates the problem of variability in MSPE present in the validation set approach. The LOOCV is similar to the validation set approach as the available $n$ observations are split into training and testing sets. The difference is that each of the available $n$ observations are split into $n$ training and $n$ testing sets where each of the $n$ training sets consist of $n - 1$ observations and each of the testing sets consists of a single different value from the original $n$ observations. Figure \@ref(fig:LOOC) provides a schematic display of the leave-one-out cross-validation process with testing sets (light shade) and training sets (dark shade) for a data set of $n$ observations. 
+
+```{r, label = "LOOC", echo = FALSE, fig.cap = "Leave-one-out cross validation"}
+knitr::include_graphics("./PNG/loocv.png", dpi = 96)
+```
+
+The MSPE is computed with each testing set resulting in $n$ values of MSPE. The LOOCV estimate for the test MSPE is the average of these $n$ MSPE values denoted as
+
+\begin{equation}
+\textrm{CV}_{(n)} = \frac{1}{n}\sum_{i=1}^{n}\textrm{MSPE}_i
+(\#eq:loocv)
+\end{equation}
+
+## $k$-Fold Cross Validation
+
+$k$-fold cross-validation is similar to LOOCV in that the available data is split into training sets and testing sets; however, instead of creating $n$ different training and testing sets, $k$ folds/groups of training and testing sets are created where $k < n$ and each fold consists of roughly $n/k$ values in the testing set and $1 - n/k$ values in the training set. Figure \@ref(fig:KFCV) shows a schematic display of 5-fold cross-validation. The lightly shaded rectangles are the testing sets and the darker shaded rectangles are the training sets. 
+
+```{r, label = "KFCV", echo = FALSE, fig.cap = "Five fold cross-validation"}
+knitr::include_graphics("./PNG/cv.png", dpi = 96)
+```
+
+
+The MSPE is computed on each of the $k$ folds using the testing set to evaluate the regression model built from the training set. The weighted average of $k$ MSPE values is denoted as
+
+\begin{equation}
+\textrm{CV}_{(k)} = \sum_{k=1}^{k}\frac{n_k}{n}\textrm{MSPE}_k
+(\#eq:kfcv)
+\end{equation}
+
+Note that LOOCV is a special case of $k$-fold cross-validation where $k$ is set equal to $n$. An important advantage $k$-fold cross-validation has over LOOCV is that $\textrm{CV}_{k}$ for $k = 5$ or $k = 10$ provides a more accurate estimate of the test error rate than does $\textrm{CV}_n$.
+
+## Creating some data
+
+
+```{r label = "somedata"}
+set.seed(357)
+n <- 1000           # Number of observations to generate
+SD <- 0.5
+xs <- sort(runif(n, 5, 9))
+ys <- sin(xs) + rnorm(n, 0, SD)
+DF <- data.frame(x = xs, y = ys)
+rm(xs, ys)
+library(DT)
+datatable(DF)
+```
+
+## Validation Set Approach
+
+* Create a training set using 75% of the observations in `DF`.
+* Sort the observations in the training and testing sets.
+
+```{r}
+n <- nrow(DF)
+train <- sample(n, floor(0.75 * n), replace = FALSE)
+trainSET <- DF[train, ]
+trainSET <- trainSET[order(trainSET$x), ]
+testSET <- DF[-train, ]
+testSET <- testSET[order(testSET$x), ]
+dim(trainSET)
+dim(testSET)
+```
+
+* Fit a quadratic model using the training set (`trainSET`).
+
+```{r}
+library(ggplot2)
+# Base R
+plot(y ~ x, data = trainSET, pch = 19, cex = .25, col = "blue")
+modq <- lm(y ~ poly(x, 2, raw = TRUE), data = trainSET)
+yhat <- predict(modq, data = trainSET)
+lines(trainSET$x, yhat, col = "red")
+# ggplot2 approach
+ggplot(data = trainSET, aes(x = x, y = y)) + 
+  geom_point(color = "blue", size = 1) + 
+  theme_bw() + 
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2, raw = TRUE), color = "red", se = FALSE)
+# Summary of quadratic model
+summary(modq)
+```
+
+## Compute the training `MSPE`
+
+```{r}
+MSPE <- mean(resid(modq)^2)
+MSPE
+```
+
+## Compute the testing `MSPE`
+
+```{r}
+yhtest <- predict(modq, newdata = testSET)
+MSPEtest <- mean((testSET$y - yhtest)^2)
+MSPEtest
+```
+
+## Fit a cubic model.
+
+```{r}
+# Base R
+plot(y ~ x, data = trainSET, pch = 19, cex = .25, col = "blue")
+modc <- lm(y ~ poly(x, 3, raw = TRUE), data = trainSET)
+yhat <- predict(modc, data = trainSET)
+lines(trainSET$x, yhat, col = "red")
+# ggplot2 approach
+ggplot(data = trainSET, aes(x = x, y = y)) + 
+  geom_point(color = "blue", size = 0.5) + 
+  theme_bw() + 
+  geom_smooth(method = "lm", formula = y ~ poly(x, 3, raw = TRUE), color = "red", se = FALSE)
+# Summary of cubic model
+summary(modc)
+```
+
+## Compute the training `MSPE`
+
+```{r}
+MSPE <- mean(resid(modc)^2)
+MSPE
+```
+
+## Compute the testing `MSPE`
+
+```{r}
+yhtest <- predict(modc, newdata = testSET)
+MSPEtest <- mean((testSET$y - yhtest)^2)
+MSPEtest
+```
+
+## Your Turn
+
+* Create a training set (80%) and testing set (20%) of the observations from the data frame `HSWRESTLER` from the `PASWR2` package. Store the results from regressing `hwfat` onto `abs` and `triceps` in the object `modf`.
+
+* Compute the test `MSPE`.
+
+* Note how the answers of your classmates are all different.  The validation estimate of the test MSPE can be highly variable.  
+
+```{r}
+# Your Code Here
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+```
+
+
+## Your Turn
+
+The left side of Figure 5.2 on page 178 of @james_introduction_2013 shows the validation approach used on the `Auto` data set in order to estimate the test error that results from predicting `mpg` using polynomial functions of `horsepower` for one particular split of the original data.  The code below creates a similar graph.
+
+```{r}
+library(ISLR)
+n <- nrow(Auto)
+plot(1:10, type ="n", xlab = "Degree of Polynomial", ylim = c(15, 30), 
+     ylab = "Mean Squared Prediction Error") 
+IND <- sample(1:n, size = floor(n/2), replace = FALSE)
+train <- Auto[IND, ]
+test <- Auto[-IND, ]
+for(i in 1:10){
+    mod <- lm(mpg ~ poly(horsepower, i), data = train)
+    pred <- predict(mod, newdata = test)
+    MSPE[i] <- mean((test$mpg - pred)^2)
+  }
+lines(1:10, MSPE, col = "red")
+points(1:10, MSPE, col = "red", pch = 19)
+# ggplot2 approach
+DF2 <- data.frame(x = 1:10, MSPE = MSPE)
+ggplot(data = DF2, aes(x = x, y = MSPE)) + 
+  geom_point(color = "red", size = 2) + 
+  geom_line(color = "red") + 
+  theme_bw() + 
+  ylim(15, 30) + 
+  scale_x_continuous(breaks = 1:10) + 
+  labs(x = "Degree of Polynomial", y = "Mean Squared Prediction Error")
+```
+
+
+* Modify the code above to recreate a graph similar to the right side of Figure 5.2 on page 178 of @james_introduction_2013.  Hint: Place a `for` loop before `IND`.
+
+```{r, fig.width = 5, fig.height = 5}
+# Your Code Here
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+```
+
+
+
+## $k$ Fold Cross Validation
+
+* Create $k = 5$ folds.
+* Compute the $\textrm{CV}_{k=5}$ for `modq`.  
+
+```{r}
+set.seed(1)
+k <- 5
+MSPE <- numeric(k)
+folds <- sample(x = 1:k, size = nrow(DF), replace = TRUE)
+xtabs(~folds)
+sum(xtabs(~folds))
+for(j in 1:k){
+  modq <- lm(y ~ poly(x, 2, raw = TRUE), data = DF[folds != j, ])
+  pred <- predict(modq, newdata = DF[folds ==j, ])
+  MSPE[j] <- mean((DF[folds == j, ]$y - pred)^2) 
+}
+MSPE
+weighted.mean(MSPE, table(folds)/sum(folds))
+```
+
+## Your Turn
+
+* Compute the $\textrm{CV}_8$ for `modf`. Recall that `modf` was created from regressing `hwfat` onto `abs` and `triceps`. 
+
+
+```{r}
+# Your Code Here
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+```
+
+
+## Using `cv.glm` from `boot`
+
+```{r}
+set.seed(1)
+library(boot)
+glm.fit <- glm(y ~ poly(x, 2, raw = TRUE), data = DF)
+cv.err <- cv.glm(data = DF, glmfit = glm.fit, K = 5)$delta[1]
+cv.err
+```
+
+
+## Your Turn
+
+* Compute $\textrm{CV}_8$ for `modf` using `cv.glm`.  Recall that `modf` was created from regressing `hwfat` onto `abs` and `triceps`. 
+
+```{r}
+# Your Code Here
+#
+#
+#
+```
+
+
+
+## Your Turn
+
+The right side of Figure 5.4 on page 180 of @james_introduction_2013 shows the 10-fold cross-validation approach used on the `Auto` data set in order to estimate the test error that results from predicting `mpg` using polynomial functions of `horsepower` run nine separate times.  The code below creates a graph showing one particular run.
+
+```{r}
+plot(1:10, type ="n", xlab = "Degree of Polynomial", ylim = c(16, 26), 
+     ylab = "Mean Squared Prediction Error", main = "10-fold CV") 
+k <- 10 # number of folds
+MSPE <- numeric(k)
+cv <- numeric(k)
+  for(i in 1:10){
+    folds <- sample(x = 1:k, size = nrow(Auto), replace = TRUE)
+    for(j in 1:k){
+      mod <- lm(mpg ~ poly(horsepower, i, raw = TRUE), data = Auto[folds != j, ])
+      pred <- predict(mod, newdata = Auto[folds ==j, ])
+      MSPE[j] <- mean((Auto[folds == j, ]$mpg - pred)^2) 
+    }
+    cv[i] <- weighted.mean(MSPE, table(folds)/sum(folds))
+  }
+  lines(1:10, cv, col = "red")
+  points(1:10, cv, col = "red", pch = 19)
+```
+
+
+* Use a `for` loop to run the above code nine times.  The result should look similar to the right side of Figure 5.4 on page 180 of @james_introduction_2013. 
+
+```{r}
+# Your Code Here
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+```
+
+* Use the function `cv.glm` to create similar a graph to the right side of Figure 5.4 on page 180 of @james_introduction_2013. 
+
+```{r}
+# Your Code Here
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+```
+
+
+## Leave-One-Out Cross-Validation
+
+
+```{r}
+set.seed(1)
+k <- nrow(DF)
+MSPE <- numeric(k)
+folds <- sample(x = 1:k, size = nrow(DF), replace = FALSE)  
+# Note that replace changes to FALSE for LOOCV...can you explain why?
+for(j in 1:k){
+  modq <- lm(y ~ poly(x, 2, raw = TRUE), data = DF[folds != j, ])
+  pred <- predict(modq, newdata = DF[folds ==j, ])
+  MSPE[j] <- mean((DF[folds == j, ]$y - pred)^2) 
+}
+mean(MSPE)
+```
+
+## Your Turn
+
+* Compute $\textrm{CV}_n$ for `modf`.  Recall that `modf` was created from regressing `hwfat` onto `abs` and `triceps`. 
+
+```{r}
+# Your Code Here
+#
+#
+#
+#
+#
+#
+#
+#
+#
+```
+
+
+Recall 
+
+$$CV_{n}=\frac{1}{n}\sum_{i=1}^n\left(\frac{y_i - \hat{y_i}}{1 - h_i}\right)^2$$
+
+```{r}
+modq <- lm(y ~ poly(x, 2, raw = TRUE), data = DF)
+h <- hatvalues(modq)
+CVn <- mean(((DF$y - predict(modq))/(1 - h))^2)
+CVn
+```
+
+## Your Turn
+
+* Compute $\textrm{CV}_n$ for `modf` using the mathematical shortcut. Recall that `modf` was created from regressing `hwfat` onto `abs` and `triceps`. 
+
+```{r}
+# Your Code Here
+#
+#
+#
+```
+
+
+## Using `cv.glm` from `boot`
+
+* Note: If one does not use the `K` argument for the number of folds, `gv.glm` will compute LOOCV.
+
+```{r}
+library(boot)
+glm.fit <- glm(y ~ poly(x, 2, raw = TRUE), data = DF)
+cv.err <- cv.glm(data = DF, glmfit = glm.fit)$delta[1]
+cv.err
+```
+
+* * * 
+
+## Your Turn
+
+* Compute $\textrm{CV}_n$ for `modf` using `cv.glm`.  Recall that `modf` was created from regressing `hwfat` onto `abs` and `triceps`. 
+
+```{r}
+# Your Code Here
+#
+#
+#
+```
+
+
+## Your Turn
+
+*  Create a graph similar to the left side of Figure 5.4 on page 180 of @james_introduction_2013. 
+
+```{r}
+# Your Code Here
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+```
+
+Using the short cut formula:
+
+```{r}
+# Your Code Here
+#
+#
+#
+#
+#
+#
+#
+#
+#
+```
+
+
+## References
+

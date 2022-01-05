@@ -1,0 +1,318 @@
+\documentclass[final]{beamer}
+\usefonttheme{serif}
+\mode<presentation>{\usetheme{ASU}}
+\usepackage{amsmath, amsfonts, amssymb, pxfonts, eulervm, xspace, enumerate, hyperref, color, bookmark}
+\usepackage{graphicx}
+\usepackage[orientation=landscape, size=a0, scale=1.4, debug]{beamerposter}
+% \usepackage{natbib}
+
+\usecolortheme{rose}
+%\setbeamercolor{background canvas}{bg=magenta!16!yellow!90}
+
+%\beamertemplategridbackground[1cm]
+
+%-- Header and footer information ----------------------------------
+\newcommand{\footright}{\href{https://github.com/STAT-ATA-ASU/Clarke-Megan}{https://github.com/STAT-ATA-ASU/Clarke-Megan}}
+\newcommand{\footleft}{\href{mailto:arnholtat@appstate.edu}{Faculty Advisor: Alan Arnholt}}
+
+\def\conference{STT 5811: Passion Driven Statistics Poster Presentation}
+\title{The Association Between Low Economic Status and Access to Healthcare and the Efficacy of these on General Health}
+\author{Megan Clarke} 
+\institute{Department of Mathematical Sciences}
+%-------------------------------------------------------------------
+
+
+%-- Main Document --------------------------------------------------
+\begin{document}
+\begin{frame}[fragile]
+\vspace{-2ex}
+\begin{columns}[t]
+
+<<setup, comment = NA, echo = FALSE, message = FALSE, warning=FALSE>>=
+options(width = 35)
+opts_chunk$set(comment = NA, fig.align='center', fig.width=13, fig.height=6, cache=FALSE, warning = FALSE, message = FALSE)
+library(maps)
+library(ggplot2)
+library(PDS)
+library(boot)
+library(xtable)
+@
+
+%-- Column 1 ---------------------------------------------------
+\begin{column}{0.31\linewidth}
+\begin{minipage}[t][.955\textheight]{\linewidth} 
+%-- Block 1-1
+% \vspace{0ex}
+\begin{block}{Introduction}
+\begin{itemize}
+\item Health insurance is often provided by the government if an individual does not get it through the employer or a private insurance company \cite{sommers_bd_changes_2015}.  
+\item Medicaid is difficult to obtain and even those who qualify have difficulty applying and being granted assistance \cite{gaskin_economic_2012}. 
+\item The Affordable Care Act (ACA) was enacted to broaden access to health insurance to improve the health of United States citizens.  
+\item The purpose of this study is to examine the association between low economic status and health in subjects who do not have health insurance. 
+\end{itemize}
+\vspace{0ex}
+\end{block}
+\vfill
+
+%-- Block 1-2
+\begin{block}{Hypothesis}
+\begin{itemize}
+\item Null Hypothesis: There is no difference in health status of uninsured people who are unemployed and those living below the poverty line ($\leq$ 15,000/year).
+\item $H_{0}$: $\mu_{unemployed}$ = $\mu_{belowpovertyline}$
+\vspace{2ex}
+\item Alternative Hypothesis: There is a difference in health status of uninsured people who are unemployed and those living below the poverty line.
+\item $H_{A}$: $\mu_{unemployed}$ $\ne$ $\mu_{belowpovertyline}$
+\end{itemize}
+\vspace{0ex}
+\vfill
+\end{block}
+\vfill
+
+%-- Block 1-3
+\begin{block}{Methods}
+\begin{itemize}
+\item Sample: Data collected from the National Longitudinal Study of Adolescent to Adult Health (AddHealth) Wave IV. Participants were 24 to 32 years old at the time of the study.
+\item Procedure: Subjects were surveyed in the form of questionnaires using computer-assisted personal interviews (CAPI) and computer-assisted self interviews (CASI).
+\item Measures: Questions from Wave I that were still applicable to young adults were repeated in Wave IV. New questions were asked pertaining to health, economics, and personal and professional stressors.
+\item Implications: The ACA has caused controversy throughout the United State about the necessity of the government interfering in the healthcare field to this extent. The current study may verify the need for the ACA if low economic status limits access to healthcare and diminishes overall health.
+\end{itemize}
+\vspace{0ex}
+\vfill
+\end{block}
+\vfill
+
+
+\end{minipage}
+\end{column}%1
+
+%-- Column 2 ---------------------------------------------------
+
+\begin{column}{0.31\linewidth}
+\begin{minipage}[t][.955\textheight]{\linewidth} 
+
+%-- Block 2-1
+\begin{block}{Multivariate Graph}
+%\vspace{0ex}
+<<DATAMANAGEMENT, echo = FALSE>>=	  
+library(PDS)
+library(dplyr)
+addhealth4.sub <- addhealth_public4 %>% 
+  filter(!is.na(h4hs1) & !is.na(h4ec2) & !is.na(h4gh6) & h4hs1 == 1 & h4ec2 <=12000 & h4gh6 >=75)
+addhealth4.sub <- addhealth4.sub %>% 
+  select(h4hs1,h4gh1,h4ec2,h4ec7,h4ec8,h4gh5f,h4gh5i,h4gh6)
+
+addhealth4.sub$h4hs1[addhealth4.sub$h4hs1 == 98] <- NA
+addhealth4.sub$h4hs1 <- factor(addhealth4.sub$h4hs1)[, drop = TRUE]
+
+addhealth4.sub$h4gh5f[addhealth4.sub$h4gh5f == 96] <- NA
+addhealth4.sub$h4gh5f[addhealth4.sub$h4gh5f == 98] <- NA
+addhealth4.sub$h4gh5f <- factor(addhealth4.sub$h4gh5f)[ , drop = TRUE]
+
+addhealth4.sub$h4gh5i[addhealth4.sub$h4gh5i == 96] <- NA
+addhealth4.sub$h4gh5i[addhealth4.sub$h4gh5i == 98] <- NA
+addhealth4.sub$h4gh5i <- factor(addhealth4.sub$h4gh5i)[ , drop = TRUE]
+
+addhealth4.sub$h4gh6[addhealth4.sub$h4gh6 == 996] <- NA
+addhealth4.sub$h4gh6[addhealth4.sub$h4gh6 == 998] <- NA
+
+addhealth4.sub$h4ec2[addhealth4.sub$h4ec2 == 9999996] <- NA
+addhealth4.sub$h4ec2[addhealth4.sub$h4ec2 == 9999998] <- NA
+
+addhealth4.sub$h4ec7[addhealth4.sub$h4ec7 == 96] <- NA
+addhealth4.sub$h4ec7[addhealth4.sub$h4ec7 == 98] <- NA
+addhealth4.sub$h4ec7 <- factor(addhealth4.sub$h4ec7)[ , drop = TRUE]
+
+addhealth4.sub$h4ec8[addhealth4.sub$h4ec8 == 96] <- NA
+addhealth4.sub$h4ec8[addhealth4.sub$h4ec8 == 98] <- NA
+addhealth4.sub$h4ec8 <- factor(addhealth4.sub$h4ec8)[ , drop = TRUE]
+
+addhealth4.sub$Assets <- as.numeric(addhealth4.sub$h4ec7)
+addhealth4.sub$Assets[addhealth4.sub$Assets == 1] <- 5000
+addhealth4.sub$Assets[addhealth4.sub$Assets == 2] <- 7500
+addhealth4.sub$Assets[addhealth4.sub$Assets == 3] <- 17500
+addhealth4.sub$Assets[addhealth4.sub$Assets == 4] <- 37500
+addhealth4.sub$Assets[addhealth4.sub$Assets == 5] <- 75000
+addhealth4.sub$Assets[addhealth4.sub$Assets == 6] <- 174500
+addhealth4.sub$Assets[addhealth4.sub$Assets == 7] <- 375000
+addhealth4.sub$Assets[addhealth4.sub$Assets == 8] <- 750000
+addhealth4.sub$Assets[addhealth4.sub$Assets == 9] <- 1000000
+addhealth4.sub$Debts <- as.numeric(addhealth4.sub$h4ec8)
+addhealth4.sub$Debts[addhealth4.sub$Debts == 1] <- 500
+addhealth4.sub$Debts[addhealth4.sub$Debts == 2] <- 3000
+addhealth4.sub$Debts[addhealth4.sub$Debts == 3] <- 7500
+addhealth4.sub$Debts[addhealth4.sub$Debts == 4] <- 17500
+addhealth4.sub$Debts[addhealth4.sub$Debts == 5] <- 37500
+addhealth4.sub$Debts[addhealth4.sub$Debts == 6] <- 75000
+addhealth4.sub$Debts[addhealth4.sub$Debts == 7] <- 175000
+addhealth4.sub$Debts[addhealth4.sub$Debts == 8] <- 250000
+addhealth4.sub <- addhealth4.sub %>% 
+  mutate(NetWorth = (Assets-Debts))
+addhealth4.sub$NetWorthFac <- cut(addhealth4.sub$NetWorth, breaks = c(-1000000, -0.1, 0, 600000000), include.lowest = TRUE, labels = c("In Debt", "Break-Even", "Positive Net Worth"))
+
+addhealth4.sub$Income <- as.numeric(addhealth4.sub$h4ec2)
+addhealth4.sub$IncomeFac <- cut(addhealth4.sub$Income, breaks = c(0, 0.1, 12000), include.lowest = TRUE, labels = c("Unemployed", "Below Poverty Line"))
+
+addhealth4.sub$HeightFeet <- as.numeric(addhealth4.sub$h4gh5f)
+addhealth4.sub$HeightFeet[addhealth4.sub$HeightFeet == 1] <- 4
+addhealth4.sub$HeightFeet[addhealth4.sub$HeightFeet == 2] <- 5
+addhealth4.sub$HeightFeet[addhealth4.sub$HeightFeet == 3] <- 6
+addhealth4.sub$HeightInch <- as.numeric(addhealth4.sub$h4gh5i)
+addhealth4.sub <- addhealth4.sub %>%
+  mutate(TotalHeightMeter = ((HeightFeet*12)+HeightInch)*0.0254)
+addhealth4.sub$WeightLBS <- as.numeric(addhealth4.sub$h4gh6)
+addhealth4.sub <- addhealth4.sub %>%
+  mutate(WeightKG = (WeightLBS/2.2046))
+addhealth4.sub <- addhealth4.sub %>%
+  mutate(BMI = (WeightKG/(TotalHeightMeter)^2))
+
+addhealth4.sub$BMIFac <- cut(addhealth4.sub$BMI, breaks = c(0, 18.5, 25, 30, 60), include.lowest = TRUE, labels = c("Under Weight", "Normal Weight", "Over Weight", "Obese"))
+
+addhealth4.sub$BMI2 <- cut(addhealth4.sub$BMI, breaks = c(0, 25, 60), include.lowest = TRUE, labels = c("Underweight to Healthy", "Over Weight to Obese"))
+
+library(Hmisc)
+label(addhealth4.sub$h4hs1) <- "Current Health Insurance Situation"
+label(addhealth4.sub$h4gh1) <- "General Health"
+label(addhealth4.sub$h4gh5f) <- "Height in Feet"
+label(addhealth4.sub$h4gh5i) <- "Height in Inches (Excluding Feet)"
+label(addhealth4.sub$h4gh6) <- "Weight in Pounds"
+label(addhealth4.sub$h4ec2) <- "Personal Earnings in One Year"
+label(addhealth4.sub$h4ec7) <- "Total Value of Assets"
+label(addhealth4.sub$h4ec8) <- "Total Value of Debts"
+addhealth4.sub$h4hs1 <- factor(addhealth4.sub$h4hs1,
+                               levels =1,
+                               labels = "No Health Insurance")
+addhealth4.sub$h4gh1 <- factor(addhealth4.sub$h4gh1,
+                               levels = c(1,2,3,4,5),
+                               labels = c("excellent", "very good", "good", "fair", "poor"))
+
+addhealth4.sub <- addhealth4.sub %>% 
+  rename(HealthInsurance = h4hs1, GenHealth = h4gh1, PersonalEarn = h4ec2, Assets = h4ec7, Debts = h4ec8)
+@
+
+<<MulitvariateGraph, echo = FALSE, fig.width = 12, fig.height= 5>>=
+library(ggplot2)
+ggplot(data = na.omit(addhealth4.sub), aes(x = GenHealth, fill = IncomeFac)) + 
+  geom_bar(position = "fill") +
+  theme_bw() + 
+  labs(x = "", y = "Fraction", title = "Fraction of young adult's perception of general health and BMI category compared to employment status") + 
+  scale_fill_manual(values = c("black", "gold"), name = "BMI Category") +
+  facet_grid(BMI2 ~ .) +
+  guides(fill = guide_legend(reverse = TRUE))
+@
+
+This graph shows the general health of people without health insurance based on income. Note that all people who reported poor general health were living below the poverty line.
+
+\vspace{-1ex}
+\end{block}
+\vfill
+
+%-- Block 2-2
+%\vspace{3ex}
+\begin{block}{Comparing Quantitative Variables}
+\vspace{0ex}
+
+<<LineGraph, echo = FALSE, fig.width = 12, fig.height= 5>>=
+ggplot(data = addhealth4.sub, aes(x = Income, y = NetWorth)) + 
+  geom_point(color = "lightblue") + 
+  theme_bw() +
+  labs(x = "Annual Income", y = "Net Worth", title = "Annual Income by Net Worth") +
+  geom_smooth(method = "lm")
+@
+
+Young people who do not have health insurance and who are at or below the poverty line often do not have a savings account or assets to have a positive net worth. As shown in this graph, many people are breaking even financially each month and do not have extra income to put towards health insurance.
+
+\vspace{-1ex}
+\end{block}
+\vfill
+
+%-- Block 2-3
+%\vspace{3ex}
+\begin{block}{Violin Graph}
+\vspace{0ex}
+<<ViolinGraphs, echo = FALSE, fig.width = 12, fig.height=5>>=
+ggplot(data = na.omit(addhealth4.sub), aes(x = BMIFac, y = Income, fill = BMIFac, ymax = 1)) +
+  geom_violin(position = "fill") + 
+  theme_bw() + 
+  labs(x = "BMI Category", y = "Fraction of Annual Income", title = "BMI Category by Annual Income") +
+  scale_fill_manual(values = c("mediumspringgreen", "yellow", "orange", "deeppink3"), name = "BMI Category") 
+@
+
+This violin graph illustrates the BMI category of people with a certain income. There are more people overweight and obese who have incomes closer to the poverty line.
+
+\vspace{-1ex}
+\end{block}
+\vfill
+
+\end{minipage}
+\end{column}%2
+
+%-- Column 3 ---------------------------------------------------
+\begin{column}{0.31\linewidth}
+\begin{minipage}[t][.955\textheight]{\linewidth} 
+%-- Block 3-1
+\vspace{0ex}
+\begin{block}{Results}
+\vspace{0ex}
+\begin{itemize}
+\item There were statistically significant differences between unemployed and those living below the poverty line who had a positive net worth and those who had zero net worth. 
+\item Significant differences were also shown between those who reported poor general health and those who reported excellent.
+\item However, in young people aged 24 to 32, there were no differences between general health
+and employment status. 
+\end{itemize}
+\vspace{1ex}
+\vfill
+\end{block}
+\vfill
+
+%-- Block 3-2
+\begin{block}{Discussion}
+\begin{itemize}
+\item Since there were differences between the poor and excellent general health categories, it is an indication that there is validity to this scale. 
+\item There are not differences between the BMI categories and health perception categories, which shows that BMI is an adequate quantitative assessment of general health.
+\item Within this age category (ages 24 to 32), there are not enough differences in low income to unemployed individuals to assess the differences between income and general health in individuals without access to healthcare. 
+\end{itemize}
+\vspace{0ex}
+\vfill
+\end{block}
+\vfill
+
+%-- Block 3-3
+\vspace{0ex}
+\begin{block}{Further Direction}
+\vspace{0ex}
+\begin{itemize}
+\item Use a broader age range or use older individuals who may be experiencing more health related issues
+\item Compare participants with and without health insurance to determine differences in health even below the poverty line
+\item A future study could use a different measurement other than self perception of health or BMI. These have been shown to not be particularly accurate measurements, but are commonly used to assess a large group of subjects from the general population.
+\end{itemize}
+\vspace{1ex}
+\vfill
+\end{block}
+\vfill
+
+%-- Block 3-4
+\begin{block}{References}
+\footnotesize
+\setbeamertemplate{bibliography item}[text]
+\vspace{-1ex}
+<<auto-bib, version=packageVersion('knitr'), echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE>>=
+# write all packages in the current session to a bib file
+write_bib(c(.packages()), file = 'knitr-packages.bib')
+@
+
+\bibliographystyle{plain}  % can use plain but comment out natbib at top if using plain
+\bibliography{knitr-packages,ResearchPDS}
+\normalsize
+\vfill
+\end{block} 
+\vfill
+
+\end{minipage}
+\end{column}%3
+
+
+
+
+\end{columns}
+\end{frame}
+\end{document}

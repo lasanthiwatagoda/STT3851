@@ -1,0 +1,269 @@
+---
+title: "Bias Variance Tradeoff Example"
+
+output:
+    pdf_document:
+    css: ../CSS/asu.css
+    highlight: textmate
+    theme: yeti
+    
+---
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+set.seed(123)
+library(knitr)
+knitr::opts_chunk$set(comment = NA, fig.show = 'as.is', fig.align = 'center', fig.height = 5, fig.width = 5, prompt = TRUE, highlight = TRUE, tidy = FALSE, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff= 75, cache = TRUE))
+```
+
+
+## Four Training Sets
+
+```{r echo = FALSE, fig.width = 7, fig.height=7, fig.align = "center"}
+Ntrains <- 1000   # Number of training sets to generate
+n <- 40           # Number of observations to generate for each training set
+dpt <- 5*9*5      # Number of x points to predict over
+SD <- 0.5
+par(mfrow= c(2, 2))
+xs <- sort(runif(n, 5, 9))
+ys <- sin(xs) + rnorm(n, 0, SD)
+plot(xs, ys, pch = 19, col = "blue", xlim = c(5, 9), ylim = c(-2, 2), cex = .25)
+abline(lm(ys ~ 1))
+xs <- sort(runif(n, 5, 9))
+ys <- sin(xs) + rnorm(n, 0, SD)
+plot(xs, ys, pch = 19, col = "blue", xlim = c(5, 9), ylim = c(-2, 2), cex = 0.25)
+abline(lm(ys ~ 1))
+xs <- sort(runif(n, 5, 9))
+ys <- sin(xs) + rnorm(n, 0, SD)
+plot(xs, ys, pch = 19, col = "blue", xlim = c(5, 9), ylim = c(-2, 2), cex = 0.25)
+abline(lm(ys ~ 1))
+xs <- sort(runif(n, 5, 9))
+ys <- sin(xs) + rnorm(n, 0, SD)
+plot(xs, ys, pch = 19, col = "blue", xlim = c(5, 9), ylim = c(-2, 2), cex = 0.25)
+abline(lm(ys ~ 1))
+par(mfrow = c(1, 1))
+```
+
+
+
+
+
+
+
+
+## Fitting a simple model with just an intercept
+
+```{r echo = FALSE}
+curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ 1)
+  nys <- predict(mod1)
+  lines(xs, nys, col = "pink", lty = "dashed")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - nys)^2)
+  MSEtrain[i] <- mean((ys - nys)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+lines(nxs, yhnbar, col = "red", lwd = 2)
+avgMSEtest <- mean(MSEtest)
+avgMSEtrain <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a simple model that includes only an intercept.  The black line is the true function, the red line is the average of the `r Ntrains` fitted simple models consisting of only an intercept.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain`, and the average testing MSE for this model is `r avgMSEtest`.
+
+## Fitting a straight line model
+
+```{r, echo = FALSE}
+curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ xs)
+  nys <- predict(mod1)
+  lines(xs, nys, col = "pink", lty = "dashed")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - nys)^2)
+  MSEtrain[i] <- mean((ys - nys)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+lines(nxs, yhnbar, col = "red", lwd = 2)
+avgMSEtest <- mean(MSEtest)
+avgMSEtrain <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a simple straight line model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain`, and the average testing MSE for this model is `r avgMSEtest`.
+
+## Fitting a second order polynomial model
+
+```{r echo = FALSE}
+curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ poly(xs, 2))
+  nys <- predict(mod1)
+  lines(xs, nys, col = "pink", lty = "dashed")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - nys)^2)
+  MSEtrain[i] <- mean((ys - nys)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+lines(nxs, yhnbar, col = "red", lwd = 2)
+avgMSEtest <- mean(MSEtest)
+avgMSEtrain <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a second order polynomial model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain`, and the average testing MSE for this model is `r avgMSEtest`.
+
+## Fitting a third order polynomial model
+
+```{r, echo = FALSE}
+curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ poly(xs, 3))
+  nys <- predict(mod1)
+  lines(xs, nys, col = "pink", lty = "dashed")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - nys)^2)
+  MSEtrain[i] <- mean((ys - nys)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+lines(nxs, yhnbar, col = "red", lwd = 2)
+avgMSEtest <- mean(MSEtest)
+avgMSEtrain <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with third order polynomial model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain`, and the average testing MSE for this model is `r avgMSEtest`.
+
+## Fitting a fifth order polynomial model
+
+```{r echo = FALSE}
+curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ poly(xs, 5))
+  nys <- predict(mod1)
+  lines(xs, nys, col = "pink", lty = "dashed")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - nys)^2)
+  MSEtrain[i] <- mean((ys - nys)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+lines(nxs, yhnbar, col = "red", lwd = 2)
+avgMSEtest <- mean(MSEtest)
+avgMSEtrain <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a fifth order polynomial model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain`, and the average testing MSE for this model is `r avgMSEtest`.
+
+
+
+## Fitting a tenth order polynomial model
+
+```{r echo = FALSE}
+curve(sin, 5, 9, ylim = c(-2, 2), ylab = "Y", xlab = "X", lwd = 3, type = "n")
+yhn <- matrix(NA, Ntrains, dpt)
+MSEtest <- numeric(Ntrains)
+MSEtrain <- numeric(Ntrains)
+for(i in 1:Ntrains){
+  xs <- sort(runif(n, 5, 9))
+  ys <- sin(xs) + rnorm(n, 0, SD)
+  mod1 <- lm(ys ~ poly(xs, 10))
+  nys <- predict(mod1)
+  lines(xs, nys, col = "pink", lty = "dashed")
+  nxs <- seq(5, 9, length = dpt)
+  yhn[i, ] <- predict(mod1, newdata = data.frame(xs = nxs))
+  yst <- sin(xs) + rnorm(n, 0, SD)
+  MSEtest[i] <- mean((yst - nys)^2)
+  MSEtrain[i] <- mean((ys - nys)^2)
+}
+yhnbar <- apply(yhn, 2, mean)
+curve(sin, 5, 9, ylim = c(-3, 3), ylab = "Y", xlab = "X", lwd = 3, add = TRUE)
+lines(nxs, yhnbar, col = "red", lwd = 2)
+avgMSEtest <- mean(MSEtest)
+avgMSEtrain <- mean(MSEtrain)
+```
+
+This simulation generates `r Ntrains` training sets each with `r n` observations which are subsequently fit with a tenth order polynomial model.  The black line is the true function, the red line is the average of the `r Ntrains` fitted models.  The dashed pink lines are the each of the `r Ntrains` fitted models.
+
+$\widehat{\text{Bias}}(f_{\hat{\beta}}(x_0 = 8)) = f(x_0=8) - f_{\bar{\beta}}(x_0 = 8) = `r sin(8)` - `r yhnbar[169]` = `r sin(8) - yhnbar[169]`$.
+
+$\widehat{\text{Var}}(f_{\hat{\beta}}(x_0 = 8)) = \text{Var}(\hat{f}) = `r var(yhn[, 169])`.$
+
+$\widehat{\text{MSE}} = \widehat{\text{Bias}}^2 + \widehat{\text{Var}} = `r (sin(8) - yhnbar[169])^2` + `r var(yhn[, 169])` = `r (sin(8) - yhnbar[169])^2 + var(yhn[, 169])`$
+
+The average training MSE for this model is `r avgMSEtrain`, and the average testing MSE for this model is `r avgMSEtest`.

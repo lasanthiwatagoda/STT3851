@@ -1,0 +1,75 @@
+---
+title: "Ridge Regression"
+date: 'Last updated: `r format(Sys.time(), "%b %d, %Y")`'
+output:
+  bookdown::html_document2:
+    highlight: textmate
+    theme: yeti
+---
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+library(knitr)
+knitr::opts_chunk$set(comment = NA, fig.align = 'center', fig.height = 5, fig.width = 5, prompt = FALSE, highlight = TRUE, tidy = FALSE, warning = FALSE, message = FALSE, tidy.opts=list(blank = TRUE, width.cutoff = 80))
+```
+
+
+
+
+# `mtcars` data
+
+Another ridge regression example using `mtcars`.
+
+```{r}
+library(glmnet)
+library(tidyverse)
+head(mtcars)
+y <- mtcars$hp
+x <- mtcars %>%
+  select(mpg, cyl, disp, drat, wt, qsec, vs, am, gear, carb) %>%
+  data.matrix()
+grid <- 10^seq(10, -2, length = 100)
+fit <- glmnet(x, y, alpha = 0, lambda = grid)
+```
+
+We have yet to tune the $\lambda$ parameter.  To find the best value of $\lambda$ use `cv.glmnet()`
+
+```{r}
+set.seed(123)
+cv_fit <- cv.glmnet(x, y, alpha = 0, lambda = grid)
+plot(cv_fit)
+```
+
+The lowest poin in the curve indicates the optimal $\lambda$.
+
+```{r}
+opt_lambda <- cv_fit$lambda.min
+opt_lambda
+```
+
+
+```{r}
+y_hat <- predict(fit, s = opt_lambda, newx = x)
+SST <- sum((mtcars$hp - mean(mtcars$hp))^2)
+SSE <- sum((mtcars$hp - y_hat)^2)
+R2ridge <- 1 - SSE/SST
+R2ridge
+SMSPE <- sqrt(mean((mtcars$hp - predict(fit, newx = x))^2))
+SMSPE
+predict(fit, type = "coefficients", s = opt_lambda)
+```
+
+## Compare to OLS model
+
+```{r}
+ols <- lm(hp ~ ., data = mtcars)
+summary(ols)
+SSTols <- sum((mtcars$hp - mean(mtcars$hp))^2)
+SSEols <- sum((mtcars$hp - predict(ols))^2)
+R2ols <- 1 - SSEols/SSTols
+R2ols
+SMSPE <- sqrt(mean((mtcars$hp - predict(ols))^2))
+SMSPE
+```
+
+Ridge regression tends to produce more stable parameters than does OLS.  Does this mean ridge regression is less prone to overfitting the training data?  That is, does ridge regression do less well than OLS on the training data; but, outperform OLS on the test data?  When the sample size is small/and or the number of features is large compared to the number of observations, ridge regression tends to predict better than does OLS on the test data.
+

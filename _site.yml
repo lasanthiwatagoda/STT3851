@@ -1,0 +1,23 @@
+name: "my-website"
+output_dir: "."
+navbar:
+  title: "STT 3851"
+  left:
+    - text: "Resources"
+      href: https://lasanthiwatagoda.github.io/resources.html
+    - text: "For Students"
+      href: https://lasanthiwatagoda.github.io/for-students.html
+
+  right:
+    - text: "Lasanthi Watagoda"
+      href: https://lasanthiwatagoda.github.io 
+    - icon: fa-github fa-lg
+      href: https://github.com/Lasanthi-ASU/STT3851ClassRepo/         
+output:
+  html_document:
+    theme: yeti
+    highlight: textmate
+    include:
+      after_body: footer.html
+    css: styles.css  
+      

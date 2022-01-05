@@ -1,0 +1,216 @@
+---
+title: "Bootstarp Example"
+author: ""
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+output: 
+  bookdown::html_document2: 
+    highlight: textmate
+    theme: yeti
+---
+
+```{r, label = "SETUP", echo = FALSE, results= 'hide', message = FALSE, warning = FALSE}
+
+```
+
+**Estimating the Accuracy of a Linear Regression Model**
+
+
+First step is to define your `bootstarap function` according to the problem.
+Here I am using the `Auto` data set to fit a `linear regression`.
+```{r}
+library(ISLR)
+attach(Auto)
+Auto
+```
+
+
+```{r}
+bootfun =function(mydata, index)
+{
+    lmfit <- lm(mpg~horsepower, data = mydata, subset =index)
+    coeffients <- coef(lmfit)
+    return(coeffients)
+  
+}
+```
+
+
+Now we can use the funtion defined above to find the original estimates for the slope and intercept
+
+```{r}
+bootfun(Auto, 1:392)
+
+```
+
+We haven't still done any `bootstarps`. But we can use our function to do the bootstrap.
+All we have to do is, instead of `1:392`, use a `random sample`. 
+
+
+```{r}
+sample(1:392, 392, replace = TRUE)
+bootfun(Auto, sample(1:392, 392, replace = TRUE))
+
+```
+
+
+```{r}
+bootfun(Auto, sample(1:392, 392, replace = TRUE))
+
+```
+
+```{r}
+bootfun(Auto, sample(1:392, 392, replace = TRUE))
+
+```
+
+```{r}
+bootfun(Auto, sample(1:392, 392, replace = TRUE))
+
+```
+
+We use the `boot()` funtion in the **boot** `library` to compute as many bootstrap samples as we want.
+
+
+
+```{r}
+library(boot)
+
+boot(Auto, bootfun, 1000)
+```
+
+
+
+```{r}
+lmfit <- lm(mpg~horsepower, data = Auto)
+summary(lmfit)$coef
+```
+
+**Chapter 5 Exercise 9**
+
+Let's conside the `Boston` housing dataset from the `MASS` library.
+
+```{r}
+library(MASS)
+set.seed(203)
+attach(Boston)
+summary(Boston)
+```
+
+
+a) Based on this data set, provide an estimate for the population
+mean of `medv`. Call this estimate $\hat\mu$.
+
+```{r}
+mean_medv <- mean(medv)
+mean_medv
+```
+
+b) Provide an estimate of the standard error of $\hat\mu$. Interpret this
+result.
+
+*Hint: We can compute the standard error of the sample mean by
+dividing the sample standard deviation by the square root of the
+number of observations.*
+
+```{r}
+SE_medv <- sd(medv)/sqrt(length(medv))
+SE_medv
+```
+
+
+c) Now estimate the standard error of $\hat\mu$ using the bootstrap. How
+does this compare to your answer from (b)?
+
+First define our function to find the mean of `medv`
+
+```{r}
+bootfun <- function(mydata, index) 
+{
+  mean_medv_bootstrap <- mean(mydata[index])
+  return(mean_medv_bootstrap)
+}
+
+library(boot)
+
+bootstrap_mean <- boot(medv, bootfun, 1000)
+bootstrap_mean
+```
+
+In this situation, answer(SE) from b) and c) are similar. (But, it could be different too.)
+
+d) Based on your bootstrap estimate from (c), provide a 95% confidence
+interval for the mean of medv. Compare it to the results obtained using `t.test(medv)`.
+
+*Hint: You can approximate a 95 % confidence interval using the
+formula $[\hat\mu − 2SE(\hat\mu), \hat\mu + 2SE(\hat\mu)]$*
+
+**CI from bootstrap:** 
+
+```{r}
+c(22.53281 - 2*0.4085688, 22.53281 + 2*0.4085688)
+```
+
+
+**CI from `t.test`:** 
+
+```{r}
+t.test(medv)
+```
+
+e) Based on this data set, provide an estimate, $\hat\mu_med$, for the median
+value of `medv` in the population.
+
+
+```{r}
+median_medv <- median(medv)
+median_medv
+```
+
+
+f) We now would like to estimate the standard error of $\hat\mu_med$. Unfortunately,
+there is no simple formula for computing the standard error of the median. Instead, estimate the standard error of the median using the bootstrap. Comment on your findings.
+
+First define our function to find the median of `medv`
+
+```{r}
+bootfun2 <- function(mydata, index) 
+{
+  median_medv_bootstrap <- median(mydata[index])
+  return(median_medv_bootstrap)
+}
+
+library(boot)
+
+bootstrap_median <- boot(medv, bootfun2, 1000)
+bootstrap_median
+```
+
+`medv` has a median of 21.2 with and SE of 0.3797466
+
+
+g) Based on this data set, provide an estimate for the tenth percentile
+of `medv` in Boston suburbs. Call this quantity $\hat\mu_{0.1}$. (You
+can use the `quantile()` function.)
+
+```{r}
+tenth_percentile_medv <- quantile(medv, c(0.1))
+tenth_percentile_medv
+```
+
+h) Use the bootstrap to estimate the standard error of $\hat\mu_{0.1}$. Comment
+on your findings.
+
+```{r}
+bootfun3 <- function(mydata, index) 
+{
+  tenth_percentile_medv_boot <- quantile(mydata[index], c(0.1))
+  return(tenth_percentile_medv_boot)
+}
+
+library(boot)
+
+bootstrap_tenth_percentile_med <- boot(medv, bootfun3, 1000)
+bootstrap_tenth_percentile_med
+```
+
+
