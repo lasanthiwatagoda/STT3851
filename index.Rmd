@@ -1,5 +1,5 @@
 ---
-title: "Welcome"
+title: "Welcome to Statistical Data Analysis II"
 ---
 
 
@@ -7,7 +7,7 @@ title: "Welcome"
 
 * The course [`Syllabus`](./Syllabus/STT3851Spring2021Syllabus.html)
 
-* [`Course pacing and Assignments`](./Assignments/AssignmentsSTT3851Spring2021.html) 
+* [`Course pacing and Assignments`](./Assignments/AssignmentsSTT3851Spring2022.html) 
 
 * [`Class RStudio Server`](https://mathr.math.appstate.edu) (you must be registered in the course to access the server).
 

@@ -12,7 +12,7 @@ output:
 
 ***
 
-**Jan 19:**
+**Jan 11:**
 
 * Go over syllabus.
 * Become familiar with the Appstate [RStudio server](https://mathr.math.appstate.edu/). You will use your Appstate user name and password to log in to the server.  You must be registered in the class to access the server.
@@ -38,7 +38,7 @@ output:
 -->
 
 
-**Jan 21:**
+**Jan 13:**
 
 * Before class:
     + Read chapter 1 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -50,7 +50,7 @@ output:
 
 ***
 
-**Jan 26:**
+**Jan 18:**
 
 * Before class:
     + Read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -72,7 +72,7 @@ output:
 
 
 
-**Jan 28:**
+**Jan 20:**
 
 <!--* Before class:
     + [Watch Managing Change with RStudio]( https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-managing-change-part-1/) (37 minutes)-->
@@ -89,19 +89,19 @@ output:
 
 
 
-**Feb 02:**
+**Jan 25:**
 
 * Before class:
     + Watch [Assessing Model Accuracy and Bias-Variance Trade-off](https://www.youtube.com/watch?v=VusKAosxxyk) (10:04)
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
-* Start [Chapter 02 Lab](../Labs/LabChap2.html) today
+* Start [Chapter 02 Lab](../Labs/LabChap2.html) today (Due Sunday - Feb 6th)
 
 
 ***
 
-**Feb 04:**
+**Jan 27:**
 
 
 
@@ -113,7 +113,7 @@ output:
 
 ***
 
-**Feb 9:**
+**Feb 01:**
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 * [Bias-Variance Trade-Off](https://lasanthi-asu.github.io/STT3851ClassRepo/LectureNotesSp2021/BiasVariance.html)
@@ -122,7 +122,7 @@ output:
 
 ***
 
-**Feb 11:**
+**Feb 03:**
 
 
 * Before class:
@@ -139,14 +139,14 @@ output:
 
 * Start: Reproduce [Lab: Modified Introduction To R](../Labs/LabChap2.html).  
 
-* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Feb 14th.
+* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Feb 6th.
 
 ```
 
 
 ***
 
-**Feb 16:**
+**Feb 08:**
 
 * Before class:
     + Read pages 59-82 of [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -158,12 +158,12 @@ output:
 ***
 
 
-**Feb 18:**
+**Feb 10:**
 
 * Before class:
     + Watch [Hypothesis Testing ](https://www.youtube.com/watch?v=J6AdoiNUyWI) (8:24)
     + Watch [Multiple Linear Regression and Interpreting Regression Coefficients ](https://www.youtube.com/watch?v=1hbCJyM9ccs) (15:38)
-<!--* Discuss [Chapter 2 and 3 material](../Rmarkdown/Chap2Slides.html)
+
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -172,14 +172,14 @@ output:
 
 ***
 
-**Feb 23:**
+**Feb 15:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
 
 ***
 
-**Feb 25:**
+**Feb 17:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -211,7 +211,7 @@ output:
 
 ***
 
-**March 2:**
+**Feb 22:**
 
 * Before class:
     + Watch [Lab: Linear Regression](https://www.youtube.com/watch?v=5ONFqIk3RFg) (22:10)
@@ -221,7 +221,7 @@ output:
 
 ***
 
-**March 4:**
+**Feb 24:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -238,7 +238,7 @@ output:
 ***
 
 
-**March 09:**
+**March 01:**
 
 * Before class:
 
@@ -250,7 +250,7 @@ output:
 
 ***
 
-**March 11:**
+**March 03:**
 
 * Before class:
 
@@ -263,8 +263,15 @@ output:
 
 ***
 
+**Mar 08:**
 
-**Mar 16:**
+* Spring Break- No classes
+
+**Mar 10:**
+
+* Spring Break- No classes
+
+**Mar 15:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -279,14 +286,9 @@ output:
 
 ```
 
-
 ***
 
-**Mar 18:** : Day off!
-
-***
-
-**Mar 23:**
+**Mar 17:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -296,7 +298,7 @@ output:
 ***
 
 
-**Mar 25:**
+**Mar 22:**
 
 ```{block, startProject_1, type='rmdoptional'}
 
@@ -311,7 +313,7 @@ output:
 
 ***
 
-**Mar 30:**
+**Mar 24:**
 
 * In class Exam 1
 * [Exam Part I]()
@@ -319,14 +321,14 @@ output:
 
 ***
 
-**April 01:**
+**Mar 29:**
 
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
 
 ***
 
-**April 06:**
+**Mar 31:**
 
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
@@ -334,7 +336,7 @@ output:
 
 ***
 
-**April 08:**
+**April 05:**
 
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
@@ -345,14 +347,14 @@ output:
 ***
 
 
-**April 13:**
+**April 07:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
 
 ***
 
-**April 15:**
+**April 12:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
@@ -370,14 +372,14 @@ output:
 
 ***
 
-**April 20:**
+**April 14:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
 
 ***
 
-**April 22:**
+**April 19:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
@@ -403,7 +405,7 @@ output:
 
 ***
 
-**April 27:**
+**April 21:**
 
   * Exam 2
 
@@ -595,7 +597,7 @@ output:
 * [Auto Data .txt](Auto.txt)
 * [Auto Data .csv](Auto.csv)
 
-# [Home Page](http://Lasanthi-ASU.github.io/STT3851ClassRepo/) - [Syllabus](https://lasanthi-asu.github.io/STT3851ClassRepo/Syllabus/STT3851Spring2021Syllabus.html) {-}  
+# [Home Page](https://hasthika.github.io/STT3851/) - [Syllabus](https://hasthika.github.io/STT3851/Syllabus/STT3851Spring2021Syllabus.html) {-}  
 
 
 
