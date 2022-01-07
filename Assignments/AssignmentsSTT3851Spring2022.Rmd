@@ -96,7 +96,15 @@ output:
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
-* Start [Chapter 02 Lab](../Labs/LabChap2.html) today (Due Sunday - Feb 6th)
+```{block,  type='rmdoptional'}
+**Lab 02**
+
+* Start: Reproduce [Lab: Modified Introduction To R](../Labs/LabChap2.html).  
+
+* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Feb 6th.
+
+```
+
 
 
 ***
@@ -107,7 +115,7 @@ output:
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
-* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) 
+* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Sunday - Feb 6th)
 
 * In class **quiz 02**
 
@@ -117,7 +125,7 @@ output:
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 * [Bias-Variance Trade-Off](https://lasanthi-asu.github.io/STT3851ClassRepo/LectureNotesSp2021/BiasVariance.html)
-* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) 
+* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Sunday - Feb 6th)
 
 
 ***
@@ -136,8 +144,6 @@ output:
 
 ```{block,  type='rmdoptional'}
 **Lab 02**
-
-* Start: Reproduce [Lab: Modified Introduction To R](../Labs/LabChap2.html).  
 
 * Submit your html file and Rmd file **Lab 2**, no later than 5 pm Feb 6th.
 
@@ -306,7 +312,7 @@ output:
 
 * [Project 1](../Rmarkdown/DirectionsMHP2021SP.html). 
 
-* Submit your html and Rmd files no later than 5 pm April 8th.
+* Submit your html and Rmd files no later than 5 pm April 5th.
 ```
 
 * In class **quiz 07**
