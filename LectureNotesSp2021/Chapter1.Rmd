@@ -23,18 +23,17 @@ Statistical learning refers to a vast set of tools for understanding data.
 
 These tools can be classified as:
 
-1. Supervised
+1. 
 
-2. Unsupervised
+2. 
 
 
 ## Supervised Learning
-This involves building a statistical model for predicting, or estimating, an output based on one or more inputs. Problems of this nature occur in fields as diverse as business, medicine, astrophysics, and public policy. 
+This involves building a statistical model for ________________, or ________________, an output based on ________________. Problems of this nature occur in fields as diverse as business, medicine, astrophysics, and public policy. 
 
 ## Unsupervised Learning
 
-Here, there are inputs but no supervising output; nevertheless we can learn relationships and structure
-from such data. 
+Here, there are ________________ but no supervising ________________; nevertheless we can learn relationships and structure from such data. 
 
 ## Data sets
 
@@ -47,7 +46,7 @@ statistical learning, we briefly discuss three real-world data sets.
 
 ### Wage data --- `Wage`
 
-In this application we examine a number of factors that relate to wages for a group of males from the Atlantic region of the United States. In particular, _we wish to understand the association between an employee’s age and education, as well as the calendar year, on his wage_. 
+In this application we examine a number of factors that relate to wages for a group of males from the Atlantic region of the United States. In particular, _we wish to understand the association between an employee’s `age` and `education`, as well as the calendar `year`, on his `wage`_. 
 
 
 
@@ -55,9 +54,10 @@ In this application we examine a number of factors that relate to wages for a gr
 
   
 ```{r warning=FALSE, message=FALSE}
-
+library(ISLR)
 data(Wage)
 head(Wage)
+?Wage
 #dim(Wage) this will help to find ncol and n rows in the dataset
 ```
   
@@ -67,11 +67,7 @@ in the data set.
 
   i) Create a scatter plot (shown here) for wage versus age
   
-  
-  
-  
-  
-  
+
   
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 data(Wage)
@@ -83,7 +79,8 @@ ggplot(data = Wage, aes(x=age, y=wage)) + geom_point(color= "steelblue") + geom_
   
   
   ii) Describe the plot you created in i) 
-  There is evidence that wage increases with age but then decreases again after approximately age 60 
+  
+$$\\[0.5in]$$
   
   
   iii) Create a scatter plot (shown here) for wage versus year
@@ -100,7 +97,7 @@ ggplot(data = Wage, aes(x=year, y=wage)) + geom_point(color= "orchid4") + geom_s
   
   iv) Describe the plot you created in iii) 
   
-  There is slow but steady increase of approximately $10,000 in the average wage between 2003 and 2009
+$$\\[0.5in]$$
   
   v) Create a boxplot (shown here) for wage for each education level.
   
@@ -111,8 +108,11 @@ labs(title = "Boxplots displaying wage as a funtion of education",x = "Education
   
   
   vi) Describe the plot you created in v) 
+$$\\[0.5in]$$
+  
 
-
+Clearly, the most accurate prediction of a given man’s `wage` will be
+obtained by combining his `age`, his `education`, and the `year`.
 
 **Note:**
 ```{rnote}
@@ -128,9 +128,12 @@ This is often referred to as a ________________ problem.
 In this case we instead wish to predict a non-numerical value—that is, a ________________ output.
 
 ```{r}
+library(ISLR)
 data("Smarket")
 head(Smarket)
+?Smarket
 ```
+
 The goal is to predict whether the index will increase or decrease on a given day using the past 5 days’ percentage changes in the index. 
 
 Here the statistical learning problem does not involve predicting a numerical value. Instead it involves predicting whether a given day’s stock market performance will fall into the ___ bucket or the ____ bucket.
@@ -143,8 +146,6 @@ This is known as a _____________ problem.
   i) Create a boxplot (shown here) for yesterday's percentage change with the `Direction` variable
   
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
-data(Wage)
-#head(Wage)
 
 p1 <- ggplot(data = Smarket, aes(y=Lag1, fill=Direction)) + geom_boxplot() +  theme_bw()
 p2 <- ggplot(data = Smarket, aes(y=Lag2, fill=Direction)) + geom_boxplot() +  theme_bw()
@@ -156,7 +157,7 @@ plot_grid(p1, p2, p3)
   
   
   ii) Is there any indication that there is an association between the past and present performance of the stock market?
-
+$$\\[0.5in]$$
 
 ### Gene Expression data --- `NCI60`
 
