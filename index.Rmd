@@ -9,8 +9,9 @@ title: "Welcome to Statistical Data Analysis II"
 
 * [`Course pacing and Assignments`](./Assignments/AssignmentsSTT3851Spring2022.html) 
 
-* [`Class RStudio Server`](https://mathr.math.appstate.edu) (you must be registered in the course to access the server).
+* [`Class RStudio Server`](https://mathr.math.appstate.edu) 
 
+* Click [`here`](https://forms.gle/u2f5gqa7wTHLjieYA) to record your attendance
 
  <!--* [Flow Control](./Rmarkdown/FlowControl.html)-->
 
@@ -24,7 +25,6 @@ title: "Welcome to Statistical Data Analysis II"
 
 * [Web site for _An Introduction to Statistical Learning_ (free pdf of book)](http://www-bcf.usc.edu/~gareth/ISL/)
 
-* [Course Notes STT 3850 (Spring 2014)](https://alanarnholt.github.io/STT3850/Notes/Parent/Parent.html) 
 
 ### Chapter 1: Introduction ([slides](https://lagunita.stanford.edu/c4x/HumanitiesScience/StatLearning/asset/introduction.pdf))
 
