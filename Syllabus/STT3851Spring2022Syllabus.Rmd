@@ -100,4 +100,4 @@ If you have problems with your Appstate Username or Password visit [IT Support S
 
 ***
 
-#[Home Page](http://stat-ata-asu.github.io/STT3851ClassRepo/) - [Assignments](http://stat-ata-asu.github.io/STT3851ClassRepo/Assignments/AssignmentsSTT3851Spring2017.html) 
+#[Home Page](https://hasthika.github.io/STT3851/) - [Assignments](https://hasthika.github.io/STT3851/Assignments/AssignmentsSTT3851Spring2022.html) 
