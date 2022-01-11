@@ -367,7 +367,9 @@ Rather than repeatedly obtaining independent data sets from the population, we i
 
 This approach is illustrated in the following Figure on a simple data set;
 
+<!--
 ![](bt.png)
+-->
 
 **Note:** Bootstrap sample size is n, which is the size of the original sample as well. This is usually the case.
 
