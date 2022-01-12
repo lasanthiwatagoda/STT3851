@@ -42,8 +42,8 @@ output:
 
 * Before class:
     + Read chapter 1 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
-    + Watch [Opening Remarks and Examples](https://www.youtube.com/watch?v=2wLfFB_6SKI) (18:18)
-    + Watch [Supervised and Unsupervised Learning](https://www.youtube.com/watch?v=LvaTokhYnDw)
+    + Watch [Opening Remarks and Examples](https://www.youtube.com/watch?v=5N9V07EIfIg&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V) (18:18)
+    + Watch [Supervised and Unsupervised Learning](https://www.youtube.com/watch?v=Z0v9QMkA3dA&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=2)
   
 * [Chapter 1 - Introduction to Statistical Learning](../LectureNotesSp2021/Chapter1.html) --- Take notes in Rmarkdown
 
@@ -54,7 +54,7 @@ output:
 
 * Before class:
     + Read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
-    + Watch [Statistical Learning and Regression](https://www.youtube.com/watch?v=WjyuiK5taS8) (11:41)
+    + Watch [Statistical Learning and Regression](https://www.youtube.com/watch?v=p9n2w236B48&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=3) (11:41)
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
@@ -77,7 +77,7 @@ output:
 <!--* Before class:
     + [Watch Managing Change with RStudio]( https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-managing-change-part-1/) (37 minutes)-->
 * Before class:
-    + Watch [Curse of Dimensionality and Parametric Models](https://www.youtube.com/watch?v=UvxHOkYQl8g) (11:40)
+    + Watch [Curse of Dimensionality and Parametric Models](https://www.youtube.com/watch?v=HndOzII4jzs&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=4) (11:40)
     
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
@@ -92,7 +92,7 @@ output:
 **Jan 25:**
 
 * Before class:
-    + Watch [Assessing Model Accuracy and Bias-Variance Trade-off](https://www.youtube.com/watch?v=VusKAosxxyk) (10:04)
+    + Watch [Assessing Model Accuracy and Bias-Variance Trade-off](https://www.youtube.com/watch?v=VaN1RUDuioQ&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=5) (10:04)
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
@@ -156,7 +156,7 @@ output:
 
 * Before class:
     + Read pages 59-82 of [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
-    + Watch [Simple Linear Regression and Confidence Intervals](https://www.youtube.com/watch?v=PsE9UqoWtS4) (13:01)
+    + Watch [Simple Linear Regression and Confidence Intervals](https://www.youtube.com/watch?v=7TgVO_K75EY&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=8) (13:01)
 
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
@@ -167,8 +167,8 @@ output:
 **Feb 10:**
 
 * Before class:
-    + Watch [Hypothesis Testing ](https://www.youtube.com/watch?v=J6AdoiNUyWI) (8:24)
-    + Watch [Multiple Linear Regression and Interpreting Regression Coefficients ](https://www.youtube.com/watch?v=1hbCJyM9ccs) (15:38)
+    + Watch [Hypothesis Testing ](https://www.youtube.com/watch?v=z10DqaVJh3c&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=9) (8:24)
+    + Watch [Multiple Linear Regression and Interpreting Regression Coefficients ](https://www.youtube.com/watch?v=yzQHONabWhs&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=10) (15:38)
 
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
@@ -220,7 +220,7 @@ output:
 **Feb 22:**
 
 * Before class:
-    + Watch [Lab: Linear Regression](https://www.youtube.com/watch?v=5ONFqIk3RFg) (22:10)
+    + Watch [Lab: Linear Regression](https://www.youtube.com/watch?v=W0WILgmAGao&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=13) (22:10)
     
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 

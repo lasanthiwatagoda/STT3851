@@ -19,6 +19,10 @@ title: "Welcome to Statistical Data Analysis II"
 
 ***
 
+* Click [`here`](https://appstate.zoom.us/j/91800839744?pwd=dTE0QURXK2FWeTNmNG45MzNHUFJrUT09) for attending class via Zoom due to Covid-19 concerns --- (Must inform me before using this option)
+
+***
+
 ## Resources you may find helpful
 
 * [Web site for _The Elements of Statistical Learning_ (free pdf of book)](http://statweb.stanford.edu/~tibs/ElemStatLearn/)
