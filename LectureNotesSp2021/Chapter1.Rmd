@@ -59,6 +59,7 @@ data(Wage)
 head(Wage)
 ?Wage
 #dim(Wage) this will help to find ncol and n rows in the dataset
+str(Wage)
 ```
   
   
@@ -73,7 +74,7 @@ in the data set.
 data(Wage)
 #head(Wage)
 
-ggplot(data = Wage, aes(x=age, y=wage)) + geom_point(color= "steelblue") + geom_smooth(se = FALSE) + theme_bw()
+ggplot(data = Wage, aes(x=age, y=wage)) + geom_point(color= "steelblue") + geom_smooth(se=FALSE) + theme_bw()
 
 ```
   

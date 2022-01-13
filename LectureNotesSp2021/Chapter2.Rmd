@@ -32,6 +32,7 @@ There is no perfect $f$, so we have to allow for error. Let ____ the error. Then
 &nbsp; 
   
 Where, 
+
   * $\epsilon$ is independent of $X$
   
   * $E(\epsilon) = 0$ 
@@ -89,7 +90,7 @@ to zero, we can predict $Y$ using
 
 &nbsp; 
 
-where ___ represents our estimate for ___, and ___ represents the resulting prediction
+where ___ represents our estimate for ___ , and ___ represents the resulting prediction
 for ___.
 
 The accuracy of $\hat{Y}$ as a prediction for $Y$ depends on two quantities
