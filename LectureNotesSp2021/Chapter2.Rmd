@@ -29,7 +29,7 @@ based on various features (_________) of the insured-age, sex, income, credit ra
 
 There is no perfect $f$, so we have to allow for error. Let ____ the error. Then we want a function $f$ for which
 
-&nbsp; 
+$$Y=f(X_1,X_1,\dots,X_p)$$
   
 Where, 
 
@@ -204,9 +204,11 @@ Consider the Wage data set.
 
 
 ```{r include=FALSE}
+library(ISLR)
 data(Wage)
 head(Wage)
 dim(Wage)
+View(Wage)
 ```
 
 
@@ -230,6 +232,8 @@ $X$:
 
   2) After a model has been selected, we need a procedure that uses the
 training data to fit or train the model. In the case of the linear model, we need to estimate the parameters ______________ That is, we want to find values of these parameters such that
+
+$$\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X_1 + \dots + \hat{\beta_p}X_p$$
 
 &nbsp;
 
@@ -324,7 +328,7 @@ In order to evaluate the performance of a statistical learning method on
 a given data set, we need some way to measure how well its ______________
 actually _______ the ______________. In the regression setting, the most commonly-used measure is the ______________ (MSE), given by
 
-$$MSE = \dfrac{1}{n}\sum_{i=1}^{n} $$
+$$MSE = \dfrac{1}{n}\sum_{i=1}^{n}[y_i-\hat{f}(x_i)]^2 $$
 
 &nbsp;
 
@@ -333,7 +337,7 @@ where $\hat{f}(x_i)$ is the prediction that $\hat{f}$ gives for the $i^{th}$ obs
 
   * The MSE will be _______ if the predicted responses are very close to the true responses
   * The MSE will be _______ if the predicted and true responses differ substantially.
-  * The MSE here is computed using the _______ data that was used to fit the model and so should more accurately be referred to as the training MSE.
+  * The MSE here is computed using the _______ data that was used to fit the model and so should more accurately be referred to as the **training MSE**.
   * But in general, we do not really care how well the method works on the _______ data. Rather, we are interested in the accuracy of the predictions that we obtain when we apply our method to previously _______ _______ data.
   
 *Let's look at the last point above mathematically:*
