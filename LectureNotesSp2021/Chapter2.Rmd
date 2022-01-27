@@ -208,7 +208,7 @@ library(ISLR)
 data(Wage)
 head(Wage)
 dim(Wage)
-View(Wage)
+#View(Wage)
 ```
 
 

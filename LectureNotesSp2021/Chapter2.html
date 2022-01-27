@@ -97,7 +97,7 @@
 <p>For example, an insurance company may want to estimate the claim costs (_________) for an insured based on various features (_________) of the insured-age, sex, income, credit rating, past claim experience, and other similar features. If ____ is claim costs and ____ are the various features, we would like to find the function ___ for which</p>
 <p> </p>
 <p>There is no perfect <span class="math inline">\(f\)</span>, so we have to allow for error. Let ____ the error. Then we want a function <span class="math inline">\(f\)</span> for which</p>
-<p> </p>
+<p><span class="math display">\[Y=f(X_1,X_1,\dots,X_p)\]</span></p>
 <p>Where,</p>
 <ul>
 <li><p><span class="math inline">\(\epsilon\)</span> is independent of <span class="math inline">\(X\)</span></p></li>
@@ -233,6 +233,7 @@ instance, what effect will changing the price of a product have on sales?
 <ol start="2" style="list-style-type: decimal">
 <li>After a model has been selected, we need a procedure that uses the training data to fit or train the model. In the case of the linear model, we need to estimate the parameters ______________ That is, we want to find values of these parameters such that</li>
 </ol>
+<p><span class="math display">\[\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X_1 + \dots + \hat{\beta_p}X_p\]</span></p>
 <p> </p>
 <p>The most common approach to fitting the model is referred to as _______________.</p>
 <p>The model-based approach just described is referred to as parametric; it reduces the problem of estimating <span class="math inline">\(f\)</span> down to one of estimating a set of parameters ________________.</p>
@@ -339,13 +340,13 @@ instance, what effect will changing the price of a product have on sales?
 <div id="measuring-the-quality-of-fit" class="section level3" number="1.6.1">
 <h3 number="1.6.1"><span class="header-section-number">1.6.1</span> Measuring the Quality of Fit</h3>
 <p>In order to evaluate the performance of a statistical learning method on a given data set, we need some way to measure how well its ______________ actually _______ the ______________. In the regression setting, the most commonly-used measure is the ______________ (MSE), given by</p>
-<p><span class="math display">\[MSE = \dfrac{1}{n}\sum_{i=1}^{n} \]</span></p>
+<p><span class="math display">\[MSE = \dfrac{1}{n}\sum_{i=1}^{n}[y_i-\hat{f}(x_i)]^2 \]</span></p>
 <p> </p>
 <p>where <span class="math inline">\(\hat{f}(x_i)\)</span> is the prediction that <span class="math inline">\(\hat{f}\)</span> gives for the <span class="math inline">\(i^{th}\)</span> observation. <span class="math inline">\(y_i\)</span> is the <span class="math inline">\(i^{th}\)</span> observed value.</p>
 <ul>
 <li>The MSE will be _______ if the predicted responses are very close to the true responses</li>
 <li>The MSE will be _______ if the predicted and true responses differ substantially.</li>
-<li>The MSE here is computed using the _______ data that was used to fit the model and so should more accurately be referred to as the training MSE.</li>
+<li>The MSE here is computed using the _______ data that was used to fit the model and so should more accurately be referred to as the <strong>training MSE</strong>.</li>
 <li>But in general, we do not really care how well the method works on the _______ data. Rather, we are interested in the accuracy of the predictions that we obtain when we apply our method to previously _______ _______ data.</li>
 </ul>
 <p><em>Let’s look at the last point above mathematically:</em></p>
