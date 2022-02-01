@@ -427,8 +427,10 @@ The U-shape observed in the test MSE curves in the previous Figures turns out to
     *
     *
     *
-    
-&nbsp;
+  
+$$\text{Var}(\epsilon)$$
+
+
 
 
 Here the notation ___________ defines the expected test MSE.
