@@ -124,7 +124,7 @@ output:
 **Feb 01:**
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
-* [Bias-Variance Trade-Off](https://lasanthi-asu.github.io/STT3851ClassRepo/LectureNotesSp2021/BiasVariance.html)
+* [Bias-Variance Trade-Off](BiasVariance.html)
 * Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Sunday - Feb 6th)
 
 
