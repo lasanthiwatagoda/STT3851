@@ -1,7 +1,7 @@
 ---
 title: Chapter 3 - Linear Regression
 author: Dr. Hasthika Rupasinghe
-date: January 19, 2021
+date: Feb 03, 2021
 output: rmdformats::readthedown
 ---
 
@@ -337,7 +337,7 @@ r^2
 ```
 *** 
 
-## Multiple Linear Regression (MLR)
+# Multiple Linear Regression (MLR)
 
 ```{r warning=FALSE, message=FALSE, comment=NA}
 library(plotly)
