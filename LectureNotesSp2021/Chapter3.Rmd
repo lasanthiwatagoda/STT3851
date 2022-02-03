@@ -143,7 +143,7 @@ In the advertising data, the sales are recorded in thousands of units and the  a
 
 ## Confidence intervals for model coefficients $\beta_1$ and $\beta_0$
 
-A $100(1-\alpha)\%$ (example: 95%) confidence interval is defined as a range of values such that with $100(1-\alpha)\%$ (example: 95%) probability, the range will contain the true unknown value of the parameter.
+A (example: 95%) confidence interval is defined as a range of values such that with (example: 95%) probability, the range will contain the true unknown value of the parameter.
 
 For linear regression, the 95% confidence interval for $\beta_1$ takes the form
 
@@ -153,11 +153,11 @@ That is, there is approximately a 95% chance that the interval
 
 &nbsp;
 
-will contain the true value of β1.
+will contain the true value of $\beta_1$.
 
-Here are some common values for $\beta_1$.
+Here are some common values for $z^∗$.
 
-| $100(1-α)\%$ | $90\%$ | $95\%$ |$99\%$ |
+| CI Level | $90\%$ | $95\%$ |$99\%$ |
 | ----- | ----- | ------ | ------- | 
 | $z^∗$ | 1.645 | 1.96 | 2.576 |
 
@@ -221,7 +221,7 @@ We usually use four steps to conduct a hypothesis test:
 
 &nbsp;
 
-  ii) Calculate the test statistic: (get/ calculate this value from the $R$ output)
+  ii) Calculate the test statistic: (get/calculate this value from the $R$ output)
 
 
 &nbsp;
