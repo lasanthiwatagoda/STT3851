@@ -132,6 +132,7 @@ output:
 
 **Feb 03:**
 
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
 * Before class:
     + Refer to [_bookdown: Authoring Books and Technical Documents with R Markdown_](https://bookdown.org/yihui/bookdown/) as needed
