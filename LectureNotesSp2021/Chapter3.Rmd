@@ -1,8 +1,10 @@
 ---
 title: Chapter 3 - Linear Regression
 author: Dr. Hasthika Rupasinghe
-date: Feb 03, 2021
-output: rmdformats::readthedown
+date: Feb 03, 2022
+output:
+  rmdformats::readthedown:
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -141,7 +143,9 @@ In the advertising data, the sales are recorded in thousands of units and the  a
 
 &nbsp;
 
-## Confidence intervals for model coefficients $\beta_1$ and $\beta_0$
+## Inference
+
+### Confidence intervals for model coefficients $\beta_1$ and $\beta_0$
 
 A (example: 95%) confidence interval is defined as a range of values such that with (example: 95%) probability, the range will contain the true unknown value of the parameter.
 
@@ -200,7 +204,7 @@ confint(AdvertisingModel, level = .9)
 
 &nbsp;
 
-## Hypothesis testing for $\beta_0$ and $\beta_1$
+### Hypothesis testing for $\beta_0$ and $\beta_1$
 
 The most common hypothesis test involves testing the null test
 hypothesis
@@ -291,7 +295,7 @@ using two related quantities:
 
 The RSE is considered a measure of the lack of fit of the model to the data.
 
-    $$RSE = $$
+  $$RSE = $$
     
 If the predictions obtained using the model are very close to the
 true outcome values—that is, if _________ then RSE will
