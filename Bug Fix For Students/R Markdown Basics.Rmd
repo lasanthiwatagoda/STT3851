@@ -1,0 +1,61 @@
+---
+title: "R Markdown Basics"
+author: "Lasanthi"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+##Code Chunks
+```{r chunk_name}
+#table(cars)
+head(cars)
+summary(cars)
+```
+
+
+Note: Click on the `play`button to run the code chunk.
+
+
+###Chunk Options
+
+To hide your code chunk from the output use `echo=FALSE`
+```{r no_code, echo = FALSE, fig.align='center'}
+hist(cars$speed, xlab = "speed", main = "Histogram of speed" )
+?hist
+
+```
+
+
+You use `results = "hide"` to hide the results/output (but here the code would still be displayed)
+
+
+```{r no_ouput,results = "hide"}
+cor(cars$speed, cars$dist)
+?cor
+```
+
+You use `include = FALSE` to have the chunk evaluated, but neither the code nor its output displayed.
+
+```{r no_output_no_code, include = FALSE}
+cor(cars$speed, cars$dist)
+```
+
+###Figures
+
+
+For figures, you"ll want to use options like fig.width and fig.height. For example
+
+```{r scatterplot, fig.width=6, fig.height= 4, fig.align= "left"}
+
+plot(cars$speed, cars$dist)
+
+```
+Note: Change the height and the width of the plot.
+
+###In-line code
+
+Here is an example of an in-line code
+
+There are `r nrow(cars)` cars in the `cars`dataset.
+
+

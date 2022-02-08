@@ -131,6 +131,50 @@ summary(AdvertisingModel)
   
   &nbsp;
   
+  d) Predict the sales for a TV budget of $20,000
+
+```{r include=FALSE}
+newx <- data.frame(TV = 20)
+
+predicted_sales <- predict(AdvertisingModel, newx)
+predicted_sales
+```
+  
+  
+  
+  d) Now that we have the model, we can find RSE. Find RSE without using the function `lm()`.
+  
+```{r include=FALSE}
+y <- AdvertisingData$Sales
+x <- data.frame(TV = AdvertisingData$TV)
+yhat <- predict(AdvertisingModel, x)
+
+resids <- y - yhat
+  
+library(DT)
+
+tab <- datatable(data.frame(y, yhat, resids))
+tab
+
+RSS <- sum(resids^2)
+
+RSE <- sqrt(RSS/(length(y)-2))
+RSE
+```
+  
+
+   &nbsp;
+   
+  e) Estimate the $SE(\beta_1)$ without using the function `lm()`.
+  
+```{r include=FALSE}
+denominator <- var(AdvertisingData$TV)*((length(y)-1))
+SEbeta1 <- sqrt(RSE^2/denominator)
+SEbeta1
+```
+
+  &nbsp;
+  
 ## Interpreating regression coefficients
 
 
