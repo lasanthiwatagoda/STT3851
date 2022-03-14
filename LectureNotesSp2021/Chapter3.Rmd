@@ -148,10 +148,10 @@ summary(AdvertisingModel)
   
   &nbsp;
   
-  d) Predict the sales for a TV budget of $20,000
+  d) Predict the sales for a TV budgets of $20,000, $30,000 and $50,000
 
 ```{r include=FALSE}
-newx <- data.frame(TV = 20)
+newx <- data.frame(TV = c(20, 30, 50))
 
 predicted_sales <- predict(AdvertisingModel, newx)
 predicted_sales
@@ -182,7 +182,7 @@ RSE
 
    &nbsp;
    
-  e) Estimate the $SE(\beta_1)$ without using the function `lm()`.
+  e) Estimate the $SE(\hat\beta_1)$ without using the function `lm()`.
   
 ```{r include=FALSE}
 denominator <- var(AdvertisingData$TV)*((length(y)-1))
@@ -201,6 +201,11 @@ SEbeta1
 
 **Example 3:**
 In the advertising data, the sales are recorded in thousands of units and the  advertising costs are recorded in thousands of dollars. Interpret the model coefficient estimates you obtained in Example 2.
+
+```{r}
+range(AdvertisingData$TV)
+```
+
 
 &nbsp;
 
@@ -451,7 +456,7 @@ A correlation matrix is a table of correlation coefficients for a set of variabl
 ```{r warning=FALSE, message =FALSE, include=FALSE}
 #method 1
 library(corrplot)
-AdvertisingData.cor= cor(AdvertisingData, method = c("spearman"))
+AdvertisingData.cor= cor(AdvertisingData, method = c("pearson"))
 
 corrplot(AdvertisingData.cor)
 
