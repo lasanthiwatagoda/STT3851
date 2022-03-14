@@ -311,7 +311,7 @@ output:
 
 **Project 01**
 
-* [Project 1](../Rmarkdown/DirectionsMHP2021SP.html). 
+* [Project 1](../Rmarkdown/DirectionsMHP2022SP.html). 
 
 * Submit your html and Rmd files no later than 5 pm April 5th.
 ```
