@@ -347,6 +347,7 @@ Use $R$ to perform a complete four step hypothesis test to check whether there i
 ```{r include=FALSE}
 AdvertisingModel <- lm(Sales ~ TV, data = AdvertisingData)
 summary(AdvertisingModel)
+
 ```
 
 ## Assessing the Accuracy of the Model
@@ -457,7 +458,7 @@ A correlation matrix is a table of correlation coefficients for a set of variabl
 #method 1
 library(corrplot)
 AdvertisingData.cor= cor(AdvertisingData, method = c("pearson"))
-
+AdvertisingData.cor
 corrplot(AdvertisingData.cor)
 
 #method 2
@@ -774,6 +775,8 @@ Fit the model with a quadratic term in R
 model_quadratic <- lm(mpg ~ horsepower + I(horsepower^2), data = Auto)
 summary(model_quadratic)
 ```
+
+
 ```{r include=FALSE}
 ggplot(Auto, aes(x = horsepower, y = mpg)) + geom_point() + theme_bw() + stat_smooth(method = "lm", formula = y ~ x + I(x^2))
 ```
@@ -815,7 +818,7 @@ plot_grid(p1,p2)
 
 The residuals in the first plot exhibit a clear U-shape, which provides a strong indication of non-linearity in the data. 
 
-In contrast, second plot displays the residual plot that results from the quadratic model, which contains a quadratic term. There appears to be little pattern in the residuals, suggesting that the quadratic term improves the fit to the data.
+In contrast, second plot displays the residual plot that results from the quadratic model, which contains a quadratic term. There appears to be little pattern in the residuals, suggesting that the quadratic term improves the fit to the data. (Still the residuals show some "fan out" pattern suggesting more improvements are needed to the model.) 
 
 **Other transformations:** If the residual plot indicates that there are non-linear associations in the data, then a simple approach is to use non-linear transformations of the predictors, such as ____________, in the regression model.
 
@@ -830,7 +833,7 @@ rank <- seq(1:nrow(Auto))
 ggplot(model_quadratic, aes(y = .resid, x = rank)) + geom_point(color = "blue") + geom_line(color = "gray") + theme_bw() 
 ```
 
-Here the errors seems to be uncorelated.
+Here the errors seems to be uncorrelated.
 
 > 3. Non-constant variance of error terms.
 
@@ -892,7 +895,7 @@ $$h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{j=1}^n(x_j - \bar{x})^2} $$
 
 Note:
 
-  1. The leverage statistic hi is always between $1/n$ and 1
+  1. The leverage statistic $h_i$ is always between $1/n$ and 1
   2. Average leverage for all the observations is
 always equal to $(p+1)/n$.
   3. So if a given observation has a leverage statistic that greatly exceeds $(p+1)/n$, then we may suspect that the corresponding
