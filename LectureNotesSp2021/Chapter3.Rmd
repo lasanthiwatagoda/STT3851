@@ -860,7 +860,7 @@ Here we use $log(Y)$ transformation.
 ```{r include=FALSE}
 
 model_lnY <- lm(log(mpg) ~ horsepower + I(horsepower^2), data = Auto)
-model_lnY
+summary(model_lnY)
 
 ggplot(model_lnY, aes(x = .fitted, y = .resid)) + geom_point(color = "steelblue") + theme_bw()
 
