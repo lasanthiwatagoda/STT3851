@@ -24,9 +24,9 @@ the fitted model.
 
 The most commonly used resampling techniques are
 
-  1. _____________:  can be used to estimate the _______ associated with a given statistical learning method in order to evaluate its ________, or to select the appropriate level of _____________.
+  1. **Cross Validation(CV)**:  can be used to estimate the *Test Error* associated with a given statistical learning method in order to evaluate its *performance*, or to select the appropriate level of *flexibility*.
   
-  2. _____________: used in several contexts, most commonly to provide a measure of ________ of a ______ ________ or of a given statistical learning method.
+  2. **Bootstrap**: used in several contexts, most commonly to provide a measure of *accuracy* of a *parameter estimate* or of a given statistical learning method.
 
 # Cross-Validation
 
@@ -38,20 +38,20 @@ that is, a measurement that was not used in training the method.
 
 In the absence of a very large designated test set that can be used to directly estimate the test error rate, a number of techniques can be used to estimate this quantity using the available training data.
 
-We consider ______ methods that estimate the
-test error rate by __________________  from the
+We consider *3* methods that estimate the
+test error rate by *holding out a subset of the training observations*  from the
 fitting process, and then applying the statistical learning method to those held out observations.
 
 ## The Validation Set Approach
 
-  Step 1: Randomly dividing the available set of observations into two parts, a ______ set and a ______ set (or ______ set).
+  Step 1: Randomly dividing the available set of observations into two parts, a *training*  set and a *Test* set (or *holdout* set).
   
-  Step 2: Fit the model using the ______ set
+  Step 2: Fit the model using the  *training*  set
   
   Step 3: Then, use the fitted model to predict the
-responses for the observations in the ______ set
+responses for the observations in the *Test* set
 
-  Step 4: Find the MSE
+  Step 4: Find the *Test MSE* (Test Mean Squared Error)
   
 ![](validation.png)
   
@@ -74,21 +74,23 @@ containing the remaining 196 observations.
   
 ```{r}
 library(ISLR)
-set.seed(3581)
+set.seed(1)
+data("Auto")
+dim(Auto)
 
 #1.  
 
 train = sample.int(392, 196) # Training indices
 
 trainSet <- Auto[train, ] # Training data set
-#dim(trainSet)
+dim(trainSet)
 testSet <- Auto[-train, ] # Test data set
-#dim(testSet)
+dim(testSet)
 
 #2.
 
 fit1 <- lm(mpg ~ horsepower, data = trainSet)
-#fit1
+fit1
 
 #3.
 testPredit <- predict(fit1, testSet) # yhat values
@@ -110,9 +112,9 @@ Now we fit several (nine) regression models with degrees 2 through 10 to predict
 fit2 <- lm(mpg ~ poly(horsepower, 2), data = trainSet)
 #fit2 <- lm(mpg ~ horsepower + I(horsepower^2), data = trainSet)
 
-testPredit <- predict(fit2, testSet) 
+testPredit2 <- predict(fit2, testSet) 
 
-testMSE2 <- mean((testSet$mpg - testPredit)^2)
+testMSE2 <- mean((testSet$mpg - testPredit2)^2)
 testMSE2
 
 
@@ -185,7 +187,11 @@ ggplot(data = MSEgraph, aes(x = degree, y = testMSE_vals)) + geom_point(color = 
 ```
 
   
-Note: Validation set MSE for the ____ fit is considerably smaller than the ___ fit. 
+Note: Validation set MSE for the *quadratic* fit is considerably smaller than the *linear (first degree)* fit. 
+
+Therefore our final model is the *quadratic* fit.
+
+
 
 ![](valiRep.png)
 
@@ -238,7 +244,9 @@ regression using the `glm()` function rather than the `lm()` function because th
 ```{r}
 library(boot)
 glm_fit <- glm(mpg~horsepower ,data=Auto)
-cv_error <- cv.glm(Auto ,glm_fit)
+#summary(glm_fit)
+
+cv_error <- cv.glm(Auto, glm_fit)
 #cv_error
 loocv_error <- cv_error$delta[1]
 loocv_error
@@ -367,9 +375,9 @@ Rather than repeatedly obtaining independent data sets from the population, we i
 
 This approach is illustrated in the following Figure on a simple data set;
 
-<!--
+
 ![](bt.png)
--->
+
 
 **Note:** Bootstrap sample size is n, which is the size of the original sample as well. This is usually the case.
 

@@ -28,101 +28,48 @@ BeatThis <- sqrt(mean((yourlastname_yourfirstname$x - APRICE$price)^2))
 names(BeatThis) <- "BeatThis"
 
 #
-Allen_Will <- read.csv("Allen_Will.csv")
-AllenWill <- sqrt(mean((Allen_Will$x - APRICE$price)^2))
-names(AllenWill) <- "AllenWill"
+Goard_Matt <- read.csv("Goard_Matt.csv")
+GoardMatt <- sqrt(mean((Goard_Matt$x - APRICE$price)^2))
+names(GoardMatt) <- "GoardMatt"
 
 #
-Campbell_Max <- read.csv("Campbell_Max.csv")
-CampbellMax <- sqrt(mean((Campbell_Max$x - APRICE$price)^2))
-names(CampbellMax) <- "CampbellMax"
+Tetterton_Kinsey <- read.csv("Tetterton_Kinsey.csv")
+TettertonKinsey <- sqrt(mean((Tetterton_Kinsey$x - APRICE$price)^2))
+names(TettertonKinsey) <- "TettertonKinsey"
 
 #
-Vandenberg_Andrew <- read.csv("Vandenberg_Andrew.csv")
-VandenbergAndrew <- sqrt(mean((Vandenberg_Andrew$x - APRICE$price)^2))
-names(VandenbergAndrew) <- "VandenbergAndrew"
+Jordan_Klein <- read.csv("Jordan_Klein.csv")
+JordanKlein <- sqrt(mean((Jordan_Klein$x - APRICE$price)^2))
+names(JordanKlein) <- "JordanKlein"
 
 #
-Dube_Will <- read.csv("Dube_Will.csv")
-DubeWill <- sqrt(mean((Dube_Will$x - APRICE$price)^2))
-names(DubeWill) <- "DubeWill"
-
-
-#
-Sharma_Alyssa <- read.csv("Sharma_Alyssa.csv")
-SharmaAlyssa <- sqrt(mean((Sharma_Alyssa$x - APRICE$price)^2))
-names(SharmaAlyssa) <- "SharmaAlyssa"
-
-#
-Voyer_Michelle <- read.csv("Voyer_Michelle.csv")
-VoyerMichelle <- sqrt(mean((Voyer_Michelle$x - APRICE$price)^2))
-names(VoyerMichelle) <- "VoyerMichelle"
+Partridge_Tim <- read.csv("Partridge_Tim.csv")
+PartridgeTim <- sqrt(mean((Partridge_Tim$x - APRICE$price)^2))
+names(PartridgeTim) <- "PartridgeTim"
 
 
 #
-gaffney_grace <- read.csv("gaffney_grace.csv")
-GaffneyGrace <- sqrt(mean((gaffney_grace$x - APRICE$price)^2))
-names(GaffneyGrace) <- "GaffneyGrace"
+Recarey_Veronica <- read.csv("Recarey_Veronica.csv")
+RecareyVeronica <- sqrt(mean((Recarey_Veronica$x - APRICE$price)^2))
+names(RecareyVeronica) <- "RecareyVeronica"
+
+#
+Lambdin_Emily <- read.csv("Lambdin_Emily.csv")
+LambdinEmily <- sqrt(mean((Lambdin_Emily$x - APRICE$price)^2))
+names(LambdinEmily) <- "LambdinEmily"
 
 
 #
-Bass_Nick <- read.csv("Bass_Nick.csv")
-BassNick <- sqrt(mean((Bass_Nick$x - APRICE$price)^2))
-names(BassNick) <- "BassNick"
-
-
-#
-Haack_Adelaide <- read.csv("Haack_Adelaide.csv")
-HaackAdelaide <- sqrt(mean((Haack_Adelaide$x - APRICE$price)^2))
-names(HaackAdelaide) <- "HaackAdelaide"
-
-#
-Grosse_Lauren <- read.csv("Grosse_Lauren.csv")
-GrosseLauren <- sqrt(mean((Grosse_Lauren$x - APRICE$price)^2))
-names(GrosseLauren) <- "GrosseLauren"
-
-#
-Melia_Sean <- read.csv("Melia_Sean.csv")
-MeliaSean <- sqrt(mean((Melia_Sean$x - APRICE$price)^2))
-names(MeliaSean) <- "MeliaSean"
-
-#
-Bartlein_Samantha <- read.csv("Bartlein_Samantha.csv")
-BartleinSamantha <- sqrt(mean((Bartlein_Samantha$x - APRICE$price)^2))
-names(BartleinSamantha) <- "BartleinSamantha"
-
-
-#
-Church_Hailey <- read.csv("Church_Hailey.csv")
-ChurchHailey <- sqrt(mean((Church_Hailey$x - APRICE$price)^2))
-names(ChurchHailey) <- "ChurchHailey"
-
-#
-Baxter_Jamie <- read.csv("Baxter_Jamie.csv")
-BaxterJamie <- sqrt(mean((Baxter_Jamie$x - APRICE$price)^2))
-names(BaxterJamie) <- "BaxterJamie"
-
-#
-#Mackie_Tucker <- read.csv("Mackie_Tucker.csv")
-#MackieTucker <- sqrt(mean((Mackie_Tucker$x - APRICE$price)^2))
-#names(MackieTucker) <- "MackieTucker"
-
-#
-Granowsky_Nicholas <- read.csv("Granowsky_Nicholas.csv")
-GranowskyNicholas <- sqrt(mean((Granowsky_Nicholas$x - APRICE$price)^2))
-names(GranowskyNicholas) <- "GranowskyNicholas"
-
-#
-Seaton_Reynolds <- read.csv("Seaton_Reynolds.csv")
-SeatonReynolds <- sqrt(mean((Seaton_Reynolds$x - APRICE$price)^2))
-names(SeatonReynolds) <- "SeatonReynolds"
+Lopez_Monica <- read.csv("Lopez_Monica.csv")
+LopezMonica <- sqrt(mean((Lopez_Monica$x - APRICE$price)^2))
+names(LopezMonica) <- "LopezMonica"
 
 
 ```
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis, AllenWill, CampbellMax, VandenbergAndrew, DubeWill, BassNick, GaffneyGrace, VoyerMichelle, SharmaAlyssa, HaackAdelaide, GrosseLauren, MeliaSean, SeatonReynolds, GranowskyNicholas, BaxterJamie, ChurchHailey, BartleinSamantha))
+Leader <- data.frame(SMSPE = c(BeatThis, GoardMatt, TettertonKinsey, PartridgeTim, RecareyVeronica, LambdinEmily, LopezMonica,JordanKlein))
 ```
 
 ```{r, echo = FALSE}
