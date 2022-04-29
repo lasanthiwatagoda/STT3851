@@ -28,6 +28,11 @@ BeatThis <- sqrt(mean((yourlastname_yourfirstname$x - APRICE$price)^2))
 names(BeatThis) <- "BeatThis"
 
 #
+Wray_Jenna <- read.csv("Wray_Jenna.csv")
+WrayJenna <- sqrt(mean((Wray_Jenna$x - APRICE$price)^2))
+names(WrayJenna) <- "WrayJenna"
+
+#
 Goard_Matt <- read.csv("Goard_Matt.csv")
 GoardMatt <- sqrt(mean((Goard_Matt$x - APRICE$price)^2))
 names(GoardMatt) <- "GoardMatt"
@@ -69,7 +74,7 @@ names(LopezMonica) <- "LopezMonica"
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis, GoardMatt, TettertonKinsey, PartridgeTim, RecareyVeronica, LambdinEmily, LopezMonica,JordanKlein))
+Leader <- data.frame(SMSPE = c(BeatThis, WrayJenna, GoardMatt, TettertonKinsey, PartridgeTim, RecareyVeronica, LambdinEmily, LopezMonica,JordanKlein))
 ```
 
 ```{r, echo = FALSE}
