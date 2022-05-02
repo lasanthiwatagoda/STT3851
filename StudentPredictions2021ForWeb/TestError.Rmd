@@ -70,11 +70,18 @@ LopezMonica <- sqrt(mean((Lopez_Monica$x - APRICE$price)^2))
 names(LopezMonica) <- "LopezMonica"
 
 
+#
+Surratt_Elizabeth <- read.csv("Surratt_Elizabeth.csv")
+SurrattElizabeth <- sqrt(mean((Surratt_Elizabeth$x - APRICE$price)^2))
+names(SurrattElizabeth) <- "SurrattElizabeth"
+
+
+
 ```
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis, WrayJenna, GoardMatt, TettertonKinsey, PartridgeTim, RecareyVeronica, LambdinEmily, LopezMonica,JordanKlein))
+Leader <- data.frame(SMSPE = c(BeatThis, SurrattElizabeth, WrayJenna, GoardMatt, TettertonKinsey, PartridgeTim, RecareyVeronica, LambdinEmily, LopezMonica,JordanKlein))
 ```
 
 ```{r, echo = FALSE}
