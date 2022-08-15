@@ -15,7 +15,8 @@ output:
 
 **Office:** Virtual zoom 
 
-**Office Hours:** [`Click here to go to office hours` (2.30 - 4pm on T and R)]( https://appstate.zoom.us/j/94783800123?pwd=SWhpckxDOXlFN0RGZDE1NEwreUJTQT09) - Passcode if required 701721
+**Office Hours:** [`Click here to go to office hours` (12.30 - 1pm on T and 12.30 - 1.30pm on R)](
+ https://appstate.zoom.us/j/95376777236?pwd=czVIcVFGTzc3L1FuaU5GTXZlOHlJZz09) - Passcode if required 557742
 
 <!--Questions related to the class should be addressed with the [piazza account for STT 3851](https://piazza.com/appstate/spring2018/stat3851/home).-->
 
