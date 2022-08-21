@@ -1,0 +1,15 @@
+---
+title: "STT 3851 - Homework Page 2022"
+author: ''
+output:
+  html_document:
+    css: asu.css
+    highlight: textmate
+    theme: yeti
+---
+
+***
+
+1) [Homework 1](..\Homework\HW1chapter1F2022.pdf) --- Due Thursday, September 1.
+
+***

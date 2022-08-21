@@ -1,7 +1,7 @@
 ---
 title: Introduction to Statistical Learning
 author: Dr. Hasthika Rupasinghe
-date: January 11, 2022
+date: August 23, 2022
 output:
   prettydoc::html_pretty:
     toc: true

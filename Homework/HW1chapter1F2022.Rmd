@@ -1,0 +1,43 @@
+---
+title: "STT3851 Homework 1"
+author: "Dr. Hasthika Rupasinghe"
+output: 
+    pdf_document: default
+    html_document:
+      keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** *Submit a printed pdf or an html file. ggplots must be used for all graphics. Graphics created using base commands will not receive credits.* 
+
+
+1. What are the main two statistical learning types?
+
+2. Find two examples where you can use two types you mentioned in 1) to address the problem. Explain **why** for each example. 
+
+
+3. Supervised Learning has been broadly classified into 2 types. What are they?
+
+
+
+4. Find three examples where you can use **regression**, **classification** and **clustering** to address the problem. Explain **why** for each example. 
+ 
+
+5. Use the `Auto` data set found in the `ISLR` library to create the scatter plot shown here for `weight` versus `mpg` for each `origin`.
+  
+
+  
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(ISLR)
+library(ggplot2)
+data(Auto)
+
+
+ggplot(data = Auto, aes(x=weight, y=mpg, color= factor(origin))) + geom_point() + geom_smooth(se=FALSE) + theme_bw()
+
+```
+
+

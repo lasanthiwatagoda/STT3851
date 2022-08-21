@@ -9,6 +9,8 @@ title: "Welcome to Statistical Data Analysis II"
 
 * [`Course pacing and Assignments`](./Assignments/AssignmentsSTT3851Fall2022.html) 
 
+* [`Homework Page`](./Homework/HomewrokPage.html)
+
 * [`Class RStudio Server`](https://mathr.math.appstate.edu) 
 
 * Click [`here`](https://forms.gle/u2f5gqa7wTHLjieYA) to record your attendance
@@ -18,10 +20,10 @@ title: "Welcome to Statistical Data Analysis II"
 <!--* [The Bootstrap](./Rmarkdown/TheBootstrap.html)-->
 
 ***
-
+<!--
 * Click [`here`](https://appstate.zoom.us/j/91800839744?pwd=dTE0QURXK2FWeTNmNG45MzNHUFJrUT09) for attending class via Zoom due to Covid-19 concerns --- (Must inform me before using this option)
 
-***
+***-->
 
 ## Resources you may find helpful
 
