@@ -19,7 +19,7 @@ library(ISLR)
 
 # What is Statistical learning?
 
-Statistical learning refers to a vast set of tools for understanding data.
+Statistical learning refers to a ________________.
 
 These tools can be classified as:
 
@@ -29,11 +29,25 @@ These tools can be classified as:
 
 
 ## Supervised Learning
+
 This involves building a statistical model for ________________, or ________________, an output based on ________________. Problems of this nature occur in fields as diverse as business, medicine, astrophysics, and public policy. 
+
+Examples:
+
+1) Spam detection: Spam detection is another example of a supervised learning model. Using supervised classification algorithms, organizations can train databases to recognize patterns or anomalies in new data to organize spam and non-spam-related correspondences effectively.
+
+2) Predicting house/property price
 
 ## Unsupervised Learning
 
 Here, there are ________________ but no supervising ________________; nevertheless we can learn relationships and structure from such data. 
+
+Examples:
+
+1) Data exploration
+2) customer segmentation: suppose we’re working for a company that sells clothes and we have data from previous customers: how much they spent, their ages and the day that they bought the product. Our task is to find a pattern or relationship between the variables in order to provide the company with useful information so they can create marketing strategies, decide on which type of client they should focus on to maximize the profits or which customer segment they can put more effort to expand in the market.
+
+
 
 ## Data sets
 
