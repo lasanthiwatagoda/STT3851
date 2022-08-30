@@ -1,7 +1,7 @@
 ---
 title: Chapter 2 - Statistical Learning
 author: Dr. Hasthika Rupasinghe
-date: January 19, 2021
+date: August 29, 2022
 output:
   prettydoc::html_pretty:
     toc: true
@@ -199,7 +199,7 @@ Example:
 Consider the Wage data set.
 
   1) What is $n$?
-  2) How many predicors are there?
+  2) How many predictors are there?
   3) What is $x_{2,5}$
 
 
