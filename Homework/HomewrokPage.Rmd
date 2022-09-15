@@ -20,6 +20,10 @@ output:
 ***
 
 
-2) [Homework 3](..\Homework\HW3chapter2F2022.pdf) --- Due Thursday, September 15. 
+3) [Homework 3](..\Homework\HW3chapter2F2022.pdf) --- Due Thursday, September 15. 
+
+***
+
+4) [Homework 4](..\Homework\HW4chapter2F2022.pdf) --- Due Thursday, September 22. 
 
 ***
