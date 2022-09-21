@@ -1,0 +1,66 @@
+---
+title: "STT3851 Homework 5"
+author: "Dr. Hasthika Rupasinghe"
+date: Due -- September 29
+output: 
+    pdf_document: default
+    html_document:
+      keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1) Given the following information:
+
+$$\sum y_i = 1742,\quad \sum x_i =
+144,\quad \sum x_i^2 = 2300,\quad \sum x_iy_i = 26696,\quad \sum y_i^2 =
+312674 \quad n = 12$$
+
+Find the LS estimates $\hat{\beta_1}$ and $\hat{\beta_0}$
+
+*Hint: You will have to simplify the formula for $\hat{\beta_1}$ learned in class*
+
+2) A regression model is $y = \beta_0 +
+\beta_1x + \epsilon$. There are six observations. The summary statistics are:
+
+$$\sum y_i = 8.5,\quad \sum x_i = 6,\quad
+\sum x_i^2 = 16,\quad \sum x_iy_i = 15.5,\quad \sum y_i^2 =
+17.25$$
+
+Calculate the LS estimate of $\beta_1$
+
+3) A substance used in biological and medical research is shipped by airfreight to users in cartons of 1,000 ampules. The data below, involving 10 shipments, were collected on the number of times the carton was transferred from one aircraft to another over the shipment route ($X$) and the number of ampules found to be broken upon arrival ($Y$). 
+
+Assume that first-order regression model (SLR) is appropriate. 
+
+\setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{.8}
+   
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}\hline
+$i$ & 1 & 2 &3&4 & 5&6&7&8&9&10  \\\hline
+$x_i$ &1&0&2&0&3&1&0&1&2&0\\
+$y_i$ &16&9&17&12&22&13&8&15&19&11\\\hline
+    \end{tabular}
+   
+\end{table}
+
+\begin{enumerate}
+    \item Obtain $\sum y_i,\quad \sum x_i, \quad \sum x_i^2,\quad \sum x_iy_i,\quad \sum y_i^2,\quad n$ using R.
+    \item Obtain the estimated regression function by finding LS estimates $\hat{\beta_1}$ and $\hat{\beta_0}$ using part 1). 
+    \item Plot the estimated regression function and the data.
+    \item Does a linear regression function appear to give a good fit here? 
+    \item Verify that your fitted regression line goes through the point $(\bar{X}, \bar{Y})$. 
+    \item Obtain the residual for the first case. 
+    \item Compute $\sum {e_i}^2$ and MSE (You can use R here but do not use the lm function). 
+    
+\end{enumerate}
+
+$\\[0.1cm]$
+
+4) use the *lm()* function and repeat parts 2 and 7 of question 3) above. 
+
