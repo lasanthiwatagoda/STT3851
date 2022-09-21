@@ -75,7 +75,7 @@ What is the line of best fit? _____________________
   
 We get the LS line (estimates for the model coefficients) by minimizing the sum of squares of residuals (RSS)
 
-<!--
+
 
   $$RSS = (y_1-\hat{y_1})^2+ (y_2-\hat{y_2})^2 +\dots + (y_n-\hat{y_n})^2 = 
   \sum_{i=1}^n(y_i-\hat{y_i})^2$$
@@ -88,35 +88,35 @@ We get the LS line (estimates for the model coefficients) by minimizing the sum 
   
   $$RSS = (y_1-(\beta_0+\beta_1x_1))^2+ (y_2-(\beta_0+\beta_1x_2))^2 +\dots + (y_n-(\beta_0+\beta_1x_n))^2 = 
   \sum_{i=1}^n(y_i-(\beta_0+\beta_1x_i))^2$$
--->
+
 
 Note: How do we minimize RSS? Derivatives are used to minimize RSS (outside the scope of our class). 
 
 After minimizing RSS we get our estimates $\hat\beta_0$ and $\hat\beta_1$ for the model coefficients:
 
-<!--
+
 $$\hat\beta_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2} = r\times \frac{s_y}{s_x}$$
 
 Where $r =$ Correlation coefficient, $s_y =$ the standard deviation of $y$ variable and $s_x =$ the standard deviation of $x$ variable 
 
 $$\hat\beta_0 = \bar{y} - \hat\beta_1\bar{x}$$
--->
+
 
 The standard errors associated with $\hat{\beta_0}$ and $\hat{\beta_1}$
 
-<!--
+
 
 $$SE(\hat{\beta_1}) = \sqrt\frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
 
 $$SE(\hat{\beta_0}) = \sqrt{\sigma^2 \left[\frac{1}{n}+\frac{\bar{x}^2}{\sum_{i=1}^n(x_i-\bar{x})^2}\right]}$$
--->
+
 
 In general, $\sigma^2$ is not known, but can be estimated from the data. The estimate of $\sigma$ is known as the residual standard error (RSE), and is given by the formula
 
-<!--
+
 $$RSE = \sqrt\frac{RSS}{n-2}$$
 
--->
+
 
 
 
