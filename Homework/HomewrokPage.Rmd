@@ -27,3 +27,7 @@ output:
 4) [Homework 4](..\Homework\HW4chapter2F2022.pdf) --- Due Thursday, September 22. 
 
 ***
+
+5) [Homework 5](..\Homework\HW5chapter2F2022.pdf) --- Due Thursday, September 29. 
+
+***
