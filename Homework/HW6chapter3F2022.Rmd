@@ -1,0 +1,47 @@
+---
+title: "STT3851 Homework 6"
+author: "Dr. Hasthika Rupasinghe"
+date: Due -- October 06
+output: 
+    pdf_document: default
+    html_document:
+      keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1) For a simple linear regression model, we are given the following information:
+
+$$\sum_{i=1}^7 (x_i-\bar{x})^2 = 2000,\quad \sum_{i=1}^7 e_i^2 =
+967$$
+
+Calculate $SE(\hat{\beta_1})$ the standard error of $\hat{\beta_1}$.
+
+2) Show that the LS estimate, $\hat\beta_1$ can be written as:
+
+$$\hat{\beta}_1 = \frac{\sum_{i=1}^{n} x_iy_i - n\bar{x}\bar{y}}{\sum_{i=1}^{n} x_i^2-n\bar{x}^2}$$
+
+3) Load the `Auto` data set from the `ISLR` library. Consider a simple linear regression model predicting `mpg` using `weight`.
+
+  \begin{enumerate}
+    \item Obtain $\sum y_i,\quad \sum x_i, \quad \sum x_i^2,\quad \sum x_iy_i,\quad \sum y_i^2,\quad n$ using R.
+    \item Obtain the estimated regression function by finding LS estimates $\hat{\beta_1}$ and $\hat{\beta_0}$ using part 1). 
+    \item Plot the estimated regression function and the data.
+    \item Does a linear regression function appear to give a good fit here? 
+    \item Verify that your fitted regression line goes through the point $(\bar{X}, \bar{Y})$. 
+    \item Obtain the residual for the first case. 
+    \item Compute $\sum {e_i}^2$ and MSE (You can use R here but do not use the lm function). 
+    
+\end{enumerate}
+
+```{r include=FALSE}
+library(ggplot2)
+library(ISLR)
+data(Auto)
+str(Auto)
+ggplot(data = Auto, aes(x=weight, y = mpg)) + geom_point()
+```
+
