@@ -39,3 +39,7 @@ output:
 7) [Homework 7](..\Homework\HW7chapter3F2022.pdf) --- Due Thursday, October 13. 
 
 ***
+
+8) [Homework 8](..\Homework\HW8chapter3F2022.pdf) --- Due Thursday, October 27. 
+
+***

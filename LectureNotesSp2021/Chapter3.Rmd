@@ -548,14 +548,12 @@ We can compute a confidence interval in order to determine how close ____ will b
 \$100,000 is spent on TV advertising and \$20,000 is spent on radio advertising in each city.
 
 ```{r warning=FALSE, message =FALSE, include=FALSE}
-AdvertisingMLRmodel2 <- lm(Sales ~ TV + Radio, data = AdvertisingData)
-summary(AdvertisingMLRmodel2)
 
-xvals <- t(c(100, 20))
-colnames(xvals) <- c("TV", "Radio")
-xvals
+AdvertisingModel2 <- lm(Sales ~ TV + Radio, data = AdvertisingData)
+newx <- data.frame(TV = c(100), Radio = c(20))
 
-predict(AdvertisingMLRmodel2, data.frame(xvals), interval = "confidence", level = 0.950)
+predict(AdvertisingModel2, newx)
+predict(AdvertisingModel2, newx, interval = "confidence", level = 0.95)
 ```
 
 Given that interval \$100,000 is spent on TV advertising and \$20,000 is spent on radio advertising
@@ -571,14 +569,11 @@ Prediction Interval will provide an interval estimate for the $Y$ given a new ob
 
 
 ```{r warning=FALSE, message =FALSE, include=FALSE}
-AdvertisingMLRmodel2 <- lm(Sales ~ TV + Radio, data = AdvertisingData)
-summary(AdvertisingMLRmodel2)
+AdvertisingModel2 <- lm(Sales ~ TV + Radio, data = AdvertisingData)
+newx <- data.frame(TV = c(100), Radio = c(20))
 
-xnew <- t(c(100, 20))
-colnames(xnew) <- c("TV", "Radio")
-xnew
-
-predict(AdvertisingMLRmodel2, data.frame(xnew), interval = "prediction", level = 0.950)
+predict(AdvertisingModel2, newx)
+predict(AdvertisingModel2, newx, interval = "prediction", level = 0.95)
 ```
 
 Given that \$100,000 is spent on TV advertising and \$20,000 is spent on radio advertising in that *particular* city
@@ -684,7 +679,7 @@ summary(model_qualitative2)
   
   2. Write the equation of the model
 
-<!--
+
 \begin{equation}
 \hat{Blanace} = 531.00 -18.69 \times (Asian) - 12.5 \times (Caucasian) =  \begin{cases} 
       531.00 -18.69 \times (1) - 12.5 \times (0) & \text{if person is Asian} \\
@@ -694,7 +689,7 @@ summary(model_qualitative2)
       531.00 -18.69 \times (0) - 12.5 \times (0)   & \text{if person is African American}
    \end{cases}
 \end{equation}
--->
+
 
   3. Interpret the coefficients
   
@@ -740,7 +735,7 @@ Fit a linear regression model to Advertising dataset with an interaction term th
 Write down your final model.
 
 ```{r include=FALSE}
-model_interaction <- lm(Sales ~ TV +Radio +TV*Radio, data = AdvertisingData)
+model_interaction <- lm(Sales ~ TV + Radio + TV*Radio, data = AdvertisingData)
 summary(model_interaction)
 ```
 
@@ -901,7 +896,7 @@ This problem is more pronounced in multiple regression settings with more than t
 In order to quantify an observation’s leverage, we compute the leverage
 statistic for the $i^{th}$ $x$ value.
 
-$$h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{j=1}^n(x_j - \bar{x})^2} $$
+$$h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{j=1}^n(x_j - \bar{x})^2}$$
 
 
 Note:
@@ -934,7 +929,7 @@ ggplotly(p3)
 
 
 Solutions: 
-<!--
+
   1. 13414 and 13913 (note: only x values)
 
   2. 
@@ -950,7 +945,7 @@ Solutions:
     
     As the both leverage values greatly exceeds $(p+1)/n =0.0275$, we conclude that the $x$ values 13414 and 13913 are high leverage points.
     
--->
+
 
 > 6. Collinearity
 
