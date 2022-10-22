@@ -1,7 +1,7 @@
 ---
 title: Chapter 6 - Linear Model Selection and Regularization
 author: Dr. Hasthika Rupasinghe
-date: April 12, 2021
+date: October 24, 2022
 output:
   prettydoc::html_pretty:
     toc: true
