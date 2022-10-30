@@ -9,6 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 ```
 
 
@@ -422,11 +423,11 @@ r^2
 # Multiple Linear Regression (MLR)
 
 ```{r warning=FALSE, message=FALSE, comment=NA}
-library(plotly)
+#library(plotly)
 
-p <- plot_ly(data = AdvertisingData, z = ~Sales, x = ~TV, y = ~Radio, opacity = 0.6, color = AdvertisingData$Sales) %>%
-  add_markers() 
-p
+#p <- plot_ly(data = AdvertisingData, z = ~Sales, x = ~TV, y = ~Radio, opacity = 0.6, color = AdvertisingData$Sales) %>%
+#  add_markers() 
+#p
 ```
 
 
@@ -969,7 +970,7 @@ The predictors age and limit are not collinear but the rating and limit show hig
 Let's consider two models. Model 1: a regression of balance on age and limit,
 and Model 2: a regression of balance on rating and limit. 
 
-```{r include=FALSE}
+```{r}
 model1 <- lm(Balance ~ Age + Limit, data = Credit)
 summary(model1)
 

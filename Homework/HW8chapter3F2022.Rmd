@@ -1,7 +1,7 @@
 ---
-title: "STT3851 Homework 7"
+title: "STT3851 Homework 8"
 author: "Dr. Hasthika Rupasinghe"
-date: Due -- October ??
+date: Due -- October 27
 output: 
     pdf_document: default
     html_document:

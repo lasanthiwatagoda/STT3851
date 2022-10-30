@@ -262,7 +262,7 @@ loocv_err_vec <- rep (0,10) # This is where we will store the loocv values for t
 
 for (i in 1:10){
  glm_fit <- glm(mpg~poly(horsepower ,i), data=Auto)
- loocv_err_vec[i] <- cv.glm(Auto , glm_fit)$delta [1]
+ loocv_err_vec[i] <- cv.glm(Auto , glm_fit)$delta[1]
 }
 
 loocv_err_vec

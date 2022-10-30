@@ -1,0 +1,53 @@
+---
+title: "STT3851 Homework 9"
+author: "Dr. Hasthika Rupasinghe"
+date: Due -- November 3
+output: 
+    pdf_document: default
+    html_document:
+      keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Get data:** Go to https://archive.ics.uci.edu/ml/datasets/Real+estate+valuation+data+set. You can read about the data set here. Then click on "Data Folder". Finally click on the "Real estate valuation data set.xlsx". Rename your file to "RealEstate.xlsx" and upload it to your Homework folder. Be sure to have your homework and the data set in the same folder. 
+
+**Load data:** Run the following to load data.
+
+```{r}
+library(readxl)
+RealEstate <- read_excel("RealEstate.xlsx")
+head(RealEstate)
+```
+
+**Rename columns:** Run the following to rename columns.
+
+```{r}
+names(RealEstate) <- c("No", "TrDate", "HouseAge", "DisMRT", "NoConve", "lat", "lon", "Price")
+head(RealEstate)
+```
+
+Goal is to predict the house price.
+
+1) Inspect the correlations between the response and the predictors.
+
+2) Create a multiple/simple linear regression model and find the validation set error.
+
+3) Create another multiple linear regression model and find the validation set error.
+
+4) Create another multiple linear regression model and find the validation set error.
+
+5) Pick the best model using the validation set approach.
+
+***
+
+6) Create a multiple/simple linear regression model and find 10-fold CV error.
+
+7) Create another multiple linear regression model and find the 10-fold CV error.
+
+8) Create another multiple linear regression model and find the 10-fold CV error.
+
+9) Pick the best model using the 10-fold CV error.
+
