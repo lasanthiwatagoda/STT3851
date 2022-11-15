@@ -123,14 +123,14 @@ names(Hitters)
 dim(Hitters)
 
 head(Hitters)
-# View(Hitters) # only run this in the console, never run it here
+#View(Hitters) # only run this in the console, never run it here
 
 Hitters <- na.omit(Hitters)
-dim(Hitters)
+#dim(Hitters)
 
 
 library (leaps)
-regfit <- regsubsets(Salary~.,Hitters )
+regfit <- regsubsets(Salary~., data = Hitters)
 
 summary(regfit)
 ```

@@ -1,0 +1,82 @@
+---
+title: "STT3851 Homework 10"
+author: "Dr. Hasthika Rupasinghe"
+date: Due -- November 17
+output: 
+    pdf_document: default
+    html_document:
+      keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1) We will now try to predict per capita crime rate in the Boston data
+set.
+
+    (a) Try out some of the regression methods explored in this chapter, such as best subset selection, forward selection, backward selection, the lasso and ridge regression Present and discuss results for the approaches (at least 3) that you
+consider.
+
+    (b) Propose a model (or set of models) that seem to perform well on this data set, and justify your answer. Make sure that you are evaluating model performance using validation set error, crossvalidation, or some other reasonable alternative, as opposed to using training error.
+    
+2) (Knowing how to conduct a simulation can be valuable for an Statistician) In this exercise, we will generate simulated data, and will then use this data to perform best subset selection.
+
+    (a) Use the `rnorm()` function to generate a predictor $X$ of length $n = 100$, as well as a noise vector $\epsilon$ of length n = 100
+    
+    (b) Generate a response vector Y of length n = 100 according to the model
+$$Y = \beta_0 + \beta_1X+ \beta_2X^2+ \beta_3X^3 + \epsilon$$ 
+    where $\beta_1, \beta_2,$ and $\beta_3$ are constants of your choice. Note that this is the TRUE model. In general we do not know this, but in a simulation we do!
+
+    (c) Use the `regsubsets()` function to perform best subset selection in order to choose the best model containing the predictors $X, X^2,...,X^{10}$. What is the best model obtained according to $C_p$, BIC, and adjusted $R^2$? Show some plots to provide evidence for your answer, and report the coefficients of the best model obtained. Note you will need to use the data.frame() function to create a single data set containing both $X$ and $Y$
+
+
+    (d) Repeat (c), using forward  selection and also using backwards selection. How does your answer compare to the results in (c)?
+    
+```{r include=FALSE}
+#a.
+set.seed(1)
+X = rnorm(100)
+eps = rnorm(100)
+
+#b.
+
+#We are selecting β0=3, β1=2, β2=−3 and β3=0.3.
+
+beta0 = 3
+beta1 = 2
+beta2 = -3
+beta3 = 0.3
+Y = beta0 + beta1 * X + beta2 * X^2 + beta3 * X^3 + eps
+
+#c.
+
+library(leaps)
+data.full = data.frame(y = Y, x = X)
+mod.full = regsubsets(y ~ poly(x, 10), data = data.full, nvmax = 10)
+mod.summary = summary(mod.full)
+
+# Find the model size for best cp, BIC and adjr2
+which.min(mod.summary$cp)
+which.min(mod.summary$bic)
+which.max(mod.summary$adjr2)
+
+library(ggplot2)
+
+data <- data.frame(CP = mod.summary$cp, numVar = seq(1,10))
+
+ggplot(data, aes(y = CP, x = numVar)) + geom_point(color = "Blue") + geom_line() + theme_bw()
+
+coefficients(mod.full, id = 3)
+
+#d. 
+
+mod.fwd = regsubsets(y ~ poly(x, 10), data = data.full, nvmax = 10, 
+    method = "forward")
+mod.bwd = regsubsets(y ~ poly(x, 10), data = data.full, nvmax = 10, 
+    method = "backward")
+fwd.summary = summary(mod.fwd)
+bwd.summary = summary(mod.bwd)
+which.min(fwd.summary$cp)
+```
+
