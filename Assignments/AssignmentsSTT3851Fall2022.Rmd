@@ -391,13 +391,14 @@ output:
 
 * In class **quiz 10**
 
-* **Project 2:** [Start Here](../Rmarkdown/Project2_SP2022.html)
+* **Project 2:** [Start Here](../Rmarkdown/Project2_F2022.html)
 
-* **Turn in Project 2 Predictions**- NLT May 3rd, 10:00 am
+* **Turn in Project 2 Predictions**- NLT Nov 30th, 5:00 pm
 * Send an email to the instructor using a subject of "House Data Predictions" with an attached vector (csv file) of your predictions using the data set `housedataT.csv`.  Note: your vector should contain 4229 predictions. 
 
-* **Turn in Project 2** - NLT May 06th, 5 pm
+* **Turn in Project 2** - NLT Dec 13th (Final Exam Day), 5:00 pm
 * Make sure a single `.Rmd` and a single `.html` with the sections outlined in the [Example Paper](../BDbetaTemplate/TemplateBookDown.html) is in your `Project2` emailed to me.
+* Also turn in the all the model you have tried as a single `.Rmd` and a single `.html` file. Section names should read for example: Model 1: Forward selection model. A brief description of the model should be included as well. 
 
 
 * [Project 2 Leaderboard](../StudentPredictions2021ForWeb/TestError.html)
@@ -405,7 +406,7 @@ output:
 ```{block,  type='rmdoptional'}
 **Reminder: **
 
-  * Exam 2, Tuesday next week
+  * Exam 2, next week
 ```
 
 

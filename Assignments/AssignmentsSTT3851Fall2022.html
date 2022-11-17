@@ -387,8 +387,8 @@ pre code {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -396,16 +396,9 @@ pre code {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -452,7 +445,7 @@ pre code {
 
 <h1 class="title toc-ignore">Assignments STT 3851 - Fall 2022</h1>
 <h4 class="author">Dr. Hasthika Rupasinghe</h4>
-<h4 class="date">Last Updated on: Aug 14, 2022 at 03:19:49 PM</h4>
+<h4 class="date">Last Updated on: Nov 16, 2022 at 10:06:27 PM</h4>
 
 </div>
 
@@ -825,11 +818,12 @@ file, no later than 5 pm Nov 29th.
 <ul>
 <li><p><a href="../LectureNotesSp2021/Chapter6.html">Chapter 6 - Linear Model Selection and Regularization</a> — Take notes in Rmarkdown</p></li>
 <li><p>In class <strong>quiz 10</strong></p></li>
-<li><p><strong>Project 2:</strong> <a href="../Rmarkdown/Project2_SP2022.html">Start Here</a></p></li>
-<li><p><strong>Turn in Project 2 Predictions</strong>- NLT May 3rd, 10:00 am</p></li>
+<li><p><strong>Project 2:</strong> <a href="../Rmarkdown/Project2_F2022.html">Start Here</a></p></li>
+<li><p><strong>Turn in Project 2 Predictions</strong>- NLT Nov 30th, 5:00 pm</p></li>
 <li><p>Send an email to the instructor using a subject of “House Data Predictions” with an attached vector (csv file) of your predictions using the data set <code>housedataT.csv</code>. Note: your vector should contain 4229 predictions.</p></li>
-<li><p><strong>Turn in Project 2</strong> - NLT May 06th, 5 pm</p></li>
+<li><p><strong>Turn in Project 2</strong> - NLT Dec 13th (Final Exam Day), 5:00 pm</p></li>
 <li><p>Make sure a single <code>.Rmd</code> and a single <code>.html</code> with the sections outlined in the <a href="../BDbetaTemplate/TemplateBookDown.html">Example Paper</a> is in your <code>Project2</code> emailed to me.</p></li>
+<li><p>Also turn in the all the model you have tried as a single <code>.Rmd</code> and a single <code>.html</code> file. Section names should read for example: Model 1: Forward selection model. A brief description of the model should be included as well.</p></li>
 <li><p><a href="../StudentPredictions2021ForWeb/TestError.html">Project 2 Leaderboard</a></p></li>
 </ul>
 <div class="rmdoptional">
@@ -838,7 +832,7 @@ file, no later than 5 pm Nov 29th.
 </p>
 <ul>
 <li>
-Exam 2, Tuesday next week
+Exam 2, next week
 </li>
 </ul>
 </div>
