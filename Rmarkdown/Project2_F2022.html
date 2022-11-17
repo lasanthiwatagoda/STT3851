@@ -3069,7 +3069,7 @@ housedata$yr_renovated &lt;- ifelse(housedata$yr_renovated == 0, housedata$yr_bu
 housedata$yr_built &lt;- as.Date(ISOdate(housedata$yr_built, 9, 1))  # Complete Year, Sept 1
 housedata$yr_renovated &lt;- as.Date(ISOdate(housedata$yr_renovated, 9, 1))  # Last renovated Year, Sept 1
 housedata &lt;- housedata[, -1]
-attach(housedata)
+
 
 # Test Data Set (only use this to send predictions)
 
@@ -3085,8 +3085,7 @@ housedataT$condition &lt;- factor(housedataT$condition, labels = c(&quot;poor&qu
 housedataT$yr_renovated &lt;- ifelse(housedataT$yr_renovated == 0, housedataT$yr_built, housedataT$yr_renovated)
 housedataT$yr_built &lt;- as.Date(ISOdate(housedataT$yr_built, 9, 1))  # Complete Year, Sept 1
 housedataT$yr_renovated &lt;- as.Date(ISOdate(housedataT$yr_renovated, 9, 1))  # Last renovated Year, Sept 1
-housedataT &lt;- housedataT[, -1]
-attach(housedataT)</code></pre>
+housedataT &lt;- housedataT[, -1]</code></pre>
 <pre class="r"><code>library(DT)
 datatable(housedata[, ], rownames = FALSE)</code></pre>
 <div id="htmlwidget-9eceb20dc2a931752ae4" style="width:100%;height:auto;" class="datatables html-widget"></div>
@@ -3101,90 +3100,24 @@ datatable(housedata[, ], rownames = FALSE)</code></pre>
 ```r
 library(car)     # red line affected by outlier, green ignoring the outlier (robust)
 scatterplot(x =housedata$price, y=housedata$bedrooms)       #( not much dependent)
-```
 
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-1.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$bedrooms, y=housedata$bathrooms)   #( dependent excluding the 33 outlier)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-2.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$bathrooms)      #( dependent)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-3.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$sqft_lot)       #( not dependent)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-4.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$view)           #( dependent but mostly view is 0 so not dependent)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-5.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$grade)          #( dependent)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-6.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$floors)         #( not dependent from boxplot)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-7.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$condition)      #( nearly not dependent)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-8.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$waterfront)     #( not dependent as nearly no waterfront)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-9.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$bedrooms)       #( not much dependent)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-10.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$sqft_above)     #( dependent)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-11.png" width="480" style="display: block; margin: auto;" />
-
-```r
 scatterplot(x =housedata$price, y=housedata$sqft_basement)  #( dependent)
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-12.png" width="480" style="display: block; margin: auto;" />
-
-```r
 #scatterplot(x =housedata$price, y=housedata$age)            #( low negative dependent)
 scatterplot(x =housedata$price, y=housedata$zipcode)        
-```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-13.png" width="480" style="display: block; margin: auto;" />
-
-```r
 #scatterplot(x =housedata$price, y=housedata$renage)         #( not dependent as very less houses are renovated)
 # scatterplot using ggplot
 ggplot(data = housedata, mapping = aes(x = sqft_living, y = price)) + geom_point(colour = 'skyblue') + geom_smooth(method = 'lm')
 ```
-
-<img src="Project2_F2022_files/figure-html/unnamed-chunk-2-14.png" width="480" style="display: block; margin: auto;" />
 
 -->
 <!--
@@ -3201,89 +3134,11 @@ ggplot(data = housedata, mapping = aes(x = sqft_living, y = price)) + geom_point
 str(housedata)
 ```
 
-```
-'data.frame':   17384 obs. of  20 variables:
- $ date         : Date, format: "2014-10-13" "2014-12-09" ...
- $ price        : num  221900 538000 180000 604000 510000 ...
- $ bedrooms     : int  3 3 2 4 3 4 3 3 3 3 ...
- $ bathrooms    : num  1 2.25 1 3 2 4.5 2.25 1.5 1 2.5 ...
- $ sqft_living  : int  1180 2570 770 1960 1680 5420 1715 1060 1780 1890 ...
- $ sqft_lot     : int  5650 7242 10000 5000 8080 101930 6819 9711 7470 6560 ...
- $ floors       : num  1 2 1 1 1 1 2 1 1 2 ...
- $ waterfront   : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
- $ view         : int  0 0 0 0 0 0 0 0 0 0 ...
- $ condition    : Factor w/ 5 levels "poor","fair",..: 3 3 3 5 3 3 3 3 3 3 ...
- $ grade        : Factor w/ 12 levels "1","10","11",..: 10 10 9 10 11 3 10 10 10 10 ...
- $ sqft_above   : int  1180 2170 770 1050 1680 3890 1715 1060 1050 1890 ...
- $ sqft_basement: int  0 400 0 910 0 1530 0 0 730 0 ...
- $ yr_built     : Date, format: "1955-09-01" "1951-09-01" ...
- $ yr_renovated : Date, format: "1955-09-01" "1991-09-01" ...
- $ zipcode      : Factor w/ 70 levels "98001","98002",..: 67 56 17 59 38 30 3 69 61 24 ...
- $ lat          : num  47.5 47.7 47.7 47.5 47.6 ...
- $ long         : num  -122 -122 -122 -122 -122 ...
- $ sqft_living15: int  1340 1690 2720 1360 1800 4760 2238 1650 1780 2390 ...
- $ sqft_lot15   : int  5650 7639 8062 5000 7503 101930 6819 9711 8113 7570 ...
-```
-
 
 ```r
 model1 <- lm(price~ sqft_living + bedrooms + bathrooms + grade + sqft_above,data = housedata)
 summary(model1)
-```
-
-```
-
-Call:
-lm(formula = price ~ sqft_living + bedrooms + bathrooms + grade + 
-    sqft_above, data = housedata)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1628606  -123162   -25774    90436  4581884 
-
-Coefficients:
-              Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  9.987e+04  2.348e+05   0.425 0.670595    
-sqft_living  2.427e+02  4.932e+00  49.205  < 2e-16 ***
-bedrooms    -2.629e+04  2.576e+03 -10.205  < 2e-16 ***
-bathrooms   -3.834e+03  3.745e+03  -1.024 0.306051    
-grade10      5.383e+05  2.352e+05   2.288 0.022132 *  
-grade11      8.410e+05  2.356e+05   3.569 0.000359 ***
-grade12      1.389e+06  2.369e+05   5.863 4.62e-09 ***
-grade13      2.289e+06  2.454e+05   9.327  < 2e-16 ***
-grade3       4.637e+04  2.711e+05   0.171 0.864216    
-grade4       5.160e+04  2.416e+05   0.214 0.830906    
-grade5       7.285e+04  2.355e+05   0.309 0.757049    
-grade6       9.235e+04  2.349e+05   0.393 0.694289    
-grade7       1.228e+05  2.349e+05   0.523 0.601199    
-grade8       1.915e+05  2.350e+05   0.815 0.415073    
-grade9       3.354e+05  2.351e+05   1.427 0.153706    
-sqft_above  -9.740e+01  4.719e+00 -20.641  < 2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 234800 on 17368 degrees of freedom
-Multiple R-squared:  0.597, Adjusted R-squared:  0.5966 
-F-statistic:  1715 on 15 and 17368 DF,  p-value: < 2.2e-16
-```
-
-```r
 anova(model1)
-```
-
-```
-Analysis of Variance Table
-
-Response: price
-               Df     Sum Sq    Mean Sq    F value  Pr(>F)    
-sqft_living     1 1.1738e+15 1.1738e+15 21292.8959 < 2e-16 ***
-bedrooms        1 3.8454e+13 3.8454e+13   697.5391 < 2e-16 ***
-bathrooms       1 2.0958e+11 2.0958e+11     3.8017 0.05122 .  
-grade          11 1.8230e+14 1.6572e+13   300.6138 < 2e-16 ***
-sqft_above      1 2.3488e+13 2.3488e+13   426.0662 < 2e-16 ***
-Residuals   17368 9.5747e+14 5.5128e+10                       
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 
@@ -3291,131 +3146,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```r
 model2 <- lm(price~ sqft_living + bedrooms + bathrooms + grade + sqft_above + zipcode,data = housedata)
 summary(model2)
-```
-
-```
-
-Call:
-lm(formula = price ~ sqft_living + bedrooms + bathrooms + grade + 
-    sqft_above + zipcode, data = housedata)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1553993   -71559    -3707    56624  4046688 
-
-Coefficients:
-               Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  -8.408e+04  1.741e+05  -0.483 0.629206    
-sqft_living   1.881e+02  3.730e+00  50.419  < 2e-16 ***
-bedrooms     -2.241e+04  1.932e+03 -11.599  < 2e-16 ***
-bathrooms     6.484e+03  2.801e+03   2.315 0.020651 *  
-grade10       2.927e+05  1.742e+05   1.680 0.092986 .  
-grade11       5.133e+05  1.745e+05   2.942 0.003269 ** 
-grade12       1.000e+06  1.755e+05   5.699 1.22e-08 ***
-grade13       1.802e+06  1.818e+05   9.913  < 2e-16 ***
-grade3        1.342e+05  2.006e+05   0.669 0.503654    
-grade4        7.677e+04  1.787e+05   0.430 0.667555    
-grade5        8.142e+04  1.744e+05   0.467 0.640510    
-grade6        5.785e+04  1.740e+05   0.333 0.739460    
-grade7        5.220e+04  1.740e+05   0.300 0.764118    
-grade8        6.994e+04  1.740e+05   0.402 0.687712    
-grade9        1.512e+05  1.741e+05   0.868 0.385212    
-sqft_above    8.337e-01  3.764e+00   0.222 0.824702    
-zipcode98002  1.932e+04  1.710e+04   1.130 0.258670    
-zipcode98003  5.637e+03  1.526e+04   0.370 0.711749    
-zipcode98004  7.750e+05  1.493e+04  51.892  < 2e-16 ***
-zipcode98005  3.028e+05  1.826e+04  16.581  < 2e-16 ***
-zipcode98006  2.677e+05  1.347e+04  19.874  < 2e-16 ***
-zipcode98007  2.551e+05  1.895e+04  13.463  < 2e-16 ***
-zipcode98008  3.186e+05  1.524e+04  20.905  < 2e-16 ***
-zipcode98010  6.401e+04  2.162e+04   2.961 0.003074 ** 
-zipcode98011  1.294e+05  1.738e+04   7.448 9.93e-14 ***
-zipcode98014  8.334e+04  2.030e+04   4.106 4.05e-05 ***
-zipcode98019  8.429e+04  1.750e+04   4.816 1.48e-06 ***
-zipcode98022  4.516e+04  1.645e+04   2.745 0.006062 ** 
-zipcode98023 -2.341e+04  1.333e+04  -1.757 0.078989 .  
-zipcode98024  1.713e+05  2.316e+04   7.397 1.46e-13 ***
-zipcode98027  1.576e+05  1.414e+04  11.148  < 2e-16 ***
-zipcode98028  1.316e+05  1.541e+04   8.539  < 2e-16 ***
-zipcode98029  2.097e+05  1.493e+04  14.050  < 2e-16 ***
-zipcode98030  1.881e+03  1.550e+04   0.121 0.903393    
-zipcode98031  2.128e+04  1.532e+04   1.389 0.164933    
-zipcode98032  9.784e+03  1.997e+04   0.490 0.624196    
-zipcode98033  3.721e+05  1.382e+04  26.927  < 2e-16 ***
-zipcode98034  2.155e+05  1.303e+04  16.536  < 2e-16 ***
-zipcode98038  2.857e+04  1.283e+04   2.228 0.025895 *  
-zipcode98039  1.178e+06  2.815e+04  41.857  < 2e-16 ***
-zipcode98040  5.742e+05  1.593e+04  36.057  < 2e-16 ***
-zipcode98042  1.118e+04  1.312e+04   0.852 0.394156    
-zipcode98045  1.007e+05  1.666e+04   6.043 1.55e-09 ***
-zipcode98052  2.394e+05  1.301e+04  18.402  < 2e-16 ***
-zipcode98053  1.905e+05  1.405e+04  13.561  < 2e-16 ***
-zipcode98055  4.202e+04  1.554e+04   2.704 0.006867 ** 
-zipcode98056  1.073e+05  1.389e+04   7.725 1.18e-14 ***
-zipcode98058  3.893e+04  1.352e+04   2.880 0.003985 ** 
-zipcode98059  7.654e+04  1.358e+04   5.636 1.76e-08 ***
-zipcode98065  8.202e+04  1.473e+04   5.567 2.63e-08 ***
-zipcode98070  1.925e+05  2.054e+04   9.373  < 2e-16 ***
-zipcode98072  1.511e+05  1.538e+04   9.826  < 2e-16 ***
-zipcode98074  1.710e+05  1.375e+04  12.437  < 2e-16 ***
-zipcode98075  1.808e+05  1.443e+04  12.530  < 2e-16 ***
-zipcode98077  9.797e+04  1.736e+04   5.644 1.68e-08 ***
-zipcode98092 -2.236e+04  1.418e+04  -1.577 0.114805    
-zipcode98102  5.005e+05  2.248e+04  22.270  < 2e-16 ***
-zipcode98103  3.386e+05  1.294e+04  26.158  < 2e-16 ***
-zipcode98105  5.094e+05  1.635e+04  31.154  < 2e-16 ***
-zipcode98106  1.165e+05  1.479e+04   7.877 3.56e-15 ***
-zipcode98107  3.559e+05  1.554e+04  22.900  < 2e-16 ***
-zipcode98108  1.175e+05  1.784e+04   6.583 4.75e-11 ***
-zipcode98109  5.204e+05  2.097e+04  24.813  < 2e-16 ***
-zipcode98112  6.090e+05  1.563e+04  38.957  < 2e-16 ***
-zipcode98115  3.472e+05  1.291e+04  26.901  < 2e-16 ***
-zipcode98116  3.235e+05  1.475e+04  21.934  < 2e-16 ***
-zipcode98117  3.288e+05  1.304e+04  25.211  < 2e-16 ***
-zipcode98118  1.765e+05  1.328e+04  13.294  < 2e-16 ***
-zipcode98119  5.177e+05  1.741e+04  29.739  < 2e-16 ***
-zipcode98122  3.468e+05  1.538e+04  22.548  < 2e-16 ***
-zipcode98125  2.281e+05  1.398e+04  16.323  < 2e-16 ***
-zipcode98126  2.075e+05  1.475e+04  14.062  < 2e-16 ***
-zipcode98133  1.655e+05  1.333e+04  12.417  < 2e-16 ***
-zipcode98136  2.929e+05  1.557e+04  18.810  < 2e-16 ***
-zipcode98144  3.015e+05  1.454e+04  20.740  < 2e-16 ***
-zipcode98146  1.368e+05  1.523e+04   8.982  < 2e-16 ***
-zipcode98148  7.603e+04  2.850e+04   2.667 0.007649 ** 
-zipcode98155  1.664e+05  1.381e+04  12.051  < 2e-16 ***
-zipcode98166  1.200e+05  1.592e+04   7.540 4.93e-14 ***
-zipcode98168  5.026e+04  1.573e+04   3.194 0.001405 ** 
-zipcode98177  2.663e+05  1.573e+04  16.926  < 2e-16 ***
-zipcode98178  7.320e+04  1.548e+04   4.730 2.26e-06 ***
-zipcode98188  3.155e+04  1.909e+04   1.653 0.098385 .  
-zipcode98198  5.332e+04  1.527e+04   3.492 0.000481 ***
-zipcode98199  3.891e+05  1.490e+04  26.106  < 2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 172600 on 17299 degrees of freedom
-Multiple R-squared:  0.7831,    Adjusted R-squared:  0.782 
-F-statistic: 743.5 on 84 and 17299 DF,  p-value: < 2.2e-16
-```
-
-```r
 anova(model2)
-```
-
-```
-Analysis of Variance Table
-
-Response: price
-               Df     Sum Sq    Mean Sq    F value    Pr(>F)    
-sqft_living     1 1.1738e+15 1.1738e+15 39406.9608 < 2.2e-16 ***
-bedrooms        1 3.8454e+13 3.8454e+13  1290.9421 < 2.2e-16 ***
-bathrooms       1 2.0958e+11 2.0958e+11     7.0358  0.007997 ** 
-grade          11 1.8230e+14 1.6572e+13   556.3487 < 2.2e-16 ***
-sqft_above      1 2.3488e+13 2.3488e+13   788.5248 < 2.2e-16 ***
-zipcode        69 4.4217e+14 6.4083e+12   215.1322 < 2.2e-16 ***
-Residuals   17299 5.1530e+14 2.9788e+10                         
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 
@@ -3428,7 +3159,7 @@ model3 <- randomForest(price ~  bathrooms + sqft_above,
 -->
 <p>Correlation Matrix maybe helpful.</p>
 <p>Here is an example of a correlation matrix with some of the predictors</p>
-<pre class="r"><code># Correlation matric
+<pre class="r"><code># Correlation matrix
 cor(housedata1)</code></pre>
 <pre><code>                   price    bedrooms  bathrooms sqft_living     sqft_lot
 price         1.00000000  0.31284286 0.52334477  0.70291635  0.088238107

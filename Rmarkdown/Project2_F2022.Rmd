@@ -60,7 +60,7 @@ housedata$yr_renovated <- ifelse(housedata$yr_renovated == 0, housedata$yr_built
 housedata$yr_built <- as.Date(ISOdate(housedata$yr_built, 9, 1))  # Complete Year, Sept 1
 housedata$yr_renovated <- as.Date(ISOdate(housedata$yr_renovated, 9, 1))  # Last renovated Year, Sept 1
 housedata <- housedata[, -1]
-attach(housedata)
+
 
 # Test Data Set (only use this to send predictions)
 
@@ -77,7 +77,7 @@ housedataT$yr_renovated <- ifelse(housedataT$yr_renovated == 0, housedataT$yr_bu
 housedataT$yr_built <- as.Date(ISOdate(housedataT$yr_built, 9, 1))  # Complete Year, Sept 1
 housedataT$yr_renovated <- as.Date(ISOdate(housedataT$yr_renovated, 9, 1))  # Last renovated Year, Sept 1
 housedataT <- housedataT[, -1]
-attach(housedataT)
+
 
 ```
 
@@ -93,7 +93,7 @@ datatable(housedata[, ], rownames = FALSE)
 
 <!-- LAB 2 HELP FOR STUDENTS
 
-```{r}
+```{r, eval=FALSE}
 library(car)     # red line affected by outlier, green ignoring the outlier (robust)
 scatterplot(x =housedata$price, y=housedata$bedrooms)       #( not much dependent)
 
@@ -124,7 +124,7 @@ ggplot(data = housedata, mapping = aes(x = sqft_living, y = price)) + geom_point
 
 <!--
 
-```{r}
+```{r, eval=FALSE}
 # converting catagorical variables from numeric variables ( bedroom, bathroom, grade ,zipcode)
 #housedata$bedrooms <- as.factor(housedata$bedrooms)
 #housedata$bathrooms <- as.factor(housedata$bathrooms)
@@ -136,20 +136,20 @@ str(housedata)
 
 ```
 
-```{r}
+```{r, eval=FALSE}
 model1 <- lm(price~ sqft_living + bedrooms + bathrooms + grade + sqft_above,data = housedata)
 summary(model1)
 anova(model1)
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 model2 <- lm(price~ sqft_living + bedrooms + bathrooms + grade + sqft_above + zipcode,data = housedata)
 summary(model2)
 anova(model2)
 ```
 
-```{r}
+```{r, eval=FALSE}
 library(randomForest)
 model3 <- randomForest(price ~  bathrooms + sqft_above,
                             data = housedata)
@@ -170,7 +170,7 @@ housedata1<- housedata[ ,c(2:7,9,12,13,17:20)]
 Here is an example of a correlation matrix with some of the predictors
 
 ```{r}
-# Correlation matric
+# Correlation matrix
 cor(housedata1)
 
 # Corrplot
@@ -200,7 +200,7 @@ summary(mod.all)
 
 ```{r include=FALSE}
 #Stepwise regression
-library(MASS)
+#library(MASS)
 #dim(housedata)
 #stepAIC(lm(price ~. , data = housedata), direction = "both")
 #mod.stepwise <- lm(price ~ date + bedrooms + bathrooms + sqft_living + sqft_lot + 
@@ -210,7 +210,7 @@ library(MASS)
 #anova(mod.stepwise)
 ```
 
-```{r include=FALSE}
+```{r include=FALSE, eval=FALSE}
 #Ridge Regression
 set.seed(1)
 train = sample(c(TRUE, FALSE), size = nrow(housedata), replace = TRUE)
@@ -242,7 +242,7 @@ predict(final.ridge, type = "coefficients", s = bestlambda)
 
 
 
-```{r include=FALSE}
+```{r include=FALSE, eval=FALSE}
 #Lasso Regression
 set.seed(1)
 train = sample(c(TRUE, FALSE), size = nrow(housedata), replace = TRUE)
