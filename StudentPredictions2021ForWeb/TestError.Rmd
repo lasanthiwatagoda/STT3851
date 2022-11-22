@@ -52,12 +52,16 @@ CandelarioJose_Cindy <- read.csv("CandelarioJose_Cindy.csv")
 CandelarioJoseCindy <- sqrt(mean((CandelarioJose_Cindy$x - APRICE$price)^2))
 names(CandelarioJoseCindy) <- "CandelarioJoseCindy"
 
+#
+Jordan_Caitlin <- read.csv("Jordan_Caitlin.csv")
+JordanCaitlin <- sqrt(mean((Jordan_Caitlin$s1 - APRICE$price)^2))
+names(JordanCaitlin) <- "JordanCaitlin"
 
 ```
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis, CandelarioJoseCindy, LeBlancJacob, HallBrian, SwicegoodJackson, WheelerChuck))
+Leader <- data.frame(SMSPE = c(BeatThis, CandelarioJoseCindy, LeBlancJacob, HallBrian, SwicegoodJackson, WheelerChuck, JordanCaitlin))
 ```
 
 ```{r, echo = FALSE}
