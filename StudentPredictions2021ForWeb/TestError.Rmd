@@ -29,7 +29,7 @@ names(BeatThis) <- "BeatThis"
 
 #
 wheeler_chuck <- read.csv("wheeler_chuck.csv")
-WheelerChuck <- sqrt(mean((wheeler_chuck$x - APRICE$price)^2))
+WheelerChuck <- sqrt(mean((wheeler_chuck$s1 - APRICE$price)^2))
 names(WheelerChuck) <- "WheelerChuck"
 
 #
