@@ -34,7 +34,7 @@ names(WheelerChuck) <- "WheelerChuck"
 
 #
 Swicegood_Jackson <- read.csv("Swicegood_Jackson.csv")
-SwicegoodJackson <- sqrt(mean((Swicegood_Jackson$x - APRICE$price)^2))
+SwicegoodJackson <- sqrt(mean((Swicegood_Jackson$s1 - APRICE$price)^2))
 names(SwicegoodJackson) <- "SwicegoodJackson"
 
 #
