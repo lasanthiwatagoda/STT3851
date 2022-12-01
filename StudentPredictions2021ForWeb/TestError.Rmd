@@ -49,7 +49,7 @@ names(LeBlancJacob) <- "LeBlancJacob"
 
 #
 CandelarioJose_Cindy <- read.csv("CandelarioJose_Cindy.csv")
-CandelarioJoseCindy <- sqrt(mean((CandelarioJose_Cindy$x - APRICE$price)^2))
+CandelarioJoseCindy <- sqrt(mean((CandelarioJose_Cindy$s1 - APRICE$price)^2))
 names(CandelarioJoseCindy) <- "CandelarioJoseCindy"
 
 #
