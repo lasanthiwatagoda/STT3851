@@ -22,6 +22,8 @@ title: "Welcome to Statistical Data Analysis II"
 <!--* [The Bootstrap](./Rmarkdown/TheBootstrap.html)-->
 
 ***
+
+
 <!--
 * Click [`here`](https://appstate.zoom.us/j/91800839744?pwd=dTE0QURXK2FWeTNmNG45MzNHUFJrUT09) for attending class via Zoom due to Covid-19 concerns --- (Must inform me before using this option)
 

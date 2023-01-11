@@ -1,5 +1,5 @@
 ---
-title: "STT 3851 - Homework Page 2022"
+title: "STT 3851 - Homework Page Spring 2023"
 author: ''
 output:
   html_document:
@@ -10,44 +10,47 @@ output:
 
 ***
 
-1) [Homework 1](..\Homework\HW1chapter1F2022.pdf) --- Due Thursday, September 1.
+1) [Homework 1](..\Homework\HW1chapter1F2022.pdf) --- Due Thursday, January 26.
+
+***
+
+<!--
+
+2) [Homework 2](..\Homework\HW2chapter2F2022.pdf) --- Due Thursday, February 2. 
 
 ***
 
 
-2) [Homework 2](..\Homework\HW2chapter2F2022.pdf) --- Due Thursday, September 8. 
+3) [Homework 3](..\Homework\HW3chapter2F2022.pdf) --- Due Thursday, February 9. 
 
 ***
 
-
-3) [Homework 3](..\Homework\HW3chapter2F2022.pdf) --- Due Thursday, September 15. 
-
-***
-
-4) [Homework 4](..\Homework\HW4chapter2F2022.pdf) --- Due Thursday, September 22. 
+4) [Homework 4](..\Homework\HW4chapter2F2022.pdf) --- Due Thursday, February 16. 
 
 ***
 
-5) [Homework 5](..\Homework\HW5chapter3F2022.pdf) --- Due Thursday, September 29. 
+5) [Homework 5](..\Homework\HW5chapter3F2022.pdf) --- Due Thursday,  February 23. 
 
 ***
 
-6) [Homework 6](..\Homework\HW6chapter3F2022.pdf) --- Due Thursday, October 6. 
+6) [Homework 6](..\Homework\HW6chapter3F2022.pdf) --- Due Thursday, March 2. 
 
 ***
 
-7) [Homework 7](..\Homework\HW7chapter3F2022.pdf) --- Due Thursday, October 13. 
+7) [Homework 7](..\Homework\HW7chapter3F2022.pdf) --- Due Thursday, March 9. 
 
 ***
 
-8) [Homework 8](..\Homework\HW8chapter3F2022.pdf) --- Due Thursday, October 27. 
+8) [Homework 8](..\Homework\HW8chapter3F2022.pdf) --- Due Thursday, March 23. 
 
 ***
 
-9) [Homework 9](..\Homework\HW9chapter5F2022.pdf) --- Due Thursday, November 3. 
+9) [Homework 9](..\Homework\HW9chapter5F2022.pdf) --- Due Thursday, April 6. 
 
 ***
 
-10) [Homework 10](..\Homework\HW10chapter6F2022.pdf) --- Due Thursday, November 17. 
+10) [Homework 10](..\Homework\HW10chapter6F2022.pdf) --- Due Thursday, April 13. 
 
 ***
+
+-->
