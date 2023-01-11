@@ -12,7 +12,7 @@ output:
 
 ***
 
-**Aug 23:**
+**Jan 17:**
 
 * Go over syllabus.
 * Become familiar with the Appstate [RStudio server](https://mathr.math.appstate.edu/). You will use your Appstate user name and password to log in to the server.  You must be registered in the class to access the server.
@@ -36,7 +36,7 @@ output:
 -->
 
 
-**Aug 25:**
+**Jan 19:**
 
 * Before class:
     + Read chapter 1 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -48,7 +48,7 @@ output:
 
 ***
 
-**Aug 30:**
+**Jan 24:**
 
 * Before class:
     + Read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -70,7 +70,7 @@ output:
 
 
 
-**Sep 01:**
+**Jan 26:**
 
 <!--* Before class:
     + [Watch Managing Change with RStudio]( https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-managing-change-part-1/) (37 minutes)-->
@@ -87,7 +87,7 @@ output:
 
 
 
-**Sep 6:**
+**Jan 31:**
 
 * Before class:
     + Watch [Assessing Model Accuracy and Bias-Variance Trade-off](https://www.youtube.com/watch?v=VaN1RUDuioQ&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=5) (10:04)
@@ -99,7 +99,7 @@ output:
 
 * Start: Reproduce [Lab: Modified Introduction To R](../Labs/LabChap2.html).  
 
-* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Sep 20th.
+* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Feb 9th.
 
 ```
 
@@ -107,51 +107,47 @@ output:
 
 ***
 
-**Sep 8:**
+**Feb 2:**
 
 
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
-* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Tuesday - Sep 20th)
+* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Thursday - Feb 9th)
 
 * In class **quiz 02**
 
 ***
 
-**Sep 13:**
+**Feb 7:**
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 * [Bias-Variance Trade-Off](../LectureNotesSp2021/BiasVariance.html)
-* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Tuesday - Sep 20th)
+* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Thursday - Feb 9th)
 
 
 ***
 
-**Sep 15:**
+**Feb 9:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
 * Before class:
     + Refer to [_bookdown: Authoring Books and Technical Documents with R Markdown_](https://bookdown.org/yihui/bookdown/) as needed
 
-
-* [Chapter 02 Lab](../Labs/LabChap2.html) Due Sunday.
-
 * In class **quiz 03**
-
 
 ```{block,  type='rmdoptional'}
 **Lab 02**
 
-* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Sep 20th..
+* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Today.
 
 ```
 
 
 ***
 
-**Sep 20:**
+**Feb 14:**
 
 * Before class:
     + Read pages 59-82 of [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -163,7 +159,7 @@ output:
 ***
 
 
-**Sep 22:**
+**Feb 16:**
 
 * Before class:
     + Watch [Hypothesis Testing ](https://www.youtube.com/watch?v=z10DqaVJh3c&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=9) (8:24)
@@ -177,14 +173,14 @@ output:
 
 ***
 
-**Sep 27:**
+**Feb 21:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
 
 ***
 
-**Sep 29:**
+**Feb 23:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -216,7 +212,7 @@ output:
 
 ***
 
-**Oct 4:**
+**Feb 28:**
 
 * Before class:
     + Watch [Lab: Linear Regression](https://www.youtube.com/watch?v=W0WILgmAGao&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=13) (22:10)
@@ -226,7 +222,7 @@ output:
 
 ***
 
-**Oct 6:**
+**March 2:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -236,14 +232,14 @@ output:
 
 * Start: Reproduce [Lab: Linear Regression](../Labs/LabChap3.html).  
 
-* Submit your **Chapter 3 Lab** html file and the Rmd file, no later than 5 pm Oct 20th.
+* Submit your **Chapter 3 Lab** html file and the Rmd file, no later than 5 pm March 21st.
 
 ```
 
 ***
 
 
-**Oct 11:**
+**March 7:**
 
 * Before class:
 
@@ -255,7 +251,7 @@ output:
 
 ***
 
-**Oct 13:**
+**March 9:**
 
 * Before class:
 
@@ -268,12 +264,13 @@ output:
 
 ***
 
-**Oct 18:**
+**March 14-16:**
 
-* Fall Break- No classes
+* Spring Break- No classes
 
+***
 
-**Oct 20:**
+**March 21:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -282,25 +279,26 @@ output:
 ```{block,  type='rmdoptional'}
 **Reminder: Chapter 3 Lab**
 
-* Keep working on: Reproduce [Lab: Linear Regression](../Labs/LabChap3.html).  
-
-* Submit your **Chapter 3 Lab** html file and the Rmd file, no later than 5 pm Oct 20th (Today).
+* Submit your **Chapter 3 Lab** html file and the Rmd file, no later than 5 pm March 21st (Today).
 
 ```
 
 ***
 
-**Oct 25:**
+**March 23:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
-* Exam 1 is Tuesday next week!
+* Exam 1 is Thursday next week!
 
+* In class **quiz 07**
 
 ***
 
 
-**Oct 27:**
+**March 28:**
+
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
 ```{block, startProject_1, type='rmdoptional'}
 
@@ -308,14 +306,13 @@ output:
 
 * [Project 1](../Rmarkdown/DirectionsMHP2022SP.html). 
 
-* Submit your html and Rmd files no later than 5 pm Nov 10th.
+* Submit your html and Rmd files no later than 5 pm April 11th.
 ```
 
-* In class **quiz 07**
 
 ***
 
-**Nov 1:**
+**March 30:**
 
 * In class Exam 1
 * [Exam Part I]()
@@ -323,85 +320,67 @@ output:
 
 ***
 
-**Nov 3:**
+**April 4:**
 
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
 
 ***
 
-**Nov 8:**
-
-* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
-
-
-
-***
-
-**Nov 10:**
+**April 6:**
 
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
 * In class **quiz 08**
 
+***
+
+**April 11:**
+
+* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
+
 * Project 1 due today
-
-***
-
-
-**Nov 15:**
-
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
-
-
-***
-
-**Nov 17:**
-
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
-
-* In class **quiz 09**
 
 ```{block,  type='rmdoptional'}
 **Chapter 5 Lab**
 
 * Start: Reproduce [Chapter 5 Lab](../Labs/LabCrossValidation.html).  
 
-* Submit your **Chapter 5 Lab** html file and the Rmd file, no later than 5 pm Nov 29th.
+* Submit your **Chapter 5 Lab** html file and the Rmd file, no later than 5 pm April 18th.
 
 ```
 
 
 ***
 
-**Nov 22:**
+
+**April 13:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
+
+* In class **quiz 09**
+
+***
+
+**April 18:**
+
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
+
+```{block,  type='rmdoptional'}
+**Chapter 5 Lab**
+
+* Submit your **Chapter 5 Lab** html file and the Rmd file, no later than 5 pm April 18th (Today).
+
+```
 
 
 ***
 
-**Nov 24:**
-
-* State Holidays- No classes; University closed
-
-**Nov 29:**
+**April 20:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
 * In class **quiz 10**
-
-* **Project 2:** [Start Here](../Rmarkdown/Project2_F2022.html)
-
-* **Turn in Project 2 Predictions**- NLT Nov 30th, 5:00 pm
-* Send an email to the instructor using a subject of "House Data Predictions" with an attached vector (csv file) of your predictions using the data set `housedataT.csv`.  Note: your vector should contain 4229 predictions. 
-
-* **Turn in Project 2** - NLT Dec 13th (Final Exam Day), 5:00 pm
-* Make sure a single `.Rmd` and a single `.html` with the sections outlined in the [Example Paper](../BDbetaTemplate/TemplateBookDown.html) is in your `Project2` emailed to me.
-* Also turn in the all the model you have tried as a single `.Rmd` and a single `.html` file. Section names should read for example: Model 1: Forward selection model. A brief description of the model should be included as well. 
-
-
-* [Project 2 Leaderboard](../StudentPredictions2021ForWeb/TestError.html)
 
 ```{block,  type='rmdoptional'}
 **Reminder: **
@@ -412,9 +391,36 @@ output:
 
 ***
 
-**Dec 1:**
+**April 25:**
+
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
+
+* **Project 2:** [Start Here](../Rmarkdown/Project2_F2022.html)
+
+* **Turn in Project 2 Predictions**- NLT May 2nd, 5:00 pm
+* Send an email to the instructor using a subject of "House Data Predictions" with an attached vector (csv file) of your predictions using the data set `housedataT.csv`.  Note: your vector should contain 4229 predictions. 
+
+* **Turn in Project 2** - NLT May 6th, 5:00 pm
+* Make sure a single `.Rmd` and a single `.html` with the sections outlined in the [Example Paper](../BDbetaTemplate/TemplateBookDown.html) is in your `Project2` emailed to me.
+* Also turn in the all the model you have tried as a single `.Rmd` and a single `.html` file. Section names should read for example: Model 1: Forward selection model. A brief description of the model should be included as well. 
+
+
+* [Project 2 Leaderboard](../StudentPredictions2021ForWeb/TestError.html)
+
+
+***
+
+**April 27:**
 
   * Exam 2
+
+
+***
+
+
+**May 2:**
+
+  * Project discussion
 
 
 ***
@@ -604,7 +610,7 @@ output:
 * [Auto Data .txt](Auto.txt)
 * [Auto Data .csv](Auto.csv)
 
-# [Home Page](https://hasthika.github.io/STT3851/) - [Syllabus](https://hasthika.github.io/STT3851/Syllabus/STT3851Spring2021Syllabus.html) {-}  
+# [Home Page](https://hasthika.github.io/STT3851/) - [Syllabus](https://hasthika.github.io/STT3851/Syllabus/STT3851Spring2023Syllabus.html) {-}  
 
 
 
