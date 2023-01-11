@@ -3,7 +3,7 @@ title: "Assignments STT 3851 - Spring 2023"
 author: "Dr. Hasthika Rupasinghe"
 date: 'Last Updated on: `r format(Sys.time(), "%b %d, %Y at %X")`'
 output: 
-  bookdown::html_document2: 
+  bookdown::html_document2:
     highlight: textmate
     theme: yeti
     toc: true

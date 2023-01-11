@@ -13,11 +13,12 @@ output:
 
 **Class meeting:** TR 03:30pm - 04:45pm, WA209B
 
-**Office:** Virtual zoom 
+**Office:** WA324 or Virtual zoom 
 
-**Office Hours:**  [`Click here to go to office hours` (12.30 - 1pm on T and 12.30 - 1.30pm on R)](https://appstate.zoom.us/j/95376777236?pwd=czVIcVFGTzc3L1FuaU5GTXZlOHlJZz09) - Passcode if required 557742.
+**Online Office Hours:**  W 12:00-3:00pm [`Click here to go to office hours`](https://appstate.zoom.us/j/97048056162?pwd=L0tBWlIyZDlKVXJjeUtSMjk4alNtdz09) 
 
-<!--Questions related to the class should be addressed with the [piazza account for STT 3851](https://piazza.com/appstate/spring2018/stat3851/home).-->
+**In-person Office Hours:**  T, R 1.30-2:00pm in WA324
+
 
 
 **Course Description:**  
@@ -51,7 +52,7 @@ This course covers elements of data management, descriptive statistics,  and inf
 * 15% of the grade will come from labs (3).
 * 25% of the grade will come from projects (2).
 * 25% of the grade will come from the Mid-Exams (2).
-* 05% of the course grade will come from participation (attendance, participation in discussion in-class and/or online).
+* 05% of the course grade will come from participation (attendance, participation in discussion in-class).
 
 *Attendance and participation:* As we are trying to make this experience as close to a regular class as possible, interactivity is important. Therefore you are required have your video on and actively participate in all the class discussions. Attendance will be taken at the end of each class. Students are expected to attend every class. A detailed description of the ASU attendance policy can be found at the following link, [https://academicaffairs.appstate.edu/resources/syllabi-policy-and-statement-information]
 
