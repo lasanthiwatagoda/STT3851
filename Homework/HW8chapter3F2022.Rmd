@@ -48,6 +48,7 @@ m <- lm(Sales ~ Age + Income, data = Carseats)
 summary(m)
 
 m <- lm(Sales ~ Age + Income + Age*Income, data = Carseats)
+m
 ```
 
 

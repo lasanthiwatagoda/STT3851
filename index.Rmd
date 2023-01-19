@@ -9,9 +9,7 @@ title: "Welcome to Statistical Data Analysis II"
 
 * [`Course pacing and Assignments`](./Assignments/AssignmentsSTT3851Spring2023.html) 
 
-<!--
 * [`Homework Page`](./Homework/HomewrokPage.html)
--->
 
 * [`Class RStudio Server`](https://mathr.math.appstate.edu) 
 
