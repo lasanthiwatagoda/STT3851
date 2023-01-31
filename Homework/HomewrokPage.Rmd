@@ -14,11 +14,13 @@ output:
 
 ***
 
-<!--
 
 2) [Homework 2](..\Homework\HW2chapter2F2022.pdf) --- Due Thursday, February 2. 
 
 ***
+
+
+<!--
 
 
 3) [Homework 3](..\Homework\HW3chapter2F2022.pdf) --- Due Thursday, February 9. 
