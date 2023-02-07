@@ -117,7 +117,7 @@ $$\\[0.5in]$$
   v) Create a boxplot (shown here) for wage for each education level.
   
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
-ggplot(data = Wage, aes(x=education, y=wage, fill = education)) + geom_boxplot() + theme_bw() +                                 
+ggplot(data = Wage, aes(x=education, y=wage, fill = factor(education))) + geom_boxplot() + theme_bw() +                                 
 labs(title = "Boxplots displaying wage as a funtion of education",x = "Education level",y = "Wage")
 ```
   

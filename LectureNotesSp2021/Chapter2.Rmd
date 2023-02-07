@@ -254,6 +254,10 @@ greater number of parameters.
   
   Example: 
   
+  ![khjfjyfuy](flexibility.png)
+  
+  
+  
   ![Linear (less flexible) model](linear.png)
   
    ![ a more flexible model](flexible.png)
