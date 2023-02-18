@@ -1,7 +1,7 @@
 ---
 title: "STT3851 Homework 5"
 author: "Dr. Hasthika Rupasinghe"
-date: Due -- September 29
+date: Due -- February 23
 output: 
     pdf_document: default
     html_document:
