@@ -152,6 +152,7 @@ Find the LS estimates for model coefficients ($\hat{\beta_0}$, $\hat{\beta_1}$) 
 ```{r include=FALSE}
 str(AdvertisingData)
 head(AdvertisingData)
+
 AdvertisingModel <- lm(Sales ~ TV, data = AdvertisingData)
 summary(AdvertisingModel)
 ```
@@ -163,6 +164,18 @@ summary(AdvertisingModel)
   d) Predict the sales for a TV budgets of $20,000, $30,000 and $50,000
 
 ```{r include=FALSE}
+newx <- data.frame(TV = 20)
+newx
+
+predicted_sales <- predict(AdvertisingModel, newx)
+
+predicted_sales
+
+
+
+
+
+
 newx <- data.frame(TV = c(20, 30, 50))
 
 predicted_sales <- predict(AdvertisingModel, newx)
@@ -181,7 +194,6 @@ yhat <- predict(AdvertisingModel, x)
 resids <- y - yhat
   
 library(DT)
-
 tab <- datatable(data.frame(y, yhat, resids))
 tab
 
@@ -197,6 +209,17 @@ RSE
   e) Estimate the $SE(\hat\beta_1)$ without using the function `lm()`.
   
 ```{r include=FALSE}
+
+
+xbar <- mean(AdvertisingData$TV)
+
+den <- sum((AdvertisingData$TV - xbar)^2)
+
+SEB_1 <- sqrt(RSE^2/den)
+
+
+
+
 denominator <- var(AdvertisingData$TV)*((length(y)-1))
 SEbeta1 <- sqrt(RSE^2/denominator)
 SEbeta1
@@ -423,11 +446,11 @@ r^2
 # Multiple Linear Regression (MLR)
 
 ```{r warning=FALSE, message=FALSE, comment=NA}
-#library(plotly)
+library(plotly)
 
-#p <- plot_ly(data = AdvertisingData, z = ~Sales, x = ~TV, y = ~Radio, opacity = 0.6, color = AdvertisingData$Sales) %>%
-#  add_markers() 
-#p
+p <- plot_ly(data = AdvertisingData, z = ~Sales, x = ~TV, y = ~Radio, opacity = 0.6, color = AdvertisingData$Sales) %>%
+  add_markers() 
+p
 ```
 
 
