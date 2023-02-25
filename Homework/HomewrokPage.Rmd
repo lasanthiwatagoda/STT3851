@@ -33,12 +33,14 @@ output:
 
 ***
 
-<!--
-
 
 6) [Homework 6](..\Homework\HW6chapter3F2022.pdf) --- Due Thursday, March 2. 
 
 ***
+
+
+<!--
+
 
 7) [Homework 7](..\Homework\HW7chapter3F2022.pdf) --- Due Thursday, March 9. 
 
