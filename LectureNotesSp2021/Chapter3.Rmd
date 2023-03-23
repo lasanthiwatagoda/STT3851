@@ -788,7 +788,7 @@ Consider the `Auto` data set and the relationship between `mpg` and `horsepower`
 
 ```{r include=FALSE}
 #str(Auto)
-ggplot(Auto, aes(x = horsepower, y = mpg)) + geom_point() + theme_bw()
+ggplot(Auto, aes(x = horsepower, y = mpg)) + geom_point() +geom_smooth()+ theme_bw()
 ```
 
 
@@ -947,28 +947,36 @@ ggplotly(p3)
 
 2. Use the leverage equation and the following information to calculate leverages for each point.
 
-    $n =$ `r nrow(Credit)`, $\bar{x} =$ `r mean(Credit$Limit)` and ${\sum_{j=1}^n(x_j - \bar{x})^2}$ = `r round(sd(Credit$Limit)*(nrow(Credit)-1),1)`
+    $n =$ `r nrow(Credit)`, $\bar{x} =$ `r mean(Credit$Limit)` and ${\sum_{j=1}^n(x_j - \bar{x})^2}$ = `r var(Credit$Limit)*(nrow(Credit)-1)`
+    
+```{r include=FALSE}
+var(Credit$Limit)*(nrow(Credit)-1)
+round(sd(Credit$Limit)*(nrow(Credit)-1),1)
+```
+    
     
 3. This data set has `r ncol(Credit) - 2` predictors. Use your answers from 2) to determine whether the points you chosen in 1) are in fact high leverage points.
 
 
 Solutions: 
 
+<!--
+
   1. 13414 and 13913 (note: only x values)
 
   2. 
     For $x = 13414$:
     
-    $h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{j=1}^n(x_j - \bar{x})^2}  = \frac{1}{400} + \frac{(13414 - 4735.6)^2}{920971.3} = 81.78$
+    $h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{j=1}^n(x_j - \bar{x})^2}  = \frac{1}{400} + \frac{(13414 - 4735.6)^2}{2125784986} = 0.03792909$
   
   For $x = 13913$:
     
-  $h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{j=1}^n(x_j - \bar{x})^2}  = \frac{1}{400} + \frac{(13913 - 4735.6)^2}{920971.3} = 91.45$
+  $h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{j=1}^n(x_j - \bar{x})^2}  = \frac{1}{400} + \frac{(13913 - 4735.6)^2}{2125784986} = 0.0421205$
 
   3. Find $(p+1)/n = (10+1)/400=0.0275$
     
     As the both leverage values greatly exceeds $(p+1)/n =0.0275$, we conclude that the $x$ values 13414 and 13913 are high leverage points.
-    
+-->    
 
 
 > 6. Collinearity
