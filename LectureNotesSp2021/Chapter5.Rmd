@@ -1,7 +1,7 @@
 ---
 title: Chapter 5 - Resampling Methods
 author: Dr. Hasthika Rupasinghe
-date: October 24, 2022
+date: April 04, 2023
 output:
   prettydoc::html_pretty:
     toc: true
