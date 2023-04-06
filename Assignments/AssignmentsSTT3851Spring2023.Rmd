@@ -329,6 +329,8 @@ output:
 
 **April 6:**
 
+* [Distribution of the Exam 1 Grades](GradesDensity.html)
+
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
 * In class **quiz 08**
