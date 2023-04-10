@@ -832,7 +832,7 @@ may occur. Most common among these are the following:
 
 Construct two residual plots for regressing `mpg` onto `horsepower` with and without a quadratic term.
 
-```{r include=FALSE}
+```{r}
 library(cowplot)
 model_no_quadratic <- lm(mpg ~ horsepower, data = Auto)
 model_no_quadratic
@@ -928,8 +928,7 @@ Note:
   1. The leverage statistic $h_i$ is always between $1/n$ and 1
   2. Average leverage for all the observations is
 always equal to $(p+1)/n$.
-  3. So if a given observation has a leverage statistic that greatly exceeds $(p+1)/n$, then we may suspect that the corresponding
-point has high leverage.
+  3. So if a given observation has a leverage statistic that greatly exceeds $(p+1)/n$, then we may suspect that the corresponding point has high leverage.
 
 **Example 18:**
 
