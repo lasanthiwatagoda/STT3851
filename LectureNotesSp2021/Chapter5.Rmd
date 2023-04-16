@@ -244,7 +244,7 @@ regression using the `glm()` function rather than the `lm()` function because th
 ```{r}
 library(boot)
 glm_fit <- glm(mpg~horsepower ,data=Auto)
-#summary(glm_fit)
+summary(glm_fit)
 
 cv_error <- cv.glm(Auto, glm_fit)
 #cv_error
@@ -259,12 +259,10 @@ Fit several (10) regression models with degrees 1 through 10 to predict the `mpg
 
 ```{r include=FALSE}
 loocv_err_vec <- rep (0,10) # This is where we will store the loocv values for the 10 models
-
 for (i in 1:10){
  glm_fit <- glm(mpg~poly(horsepower ,i), data=Auto)
  loocv_err_vec[i] <- cv.glm(Auto , glm_fit)$delta[1]
 }
-
 loocv_err_vec
 ```
 
@@ -274,7 +272,7 @@ degree <- c(1,2,3,4,5,6,7,8,9,10)
 LOOCVgraph <- data.frame(loocv_err_vec, degree)
 
 ggplot(data = LOOCVgraph, aes(x = degree, y = loocv_err_vec)) + geom_point(color = "red") + geom_line() + theme_bw() + 
-  labs(x = "Degree of the polynomial", y = "Test MSE")
+  labs(x = "Degree of the polynomial", y = "LOOCV Error")
 ```
 
 **Advantages of the LOOCV approach**:  
@@ -338,6 +336,7 @@ k_fold_cv_error
 Fit several (10) regression models with degrees 1 through 10 to predict the `mpg` using `horsepower` using the LOOCV approach. Find the 10-fold CV Errors for each 10 models. Which model would you use as your final model and why?
 
 ```{r include=FALSE}
+set.seed(2023)
 cv_err_vec <- rep (0,10) # This is where we will store the loocv values for the 10 models
 
 for (i in 1:10){
@@ -346,7 +345,8 @@ for (i in 1:10){
 }
 
 cv_err_vec
-
+which.min(cv_err_vec)
+cv_err_vec[which.min(cv_err_vec)]
 ```
 
 ```{r echo=FALSE}
@@ -356,6 +356,7 @@ kfold_CVgraph <- data.frame(cv_err_vec, degree)
 
 ggplot(data = kfold_CVgraph, aes(x = degree, y = cv_err_vec)) + geom_point(color = "red") + geom_line() + theme_bw() + 
   labs(x = "Degree of the polynomial", y = "Test MSE")
+
 ```
   
   

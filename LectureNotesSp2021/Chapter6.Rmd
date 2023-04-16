@@ -126,7 +126,7 @@ head(Hitters)
 #View(Hitters) # only run this in the console, never run it here
 
 Hitters <- na.omit(Hitters)
-#dim(Hitters)
+dim(Hitters)
 
 
 library (leaps)
@@ -156,6 +156,7 @@ Let's look at adjusted $R^2$ values for all 19 models selected so far.
 
 ```{r include=FALSE}
 reg_summary$adjr2
+which.max(reg_summary$adjr2)
 ```
 
 How many and what variables are in the best model selected using the adjusted $R^2$ criterion?
@@ -171,7 +172,8 @@ library(ggplot2)
 
 data <- data.frame(adjR2 = reg_summary$adjr2, numVar = seq(1,19))
 
-ggplot(data, aes(y = adjR2, x = numVar)) + geom_point(color = "Red") + geom_line() + theme_bw()
+ggplot(data, aes(y = adjR2, x = numVar)) + geom_point(color = "Red") + geom_line() + theme_bw() +
+  scale_x_continuous(breaks = c(1:19), name = "Number of variables")
 
 ```
 
