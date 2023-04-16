@@ -44,7 +44,6 @@ output:
 ***
 
 
-
 8) [Homework 8](..\Homework\HW8chapter3F2022.pdf) --- Due Thursday, March 23. 
 
 ***
@@ -52,6 +51,7 @@ output:
 
 9) [Homework 9](..\Homework\HW9chapter5F2022.pdf) --- Due Thursday, April ~~14~~ 20. 
 
+***
 ***
 <!--
 
