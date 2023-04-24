@@ -1,7 +1,7 @@
 ---
 title: "Project 2: King County Housing Data"
 author: "Dr. Hasthika Rupasinghe"
-date: "11/16/2022"
+date: "04/25/2023"
 output: 
   bookdown::html_document2: 
     highlight: textmate
@@ -312,6 +312,20 @@ write.csv(Yourlastname_Yourfirstname, file = "Yourlastname_Yourfirstname.csv") #
 SMSPE <- sqrt(mean((head(Yourlastname_Yourfirstname) - c(310000, 650000, 233000, 580500, 535000, 605000))^2))
 SMSPE
 ```
+
+```{rnote}
+
+```
+
+Note: When we create lasso or ridge models, we use the function `model.matrix` to convert data into a model matrix. This function turns all of the factor variables into dummy variables. Because of this, for this data set, once the models are created, we will have 100 predictors (we initially had only 19). But the issue is that the `housedataT` data set does not have 100 predictors (only 19). The fix is very simple: we convert `housedataT` into a model matrix as bellow:
+
+```{r eval=FALSE}
+housedataT_new <- model.matrix(~., housedataT)[,-1] # Use this to send me predictions for only lasso or ridge like models
+
+#Assume you created a Lasso model and named it lasso_model
+Yourlastname_Yourfirstname <- predict(lasso_model ,s = bestlam, newx = housedataT_new)
+```
+
 
 
 
