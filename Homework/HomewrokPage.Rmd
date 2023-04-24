@@ -52,11 +52,8 @@ output:
 9) [Homework 9](..\Homework\HW9chapter5F2022.pdf) --- Due Thursday, April ~~14~~ 20. 
 
 ***
+
+
+10) [Homework 10](..\Homework\HW10chapter6F2022.pdf) --- Due Thursday, April 27. 
+
 ***
-<!--
-
-10) [Homework 10](..\Homework\HW10chapter6F2022.pdf) --- Due Thursday, April 13. 
-
-***
-
--->
