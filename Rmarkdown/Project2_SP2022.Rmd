@@ -87,6 +87,27 @@ datatable(housedata[, ], rownames = FALSE)
 
 # Where to start
 
+# Correlation Matrix
+
+```{r include=FALSE}
+
+# creating a data frame excluding id,date,sqft_living15,sqft_lot15, lat,long,yr_built,yr_renovated,rate
+housedata1<- housedata[ ,c(2:7,9,12,13,17:20)]
+```
+
+Here is an example of a correlation matrix with some of the predictors
+
+```{r}
+# Correlation matrix
+cor(housedata1)
+
+# Corrplot
+library(corrplot)
+corrplot(cor(housedata1))
+
+```
+
+
 Consider predicting the price (`price`) of a house based on a certain feature (`sqft_living`).  Start by graphing the relationship.
 
 ```{r}
@@ -97,7 +118,7 @@ p1 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) +
 p1
 ```
 
-## Making Scatterplots more useful
+## Making Scatterplots more useful (optional)
 
 Overplotting is problematic.  What should we do?
 
@@ -107,7 +128,7 @@ Overplotting is problematic.  What should we do?
 * Bin the data into hexagons.
 
 
-### Using `alpha`
+### Using `alpha`  (optional)
 
 ```{r}
 p2 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
@@ -116,7 +137,7 @@ p2 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) +
 p2
 ```
 
-### Using rectangles
+### Using rectangles  (optional)
 
 ```{r, fig.width = 6}
 p3 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
@@ -131,7 +152,7 @@ p4 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) +
 p4
 ```
 
-### Using hexagons
+### Using hexagons  (optional)
 
 ```{r, fig.width = 6}
 p5 <- ggplot(data = housedata, aes(x = sqft_living, y = price)) + 
@@ -226,7 +247,7 @@ model3 <- randomForest(price ~  bathrooms + sqft_above,
 -->
 
 
-### What features might be visible in a scatterplot?
+### What features might be visible in a scatterplot?  (optional)
 
 * Causal relationships (linear and nonlinear) - One variable may have a direct influence on another in some way.  
 * Associations - Variables may be associated with on another without being directly causally related.
@@ -251,25 +272,6 @@ p6 + geom_smooth(method = "lm") +
   labs(x = "Living Space (square feet)", y = "Price ($)")
 ```
 
-# Correlation Matrix
-
-```{r include=FALSE}
-
-# creating a data frame excluding id,date,sqft_living15,sqft_lot15, lat,long,yr_built,yr_renovated,rate
-housedata1<- housedata[ ,c(2:7,9,12,13,17:20)]
-```
-
-Here is an example of a correlation matrix with some of the predictors
-
-```{r}
-# Correlation matric
-cor(housedata1)
-
-# Corrplot
-library(corrplot)
-corrplot(cor(housedata1))
-
-```
 
 
 # Building models
@@ -406,5 +408,17 @@ SMSPE <- sqrt(mean((head(Yourlastname_Yourfirstname) - c(310000, 650000, 233000,
 SMSPE
 ```
 
+```{rnote}
+
+```
+
+Note: When we create lasso or ridge models, we use the function `model.matrix` to convert data into a model matrix. This function turns all of the factor variables into dummy variables. Because of this, for this data set, once the models are created, we will have 100 predictors (we initially had only 19). But the issue is that the `housedataT` data set does not have 100 predictors (only 19). The fix is very simple: we convert `housedataT` into a model matrix as bellow:
+
+```{r eval=FALSE}
+housedataT_new <- model.matrix(~., housedataT)[,-1] # Use this to send me predictions for only lasso or ridge like models
+
+#Assume you created a Lasso model and named it lasso_model
+Yourlastname_Yourfirstname <- predict(lasso_model ,s = bestlam, newx = housedataT_new)
+```
 
 
