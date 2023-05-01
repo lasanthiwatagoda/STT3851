@@ -49,7 +49,7 @@ names(CaveTyler) <- "CaveTyler"
 
 #
 Jones_Breanna <- read.csv("Jones_Breanna.csv")
-JonesBreanna <- sqrt(mean((Jones_Breanna$x - APRICE$price)^2))
+JonesBreanna <- sqrt(mean((Jones_Breanna$s1 - APRICE$price)^2))
 names(JonesBreanna) <- "JonesBreanna"
 
 #
