@@ -86,11 +86,16 @@ names(FaruqLeo) <- "FaruqLeo"
 Maling_Isaac <- read.csv("Maling_Isaac.csv")
 MalingIsaac <- sqrt(mean((Maling_Isaac$s1 - APRICE$price)^2))
 names(MalingIsaac) <- "MalingIsaac"
+
+#
+Moore_Luke <- read.csv("Moore_Luke.csv")
+MooreLuke <- sqrt(mean((Moore_Luke$x - APRICE$price)^2))
+names(MooreLuke) <- "MooreLuke"
 ```
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis, CampbellSally, HoldenJohn, BullmanHaley, CaveTyler, JonesBreanna, SeeversJoseph, BurnsSean, WheelerMichael, FooteLily, LopezMonica, FaruqLeo, MalingIsaac))
+Leader <- data.frame(SMSPE = c(BeatThis, CampbellSally, HoldenJohn, BullmanHaley, CaveTyler, JonesBreanna, SeeversJoseph, BurnsSean, WheelerMichael, FooteLily, LopezMonica, FaruqLeo, MalingIsaac, MooreLuke))
 ```
 
 ```{r, echo = FALSE}
