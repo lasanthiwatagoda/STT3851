@@ -59,7 +59,7 @@ names(SeeversJoseph) <- "SeeversJoseph"
 
 #
 Burns_Sean <- read.csv("Burns_Sean.csv")
-BurnsSean <- sqrt(mean((Burns_Sean$x - APRICE$price)^2))
+BurnsSean <- sqrt(mean((Burns_Sean$s1 - APRICE$price)^2))
 names(BurnsSean) <- "BurnsSean"
 
 #
