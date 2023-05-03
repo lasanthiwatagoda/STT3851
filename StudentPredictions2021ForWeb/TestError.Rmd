@@ -29,17 +29,17 @@ names(BeatThis) <- "BeatThis"
 
 #
 Campbell_Sally <- read.csv("Campbell_Sally.csv")
-CampbellSally <- sqrt(mean((Campbell_Sally$x - APRICE$price)^2))
+CampbellSally <- sqrt(mean((Campbell_Sally$s1 - APRICE$price)^2))
 names(CampbellSally) <- "CampbellSally"
 
 #
 Holden_John <- read.csv("Holden_John.csv")
-HoldenJohn <- sqrt(mean((Holden_John$x - APRICE$price)^2))
+HoldenJohn <- sqrt(mean((Holden_John$s1 - APRICE$price)^2))
 names(HoldenJohn) <- "HoldenJohn"
 
 #
 Bullman_Haley <- read.csv("Bullman_Haley.csv")
-BullmanHaley <- sqrt(mean((Bullman_Haley$x - APRICE$price)^2))
+BullmanHaley <- sqrt(mean((Bullman_Haley$s1 - APRICE$price)^2))
 names(BullmanHaley) <- "BullmanHaley"
 
 #
@@ -74,7 +74,7 @@ names(FooteLily) <- "FooteLily"
 
 #
 Lopez_Monica <- read.csv("Lopez_Monica.csv")
-LopezMonica <- sqrt(mean((Lopez_Monica$x - APRICE$price)^2))
+LopezMonica <- sqrt(mean((Lopez_Monica$s1 - APRICE$price)^2))
 names(LopezMonica) <- "LopezMonica"
 
 #
@@ -89,7 +89,7 @@ names(MalingIsaac) <- "MalingIsaac"
 
 #
 Moore_Luke <- read.csv("Moore_Luke.csv")
-MooreLuke <- sqrt(mean((Moore_Luke$x - APRICE$price)^2))
+MooreLuke <- sqrt(mean((Moore_Luke$s1 - APRICE$price)^2))
 names(MooreLuke) <- "MooreLuke"
 ```
 
