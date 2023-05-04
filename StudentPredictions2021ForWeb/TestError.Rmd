@@ -43,8 +43,8 @@ BullmanHaley <- sqrt(mean((Bullman_Haley$s1 - APRICE$price)^2))
 names(BullmanHaley) <- "BullmanHaley"
 
 #
-Cave_Tyler <- read.csv("Cave_Tyler.csv")
-CaveTyler <- sqrt(mean((Cave_Tyler$s1 - APRICE$price)^2))
+Cave_Tyler <- read.csv("Cave_Tyler3.csv")
+CaveTyler <- sqrt(mean((Cave_Tyler$x - APRICE$price)^2))
 names(CaveTyler) <- "CaveTyler"
 
 #
