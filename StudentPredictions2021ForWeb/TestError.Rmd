@@ -68,7 +68,7 @@ WheelerMichael <- sqrt(mean((Wheeler_Michael$s1 - APRICE$price)^2))
 names(WheelerMichael) <- "WheelerMichael"
 
 #
-Foote_Lily <- read.csv("Foote_Lily.csv")
+Foote_Lily <- read.csv("Foote_Lily.int.csv")
 FooteLily <- sqrt(mean((Foote_Lily$x - APRICE$price)^2))
 names(FooteLily) <- "FooteLily"
 
