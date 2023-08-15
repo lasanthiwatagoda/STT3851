@@ -10,10 +10,11 @@ output:
 
 ***
 
-1) [Homework 1](..\Homework\HW1chapter1F2022.pdf) --- Due Thursday, January 26.
+1) [Homework 1](..\Homework\HW1chapter1F2022.pdf) --- Due Thursday, August ??.
 
 ***
 
+<!--
 
 2) [Homework 2](..\Homework\HW2chapter2F2022.pdf) --- Due Thursday, February 2. 
 
@@ -57,3 +58,4 @@ output:
 10) [Homework 10](..\Homework\HW10chapter6F2022.pdf) --- Due Thursday, April 27. 
 
 ***
+-->
