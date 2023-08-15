@@ -11,15 +11,11 @@ output:
 
 **Instructor:**  Dr. Lasanthi Watagoda
 
-**Class meeting:** TR 02:00pm - 03:15pm, WA209B
+**Class meeting:** TR 02:00PM - 03:15PM, WA209B
 
-**Office:** WA342 or Virtual via Zoom 
+**Office:** WA342
 
-**Online Office Hours:**  ??
-
-**In-person Office Hours:**  ??
-
-
+**Office Hours:** Wednesday 01:00 - 03:00PM, Tuesday, Thursday 04:45 - 05:15PM or by appointment 
 
 **Course Description:**  
 
@@ -48,7 +44,7 @@ This course covers elements of data management, descriptive statistics,  and inf
 **Course Grading:**
 
 
-* 30% of the course grade will come from quizzes and homework (8).
+* 30% of the course grade will come from quizzes and homework.
 * 15% of the grade will come from labs (3).
 * 25% of the grade will come from projects (2).
 * 25% of the grade will come from the Mid-Exams (2).
@@ -84,14 +80,14 @@ This course conforms with all Appalachian State University policies with respect
 
 **Computers and Software**
 
-This course will use the RStudio server  (https://mathr.math.appstate.edu/) that has the programs listed below and more installed.
+This course will use the RStudio server  (https://mathr.appstate.edu/) that has the programs listed below and more installed.
 
 * [R](http://cran.r-project.org) 
 * [Git](http://git-scm.com/downloads) 
 * [RStudio](http://www.rstudio.com/products/rstudio/download/)
 * [LaTeX](http://www.ctan.org/starter)
 
-You must have an active internet connection and be registered in the course to access the server. To access the server, point any web browser to <https://mathr.math.appstate.edu/>.  You will need to acknowledge the connection is unsecure and possibly add a security exception to your web browser. Use your Appstate Username and Password to access the server.  A screen shot of the RStudio server is shown below.
+You must have an active internet connection and be registered in the course to access the server. To access the server, point any web browser to <https://mathr.appstate.edu/>.  You will need to acknowledge the connection is unsecure and possibly add a security exception to your web browser. Use your Appstate Username and Password to access the server.  A screen shot of the RStudio server is shown below.
 
 <center>
 ![](RStudioLogIn.png)
