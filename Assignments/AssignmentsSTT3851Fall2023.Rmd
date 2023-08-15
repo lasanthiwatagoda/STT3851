@@ -99,7 +99,7 @@ output:
 
 * Start: Reproduce [Lab: Modified Introduction To R](../Labs/LabChap2.html).  
 
-* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Feb 9th.
+* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Sep 14th.
 
 ```
 
@@ -113,7 +113,7 @@ output:
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
-* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Thursday - Feb 9th)
+* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Thursday - Sep 14th)
 
 * In class **quiz 02**
 
@@ -123,7 +123,13 @@ output:
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 * [Bias-Variance Trade-Off](../LectureNotesSp2021/BiasVariance.html)
-* Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Thursday - Feb 9th)
+
+```{block,  type='rmdoptional'}
+**Lab 02**
+
+* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Today.
+
+```
 
 
 ***
@@ -136,14 +142,6 @@ output:
     + Refer to [_bookdown: Authoring Books and Technical Documents with R Markdown_](https://bookdown.org/yihui/bookdown/) as needed
 
 * In class **quiz 03**
-
-```{block,  type='rmdoptional'}
-**Lab 02**
-
-* Submit your html file and Rmd file **Lab 2**, no later than 5 pm Today.
-
-```
-
 
 ***
 
@@ -232,7 +230,7 @@ output:
 
 * Start: Reproduce [Lab: Linear Regression](../Labs/LabChap3.html).  
 
-* Submit your **Chapter 3 Lab** html file and the Rmd file, no later than 5 pm March 21st.
+* Submit your **Chapter 3 Lab** html file and the Rmd file, no later than 5 pm Oct 24th.
 
 ```
 
@@ -280,7 +278,7 @@ output:
 ```{block,  type='rmdoptional'}
 **Reminder: Chapter 3 Lab**
 
-* Submit your **Chapter 3 Lab** html file and the Rmd file, no later than 5 pm March 21st (Today).
+* Submit your **Chapter 3 Lab** html file and the Rmd file, no later than 5 pm today.
 
 ```
 
@@ -307,7 +305,8 @@ output:
 
 * [Project 1](../Rmarkdown/DirectionsMHP2022SP.html). 
 
-* Submit your html and Rmd files no later than 5 pm April 11th.
+* Submit your html and Rmd files no later than 5 pm Nov 9th.
+
 ```
 
 
@@ -336,20 +335,28 @@ output:
 
 * In class **quiz 08**
 
+```{block, endProject_1, type='rmdoptional'}
+
+**Project 01**
+
+* [Project 1](../Rmarkdown/DirectionsMHP2022SP.html). 
+
+* Submit your html and Rmd files no later than 5 pm Today.
+```
+
+
 ***
 
 **Nov 14:**
 
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
-* Project 1 due today
-
 ```{block,  type='rmdoptional'}
 **Chapter 5 Lab**
 
 * Start: Reproduce [Chapter 5 Lab](../Labs/LabCrossValidation.html).  
 
-* Submit your **Chapter 5 Lab** html file and the Rmd file, no later than 5 pm April 18th.
+* Submit your **Chapter 5 Lab** html file and the Rmd file, no later than 5 pm Nov 21st
 
 ```
 
@@ -372,7 +379,7 @@ output:
 ```{block,  type='rmdoptional'}
 **Chapter 5 Lab**
 
-* Submit your **Chapter 5 Lab** html file and the Rmd file, no later than 5 pm April 18th (Today).
+* Submit your **Chapter 5 Lab** html file and the Rmd file, no later than 5 pm Today.
 
 ```
 
