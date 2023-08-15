@@ -54,7 +54,7 @@ output:
     + Read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
     + Watch [Statistical Learning and Regression](https://www.youtube.com/watch?v=p9n2w236B48&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=3) (11:41)
 
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2!.html) --- Take notes in Rmarkdown
 
 
 ***
@@ -77,7 +77,7 @@ output:
 * Before class:
     + Watch [Curse of Dimensionality and Parametric Models](https://www.youtube.com/watch?v=HndOzII4jzs&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=4) (11:40)
     
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter!2.html) --- Take notes in Rmarkdown
 
 * In class **quiz 01**
 
@@ -92,7 +92,7 @@ output:
 * Before class:
     + Watch [Assessing Model Accuracy and Bias-Variance Trade-off](https://www.youtube.com/watch?v=VaN1RUDuioQ&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=5) (10:04)
 
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter!2.html) --- Take notes in Rmarkdown
 
 ```{block,  type='rmdoptional'}
 **Lab 02**
@@ -111,7 +111,7 @@ output:
 
 
 
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter!2.html) --- Take notes in Rmarkdown
 
 * Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Thursday - Sep 14th)
 
@@ -121,7 +121,7 @@ output:
 
 **Sep 14:**
 
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter!2.html) --- Take notes in Rmarkdown
 * [Bias-Variance Trade-Off](../LectureNotesSp2021/BiasVariance.html)
 
 ```{block,  type='rmdoptional'}
@@ -136,7 +136,7 @@ output:
 
 **Sep 19:**
 
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 * Before class:
     + Refer to [_bookdown: Authoring Books and Technical Documents with R Markdown_](https://bookdown.org/yihui/bookdown/) as needed
@@ -152,7 +152,7 @@ output:
     + Watch [Simple Linear Regression and Confidence Intervals](https://www.youtube.com/watch?v=7TgVO_K75EY&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=8) (13:01)
 
 
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 ***
 
@@ -164,7 +164,7 @@ output:
     + Watch [Multiple Linear Regression and Interpreting Regression Coefficients ](https://www.youtube.com/watch?v=yzQHONabWhs&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=10) (15:38)
 
 
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 
 * In class **quiz 04**
@@ -173,14 +173,14 @@ output:
 
 **Sep 28:**
 
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 
 ***
 
 **Oct 3:**
 
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 * In class **quiz 05**
 
@@ -215,14 +215,14 @@ output:
 * Before class:
     + Watch [Lab: Linear Regression](https://www.youtube.com/watch?v=W0WILgmAGao&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=13) (22:10)
     
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 
 ***
 
 **Oct 10:**
 
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 
 ```{block,  type='rmdoptional'}
@@ -244,7 +244,7 @@ output:
   + Read pages 82-120 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
     + Watch [Model Selection and Qualitative Predictors](https://www.youtube.com/watch?v=3T6RXmIHbJ4) (14:51)
     
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 
 ***
@@ -261,7 +261,7 @@ output:
 
     + Watch [Interactions and Nonlinearity](https://www.youtube.com/watch?v=IFzVxLv0TKQ) (14:16)
     
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
     
 * In class **quiz 06**
 
@@ -271,7 +271,7 @@ output:
 
 **Oct 24:**
 
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 
 
@@ -286,7 +286,7 @@ output:
 
 **Oct 26:**
 
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 * Exam 1 is Thursday next week!
 
@@ -297,7 +297,7 @@ output:
 
 **Oct 31:**
 
-* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
+* [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 ```{block, startProject_1, type='rmdoptional'}
 
@@ -322,7 +322,7 @@ output:
 
 **Nov 7:**
 
-* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
+* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter!5.html) --- Take notes in Rmarkdown
 
 
 ***
@@ -331,7 +331,7 @@ output:
 
 * [Distribution of the Exam 1 Grades](GradesDensity.html)
 
-* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
+* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter!5.html) --- Take notes in Rmarkdown
 
 * In class **quiz 08**
 
@@ -349,7 +349,7 @@ output:
 
 **Nov 14:**
 
-* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
+* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter!5.html) --- Take notes in Rmarkdown
 
 ```{block,  type='rmdoptional'}
 **Chapter 5 Lab**
@@ -366,7 +366,7 @@ output:
 
 **Nov 16:**
 
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter!6.html) --- Take notes in Rmarkdown
 
 * In class **quiz 09**
 
@@ -374,7 +374,7 @@ output:
 
 **Nov 21:**
 
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter!6.html) --- Take notes in Rmarkdown
 
 ```{block,  type='rmdoptional'}
 **Chapter 5 Lab**
@@ -394,7 +394,7 @@ output:
 
 **Nov 28:**
 
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter!6.html) --- Take notes in Rmarkdown
 
 * In class **quiz 10**
 
@@ -409,7 +409,7 @@ output:
 
 **Nov 30:**
 
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter!6.html) --- Take notes in Rmarkdown
 
 * **Project 2:** [Start Here](../Rmarkdown/Project2_F2022.html)
 
