@@ -12,7 +12,7 @@ output:
 
 ***
 
-**Jan 17:**
+**Aug 22:**
 
 * Go over syllabus.
 * Become familiar with the Appstate [RStudio server](https://mathr.math.appstate.edu/). You will use your Appstate user name and password to log in to the server.  You must be registered in the class to access the server.
@@ -36,7 +36,7 @@ output:
 -->
 
 
-**Jan 19:**
+**Aug 24:**
 
 * Before class:
     + Read chapter 1 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -48,7 +48,7 @@ output:
 
 ***
 
-**Jan 24:**
+**Aug 31:**
 
 * Before class:
     + Read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -70,7 +70,7 @@ output:
 
 
 
-**Jan 26:**
+**Sep 5:**
 
 <!--* Before class:
     + [Watch Managing Change with RStudio]( https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-managing-change-part-1/) (37 minutes)-->
@@ -87,7 +87,7 @@ output:
 
 
 
-**Jan 31:**
+**Sep 7:**
 
 * Before class:
     + Watch [Assessing Model Accuracy and Bias-Variance Trade-off](https://www.youtube.com/watch?v=VaN1RUDuioQ&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=5) (10:04)
@@ -107,7 +107,7 @@ output:
 
 ***
 
-**Feb 2:**
+**Sep 12:**
 
 
 
@@ -119,7 +119,7 @@ output:
 
 ***
 
-**Feb 7:**
+**Sep 14:**
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 * [Bias-Variance Trade-Off](../LectureNotesSp2021/BiasVariance.html)
@@ -128,7 +128,7 @@ output:
 
 ***
 
-**Feb 9:**
+**Sep 19:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -147,7 +147,7 @@ output:
 
 ***
 
-**Feb 14:**
+**Sep 21:**
 
 * Before class:
     + Read pages 59-82 of [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -159,7 +159,7 @@ output:
 ***
 
 
-**Feb 16:**
+**Sep 26:**
 
 * Before class:
     + Watch [Hypothesis Testing ](https://www.youtube.com/watch?v=z10DqaVJh3c&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=9) (8:24)
@@ -173,14 +173,14 @@ output:
 
 ***
 
-**Feb 21:**
+**Sep 28:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
 
 ***
 
-**Feb 23:**
+**Oct 3:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -212,7 +212,7 @@ output:
 
 ***
 
-**Feb 28:**
+**Oct 5:**
 
 * Before class:
     + Watch [Lab: Linear Regression](https://www.youtube.com/watch?v=W0WILgmAGao&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=13) (22:10)
@@ -222,7 +222,7 @@ output:
 
 ***
 
-**March 2:**
+**Oct 10:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -239,7 +239,7 @@ output:
 ***
 
 
-**March 7:**
+**Oct 12:**
 
 * Before class:
 
@@ -251,7 +251,13 @@ output:
 
 ***
 
-**March 9:**
+**Oct 17:**
+
+* Fall Break- No classes
+
+***
+
+**Oct 19:**
 
 * Before class:
 
@@ -264,13 +270,8 @@ output:
 
 ***
 
-**March 14-16:**
 
-* Spring Break- No classes
-
-***
-
-**March 21:**
+**Oct 24:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -285,7 +286,7 @@ output:
 
 ***
 
-**March 23:**
+**Oct 26:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -296,7 +297,7 @@ output:
 ***
 
 
-**March 28:**
+**Oct 31:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter3.html) --- Take notes in Rmarkdown
 
@@ -312,7 +313,7 @@ output:
 
 ***
 
-**March 30:**
+**Nov 2:**
 
 * In class Exam 1
 * [Exam Part I]()
@@ -320,14 +321,14 @@ output:
 
 ***
 
-**April 4:**
+**Nov 7:**
 
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
 
 ***
 
-**April 6:**
+**Nov 9:**
 
 * [Distribution of the Exam 1 Grades](GradesDensity.html)
 
@@ -337,7 +338,7 @@ output:
 
 ***
 
-**April 11:**
+**Nov 14:**
 
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
@@ -356,7 +357,7 @@ output:
 ***
 
 
-**April 13:**
+**Nov 16:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
@@ -364,7 +365,7 @@ output:
 
 ***
 
-**April 18:**
+**Nov 21:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
@@ -378,7 +379,13 @@ output:
 
 ***
 
-**April 20:**
+**Nov 23:**
+
+* State Hiliday- No classes
+
+***
+
+**Nov 28:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
@@ -393,7 +400,7 @@ output:
 
 ***
 
-**April 25:**
+**Nov 30:**
 
 * [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
@@ -412,7 +419,7 @@ output:
 
 ***
 
-**April 27:**
+**Dec 5:**
 
   * Exam 2
 
@@ -420,12 +427,7 @@ output:
 ***
 
 
-**May 2:**
 
-  * Project discussion
-
-
-***
 
 <!--
 **Mar 19:**

@@ -7,7 +7,7 @@ title: "Welcome to Statistical Data Analysis II - FALL2023"
 
 * The course [`Syllabus`](./Syllabus/STT3851Fall2023Syllabus.html)
 
-* [`Course pacing and Assignments`](./Assignments/AssignmentsSTT3851Spring2023.html) 
+* [`Course pacing and Assignments`](./Assignments/AssignmentsSTT3851Fall2023.html) 
 
 * [`Homework Page`](./Homework/HomewrokPage.html)
 
