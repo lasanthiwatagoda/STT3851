@@ -5,13 +5,13 @@ title: "Welcome to Statistical Data Analysis II - FALL2023"
 
 ***
 
-* The course [`Syllabus`](./Syllabus/STT3851Spring2023Syllabus.html)
+* The course [`Syllabus`](./Syllabus/STT3851Fall2023Syllabus.html)
 
 * [`Course pacing and Assignments`](./Assignments/AssignmentsSTT3851Spring2023.html) 
 
 * [`Homework Page`](./Homework/HomewrokPage.html)
 
-* [`Class RStudio Server`](https://mathr.math.appstate.edu) 
+* [`Class RStudio Server`](https://mathr.appstate.edu) 
 
 * Click [`here`](https://forms.gle/u2f5gqa7wTHLjieYA) to record your attendance
 
