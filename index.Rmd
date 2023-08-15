@@ -29,11 +29,13 @@ title: "Welcome to Statistical Data Analysis II - FALL2023"
 
 ## Resources you may find helpful
 
+* [Web site for _An Introduction to Statistical Learning_ (free pdf of book)](https://hastie.su.domains/ISLR2/ISLRv2_website.pdf)
+
 * [Web site for _The Elements of Statistical Learning_ (free pdf of book)](http://statweb.stanford.edu/~tibs/ElemStatLearn/)
 
-* [Web site for _An Introduction to Statistical Learning_ (free pdf of book)](http://www-bcf.usc.edu/~gareth/ISL/)
 
 
+<!--
 ### Chapter 1: Introduction ([slides](https://lagunita.stanford.edu/c4x/HumanitiesScience/StatLearning/asset/introduction.pdf))
 
 * [Opening Remarks and Examples](https://www.youtube.com/watch?v=2wLfFB_6SKI) (18:18)
@@ -142,5 +144,6 @@ title: "Welcome to Statistical Data Analysis II - FALL2023"
 * [Interview with Bradley Efron](https://www.youtube.com/watch?v=6l9V1sINzhE) (12:08)
 * [Interview with Jerome Friedman](https://www.youtube.com/watch?v=79tR7BvYE6w) (10:29)
 * [Graduate students](https://www.youtube.com/watch?v=MEMGOlJxxz0) (7:44)
+-->
 
 * * *
