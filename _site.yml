@@ -4,15 +4,15 @@ navbar:
   title: "STT 3851"
   left:
     - text: "Resources"
-      href: https://hasthika.github.io/resources.html
+      href: https://lasanthiwatagoda.github.io/resources.html
     - text: "For Students"
-      href: https://hasthika.github.io/for-students.html
+      href: https://lasanthiwatagoda.github.io/for-students.html
 
   right:
-    - text: "Hasthika Rupasinghe"
-      href: https://hasthika.github.io 
+    - text: "Lasanthi Watagoda"
+      href: https://lasanthiwatagoda.github.io 
     - icon: fa-github fa-lg
-      href: https://github.com/Hasthika/STT3851/         
+      href: https://github.com/lasanthiwatagoda/STT3851/         
 output:
   html_document:
     theme: yeti
