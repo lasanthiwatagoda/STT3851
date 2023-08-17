@@ -13,7 +13,7 @@ title: "Welcome to Statistical Data Analysis II - FALL2023"
 
 * [`Class RStudio Server`](https://mathr.appstate.edu) 
 
-* Click [`here`](https://forms.gle/u2f5gqa7wTHLjieYA) to record your attendance
+Click [`here`](https://forms.gle/8nnWUp1PznKmdS2P7) to record your attendance.
 
  <!--* [Flow Control](./Rmarkdown/FlowControl.html)-->
 
