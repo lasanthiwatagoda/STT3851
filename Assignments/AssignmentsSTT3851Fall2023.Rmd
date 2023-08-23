@@ -48,7 +48,7 @@ output:
 
 ***
 
-**Aug 31:**
+**Aug 29:**
 
 * Before class:
     + Read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -70,7 +70,7 @@ output:
 
 
 
-**Sep 5:**
+**Aug 31:**
 
 <!--* Before class:
     + [Watch Managing Change with RStudio]( https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-managing-change-part-1/) (37 minutes)-->
@@ -87,7 +87,7 @@ output:
 
 
 
-**Sep 7:**
+**Sep 5:**
 
 * Before class:
     + Watch [Assessing Model Accuracy and Bias-Variance Trade-off](https://www.youtube.com/watch?v=VaN1RUDuioQ&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=5) (10:04)
@@ -107,7 +107,7 @@ output:
 
 ***
 
-**Sep 12:**
+**Sep 07:**
 
 
 
@@ -119,7 +119,7 @@ output:
 
 ***
 
-**Sep 14:**
+**Sep 12:**
 
 * [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter!2.html) --- Take notes in Rmarkdown
 * [Bias-Variance Trade-Off](../LectureNotesSp2021/BiasVariance.html)
@@ -134,7 +134,7 @@ output:
 
 ***
 
-**Sep 19:**
+**Sep 14:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
@@ -145,7 +145,7 @@ output:
 
 ***
 
-**Sep 21:**
+**Sep 19:**
 
 * Before class:
     + Read pages 59-82 of [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
@@ -157,7 +157,7 @@ output:
 ***
 
 
-**Sep 26:**
+**Sep 21:**
 
 * Before class:
     + Watch [Hypothesis Testing ](https://www.youtube.com/watch?v=z10DqaVJh3c&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=9) (8:24)
@@ -171,14 +171,14 @@ output:
 
 ***
 
-**Sep 28:**
+**Sep 26:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
 
 ***
 
-**Oct 3:**
+**Sep 28:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
@@ -210,7 +210,7 @@ output:
 
 ***
 
-**Oct 5:**
+**Oct 3:**
 
 * Before class:
     + Watch [Lab: Linear Regression](https://www.youtube.com/watch?v=W0WILgmAGao&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=13) (22:10)
@@ -220,7 +220,7 @@ output:
 
 ***
 
-**Oct 10:**
+**Oct 05:**
 
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
 
@@ -237,7 +237,7 @@ output:
 ***
 
 
-**Oct 12:**
+**Oct 10:**
 
 * Before class:
 
@@ -245,6 +245,11 @@ output:
     + Watch [Model Selection and Qualitative Predictors](https://www.youtube.com/watch?v=3T6RXmIHbJ4) (14:51)
     
 * [Chapter 3 - Linear Regression](../LectureNotesSp2021/Chapter!3.html) --- Take notes in Rmarkdown
+
+***
+
+
+**Oct 12:**
 
 
 ***
