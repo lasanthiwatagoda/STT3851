@@ -201,6 +201,14 @@ of gene expression measurements per cell line, making it hard to visualize
 the data.
 
 
+# Summary of what we learned in this chapter:
+
+
+![Summary!](MachineLearning.png)
+
+
+
+
 # What do we cover in this class?
 
   * In Chapter 2 we introduce the basic terminology and concepts behind statistical
