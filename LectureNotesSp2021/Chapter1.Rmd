@@ -204,7 +204,7 @@ the data.
 # Summary of what we learned in this chapter:
 
 
-![Summary!](MachineLearning.png)
+![](MachineLearning.png)
 
 
 
