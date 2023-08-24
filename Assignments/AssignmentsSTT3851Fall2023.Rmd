@@ -54,7 +54,7 @@ output:
     + Read chapter 2 [ISLR](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf)
     + Watch [Statistical Learning and Regression](https://www.youtube.com/watch?v=p9n2w236B48&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=3) (11:41)
 
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2!.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
 
 ***
@@ -77,7 +77,7 @@ output:
 * Before class:
     + Watch [Curse of Dimensionality and Parametric Models](https://www.youtube.com/watch?v=HndOzII4jzs&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=4) (11:40)
     
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter!2.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
 * In class **quiz 01**
 
@@ -92,7 +92,7 @@ output:
 * Before class:
     + Watch [Assessing Model Accuracy and Bias-Variance Trade-off](https://www.youtube.com/watch?v=VaN1RUDuioQ&list=PLOg0ngHtcqbPTlZzRHA2ocQZqB1D_qZ5V&index=5) (10:04)
 
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter!2.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
 ```{block,  type='rmdoptional'}
 **Lab 02**
@@ -111,7 +111,7 @@ output:
 
 
 
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter!2.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 
 * Continue to work on [Chapter 02 Lab](../Labs/LabChap2.html) (Due Thursday - Sep 14th)
 
@@ -121,7 +121,7 @@ output:
 
 **Sep 12:**
 
-* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter!2.html) --- Take notes in Rmarkdown
+* [Chapter 2 - Statistical Learning](../LectureNotesSp2021/Chapter2.html) --- Take notes in Rmarkdown
 * [Bias-Variance Trade-Off](../LectureNotesSp2021/BiasVariance.html)
 
 ```{block,  type='rmdoptional'}
