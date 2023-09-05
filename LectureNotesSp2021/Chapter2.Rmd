@@ -29,7 +29,7 @@ based on various features (_________) of the insured-age, sex, income, credit ra
 
 There is no perfect $f$, so we have to allow for error. Let ____ the error. Then we want a function $f$ for which
 
-$$Y=f(X_1,X_1,\dots,X_p)$$
+$$Y=f(X_1,X_2,\dots,X_p)$$
   
 Where, 
 
@@ -43,7 +43,7 @@ We would like to pick the $f$ that makes the error $\epsilon$ as small as possib
 
   * The output variable $Y$ is called the ________ variable or the ________.
   
-  * Sample size is usually denoted by $n$
+  * Sample size is usually denoted by $\underline{$n$}$
   
   * The number of predictors is denoted by ____
   
