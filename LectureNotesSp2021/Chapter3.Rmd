@@ -248,13 +248,14 @@ range(AdvertisingData$TV)
 
 ### Confidence intervals for model coefficients $\beta_1$ and $\beta_0$
 
-A (example: 95%) confidence interval is defined as a range of values such that with (example: 95%) probability, the range will contain the true unknown value of the parameter.
+A $100(1-\alpha)\%$ (example: 95%) confidence interval is defined as a range of values such that with  $100(1-\alpha)\%$ (example: 95%) probability, the range will contain the true unknown value of the parameter.
 
-For linear regression, the 95% confidence interval for $\beta_1$ takes the form
+For linear regression, the $100(1-\alpha)\%$ confidence interval for $\beta_1$ takes the form
 
 &nbsp;
 
 That is, there is approximately a 95% chance that the interval
+
 
 &nbsp;
 
@@ -267,8 +268,11 @@ Here are some common values for $z^∗$.
 | $z^∗$ | 1.645 | 1.96 | 2.576 |
 
 
-Similarly, a confidence interval for $\beta_0$ approximately takes the form
+Similarly, the $100(1-\alpha)\%$ confidence interval for $\beta_0$ takes the form
 
+&nbsp;
+
+That is, there is approximately a 95% chance that the interval
 
 &nbsp;
 
