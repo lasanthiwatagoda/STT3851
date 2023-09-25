@@ -31,12 +31,14 @@ output:
 4) [Homework 4](..\Homework\HW4chapter2F2022.pdf) --- Due Tuesday, Sep 19. 
 
 ***
-<!--
 
-5) [Homework 5](..\Homework\HW5chapter3F2022.pdf) --- Due Thursday,  February 23. 
+
+5) [Homework 5](..\Homework\HW5chapter3F2022.pdf) --- Due Thursday, September 28
+
 
 ***
 
+<!--
 
 6) [Homework 6](..\Homework\HW6chapter3F2022.pdf) --- Due Thursday, March 2. 
 
