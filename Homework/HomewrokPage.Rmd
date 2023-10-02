@@ -41,16 +41,16 @@ output:
 
 ***
 
+
+7) [Homework 7](..\Homework\HW7chapter3F2022.pdf) --- Due Thursday, October 12. 
+
+***
+
+
+8) [Homework 8](..\Homework\HW8chapter3F2022.pdf) --- Due Thursday, October 19. 
+
+***
 <!--
-7) [Homework 7](..\Homework\HW7chapter3F2022.pdf) --- Due Thursday, March 9. 
-
-***
-
-
-8) [Homework 8](..\Homework\HW8chapter3F2022.pdf) --- Due Thursday, March 23. 
-
-***
-
 
 9) [Homework 9](..\Homework\HW9chapter5F2022.pdf) --- Due Thursday, April ~~14~~ 20. 
 
