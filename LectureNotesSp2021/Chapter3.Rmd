@@ -963,6 +963,7 @@ always equal to $(p+1)/n$.
 library(ISLR)
 library(ggplot2)
 data(Credit)
+head(Credit)
 
 library(plotly)
 p3 <- ggplot(Credit, aes(x = Limit, y = Rating)) + geom_point(color = "gold") + theme_bw()
