@@ -149,11 +149,12 @@ Find the LS estimates for model coefficients ($\hat{\beta_0}$, $\hat{\beta_1}$) 
   
   &nbsp;
   
-```{r include=FALSE}
+```{r }
 str(AdvertisingData)
 head(AdvertisingData)
 
 AdvertisingModel <- lm(Sales ~ TV, data = AdvertisingData)
+AdvertisingModel 
 summary(AdvertisingModel)
 ```
   
@@ -484,10 +485,32 @@ As was the case in the simple linear regression setting, the regression coeffici
 
   1. find the MLR model using all the available predictors to predict the response `Sales` in R.
   
-  2. Write the MLR equation
+ 
+  
+
+```{r }
+#AdvertisingData
+Advertising_MLR_Model <- lm(Sales ~ TV +Radio +Newspaper, data =AdvertisingData)
+Advertising_MLR_Model
+summary(Advertising_MLR_Model)
+```
+
+   2. Write the MLR equation
+   
+   $\hat{sales} =2.93889+.045765TV+.188530Radio-0.00103Newspaper$
   
   3. Interpret each coefficient
-  
+```{r}
+range_TV <- range(AdvertisingData$TV)
+range_TV
+range_Radio <- range(AdvertisingData$Radio)
+range_Radio
+
+range_newspaper <- range(AdvertisingData$Newspaper)
+range_newspaper
+
+```
+Here, our estimate does not have a real meaning.  
   
 
 ### Correlation matrix
@@ -950,7 +973,7 @@ ggplotly(p3)
 
 2. Use the leverage equation and the following information to calculate leverages for each point.
 
-    $n =$ `r nrow(Credit)`, $\bar{x} =$ `r mean(Credit$Limit)` and ${\sum_{j=1}^n(x_j - \bar{x})^2}$ = `r var(Credit$Limit)*(nrow(Credit)-1)`
+    $n =$ `r nrow(Credit)`, $\bar{x} =$ `r mean(Credit$Limit)` and ${\sum_{j=1}^n(x_j - \bar{x})^2}$ = 2125784986
     
 ```{r include=FALSE}
 var(Credit$Limit)*(nrow(Credit)-1)
@@ -1004,7 +1027,7 @@ The predictors age and limit are not collinear but the rating and limit show hig
 Let's consider two models. Model 1: a regression of balance on age and limit,
 and Model 2: a regression of balance on rating and limit. 
 
-```{r}
+```{r include=FALSE}
 model1 <- lm(Balance ~ Age + Limit, data = Credit)
 summary(model1)
 
@@ -1018,7 +1041,7 @@ The first is a regression of balance on age and limit, and the second is a regre
 A simple way to detect collinearity is to look at the correlation matrix
 of the predictors.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(dplyr)
 Credit %>%
   select(Limit, Age, Rating) %>% 
