@@ -50,12 +50,12 @@ output:
 8) [Homework 8](..\Homework\HW8chapter3F2022.pdf) --- Due Thursday, October 19. 
 
 ***
-<!--
 
-9) [Homework 9](..\Homework\HW9chapter5F2022.pdf) --- Due Thursday, April ~~14~~ 20. 
+
+9) [Homework 9](..\Homework\HW9chapter5F2022.pdf) --- Due Thursday, October 31. 
 
 ***
-
+<!--
 
 10) [Homework 10](..\Homework\HW10chapter6F2022.pdf) --- Due Thursday, April 27. 
 
