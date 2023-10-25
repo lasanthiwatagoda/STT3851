@@ -342,36 +342,6 @@ the LOOCV Error.</p>
 using the <code>glm()</code> function rather than the <code>lm()</code>
 function because the former can be used together with
 <code>cv.glm()</code> to get the LOOCV Error.</em></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>glm_fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(mpg<span class="sc">~</span>horsepower ,<span class="at">data=</span>Auto)</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="fu">summary</span>(glm_fit)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = mpg ~ horsepower, data = Auto)
-## 
-## Deviance Residuals: 
-##      Min        1Q    Median        3Q       Max  
-## -13.5710   -3.2592   -0.3435    2.7630   16.9240  
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***
-## horsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for gaussian family taken to be 24.06645)
-## 
-##     Null deviance: 23819.0  on 391  degrees of freedom
-## Residual deviance:  9385.9  on 390  degrees of freedom
-## AIC: 2363.3
-## 
-## Number of Fisher Scoring iterations: 2</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>cv_error <span class="ot">&lt;-</span> <span class="fu">cv.glm</span>(Auto, glm_fit)</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="co">#cv_error</span></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>loocv_error <span class="ot">&lt;-</span> cv_error<span class="sc">$</span>delta[<span class="dv">1</span>]</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>loocv_error</span></code></pre></div>
-<pre><code>## [1] 24.23151</code></pre>
 <p><strong>Example 4:</strong></p>
 <p>Fit several (10) regression models with degrees 1 through 10 to
 predict the <code>mpg</code> using <code>horsepower</code> using the

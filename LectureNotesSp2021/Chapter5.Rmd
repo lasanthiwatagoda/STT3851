@@ -241,7 +241,7 @@ For this example we use the `Auto` data set where we have 392 observations. Fit 
 ***Note:** Here, we will perform linear
 regression using the `glm()` function rather than the `lm()` function because the former can be used together with `cv.glm()` to get the LOOCV Error.*
 
-```{r}
+```{r include=FALSE}
 library(boot)
 glm_fit <- glm(mpg~horsepower ,data=Auto)
 summary(glm_fit)
