@@ -1,7 +1,7 @@
 ---
 title: Chapter 6 - Linear Model Selection and Regularization
-author: Dr. Hasthika Rupasinghe
-date: April 13, 2023
+author: Dr. Lasanthi Watagoda
+date: November 07, 2023
 output:
   prettydoc::html_pretty:
     toc: true
@@ -76,20 +76,23 @@ In this chapter, we see some approaches for automatically performing __________ 
 
 ## Best subset selection
 
-  Step 0: Fit the model with 0 predictors (denoted as $\mathcal{M_0}$) - One model
+Step 0: Fit the model with 0 predictors (denoted as $\mathcal{M_0}$) - One model
   
-  Step 1: Fit all models with 1 predictor - ____ models.
-    * Find the best model using smallest RSS, or equivalently largest $R^2$. Denote this model as $\mathcal{M_1}$
+Step 1: Fit all models with 1 predictor - ____ models.
+  
+  * Find the best model using smallest RSS, or equivalently largest $R^2$. Denote this model as $\mathcal{M_1}$
     
-  Step 2: Fit all models with 2 predictors - ____ models.
-    * Find the best model using smallest RSS, or equivalently largest $R^2$. Denote this model as $\mathcal{M_2}$
+Step 2: Fit all models with 2 predictors - ____ models.
+  
+  * Find the best model using smallest RSS, or equivalently largest $R^2$. Denote this model as $\mathcal{M_2}$
     
     $\vdots$
     
-  Step p: Fit all models with p predictors - ____ models.
-    * Find the best model using smallest RSS, or equivalently largest $R^2$. Denote this model as $\mathcal{M_p}$
+Step p: Fit all models with p predictors - ____ models.
   
-  Final Step: Select a single best model from among $\mathcal{M_0}, \mathcal{M_1}, \dots, \mathcal{M_p}$ using cross validated prediction error, $C_p$, (AIC), BIC, or adjusted $R^2$.
+  * Find the best model using smallest RSS, or equivalently largest $R^2$. Denote this model as $\mathcal{M_p}$
+  
+Final Step: Select a single best model from among $\mathcal{M_0}, \mathcal{M_1}, \dots, \mathcal{M_p}$ using cross validated prediction error, $C_p$, (AIC), BIC, or adjusted $R^2$.
   
   **Note 1:**
   
@@ -212,7 +215,8 @@ library(ggplot2)
 
 data <- data.frame(CP = reg_summary$cp, numVar = seq(1,19))
 
-ggplot(data, aes(y = CP, x = numVar)) + geom_point(color = "Blue") + geom_line() + theme_bw()
+ggplot(data, aes(y = CP, x = numVar)) + geom_point(color = "Blue") + geom_line() + theme_bw()+
+  scale_x_continuous(breaks = c(1:19), name = "Number of variables")
 
 ```
 
@@ -242,7 +246,7 @@ In a similar fashion we can use the $BIC$ criterion, and indicate the models wit
     
   Step 2: Find the best model only adding one predictor to the previous model. Use RSS, or  $R^2$ to pick the best. Denote this model as $\mathcal{M_2}$
     
-    $\vdots$
+$\vdots$
     
   Step p: Find the best model only adding one predictor to the previous model. Use RSS, or  $R^2$ to pick the best. Denote this model as $\mathcal{M_p}$
   

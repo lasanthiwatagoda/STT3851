@@ -327,7 +327,7 @@ output:
 
 **Nov 7:**
 
-* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter!5.html) --- Take notes in Rmarkdown
+* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
 
 ***
@@ -336,7 +336,7 @@ output:
 
 * [Distribution of the Exam 1 Grades](GradesDensity.html)
 
-* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter!5.html) --- Take notes in Rmarkdown
+* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
 * In class **quiz 08**
 
@@ -354,7 +354,7 @@ output:
 
 **Nov 14:**
 
-* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter!5.html) --- Take notes in Rmarkdown
+* [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
 ```{block,  type='rmdoptional'}
 **Chapter 5 Lab**
@@ -371,7 +371,7 @@ output:
 
 **Nov 16:**
 
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter!6.html) --- Take notes in Rmarkdown
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
 * In class **quiz 09**
 
@@ -379,7 +379,7 @@ output:
 
 **Nov 21:**
 
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter!6.html) --- Take notes in Rmarkdown
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
 ```{block,  type='rmdoptional'}
 **Chapter 5 Lab**
@@ -399,7 +399,7 @@ output:
 
 **Nov 28:**
 
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter!6.html) --- Take notes in Rmarkdown
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
 * In class **quiz 10**
 
@@ -414,7 +414,7 @@ output:
 
 **Nov 30:**
 
-* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter!6.html) --- Take notes in Rmarkdown
+* [Chapter 6 - Linear Model Selection and Regularization](../LectureNotesSp2021/Chapter6.html) --- Take notes in Rmarkdown
 
 * **Project 2:** [Start Here](../Rmarkdown/Project2_F2022.html)
 
