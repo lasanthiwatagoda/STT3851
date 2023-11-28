@@ -1,7 +1,7 @@
 ---
 title: "Project 2: King County Housing Data"
-author: "Dr. Hasthika Rupasinghe"
-date: "04/25/2023"
+author: "Dr. Lasanthi Watagoda"
+date: "11/28/2023"
 output: 
   bookdown::html_document2: 
     highlight: textmate
@@ -302,7 +302,7 @@ Yourlastname_Yourfirstname <- predict(mod.all, newdata = housedataT)
 
 
 ```{r, eval = FALSE}
-write.csv(Yourlastname_Yourfirstname, file = "Yourlastname_Yourfirstname.csv") # this part will due Nov 30th
+write.csv(Yourlastname_Yourfirstname, file = "Yourlastname_Yourfirstname.csv") # this part will due Dec 1st
 ```
 
 
