@@ -52,35 +52,23 @@ Salazar_Yobani <- read.csv("Salazar_Yobani.csv")
 SalazarYobani <- sqrt(mean((Salazar_Yobani$x - APRICE$price)^2))
 names(SalazarYobani ) <- "SalazarYobani "
 
-#
-#Lopez_Monica <- read.csv("Lopez_Monica.csv")
-#LopezMonica <- sqrt(mean((Lopez_Monica$s1 - APRICE$price)^2))
-#names(LopezMonica) <- "LopezMonica"
+#Lambdin_Emily <- read.csv("Lambdin_Emily.csv")
+#LambdinEmily <- sqrt(mean((Lambdin_Emily$x - APRICE$price)^2))
+#names(LambdinEmily) <- "LambdinEmily"
 
-#
-#Faruq_Leo <- read.csv("Faruq_Leo.csv")
-#FaruqLeo <- sqrt(mean((Faruq_Leo$s1 - APRICE$price)^2))
-#names(FaruqLeo) <- "FaruqLeo"
 
-#
-#Maling_Isaac <- read.csv("Maling_Isaac.csv")
-#MalingIsaac <- sqrt(mean((Maling_Isaac$s1 - APRICE$price)^2))
-#names(MalingIsaac) <- "MalingIsaac"
+Harlow_Jade <- read.csv("Harlow_Jade.csv")
+HarlowJade <- sqrt(mean((Harlow_Jade$x - APRICE$price)^2))
+names(HarlowJade) <- "HarlowJade"
 
-#
-#Moore_Luke <- read.csv("Moore_Luke.csv")
-#MooreLuke <- sqrt(mean((Moore_Luke$s1 - APRICE$price)^2))
-#names(MooreLuke) <- "MooreLuke"
 
-#
-#Harrison_Will <- read.csv("Harrison_Will.csv")
-#HarrisonWill <- sqrt(mean((Harrison_Will$s1 - APRICE$price)^2))
-#names(HarrisonWill) <- "HarrisonWill"
+
+
 ```
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis, FarraSam, HudsonThomas, GrantAlexia,  UnderwoodJoshua, SalazarYobani))
+Leader <- data.frame(SMSPE = c(BeatThis, FarraSam, HudsonThomas, GrantAlexia,  UnderwoodJoshua, SalazarYobani, HarlowJade))
 
 ```
 
