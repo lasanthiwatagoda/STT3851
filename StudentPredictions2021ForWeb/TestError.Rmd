@@ -38,9 +38,9 @@ HudsonThomas <- sqrt(mean((Hudson_Thomas$x - APRICE$price)^2))
 names(HudsonThomas) <- "HudsonThomas"
 
 
-Grant_Alexia <- read.csv("Grant_Alexia.csv")
-GrantAlexia <- sqrt(mean((Grant_Alexia$x - APRICE$price)^2))
-names(GrantAlexia) <- "GrantAlexia"
+Grant_Alexia1 <- read.csv("Grant_Alexia1.csv")
+GrantAlexia1 <- sqrt(mean((Grant_Alexia1$x - APRICE$price)^2))
+names(GrantAlexia1) <- "GrantAlexia1"
 
 
 Underwood_Joshua <- read.csv("Underwood_Joshua.csv")
@@ -52,14 +52,14 @@ Salazar_Yobani <- read.csv("Salazar_Yobani.csv")
 SalazarYobani <- sqrt(mean((Salazar_Yobani$x - APRICE$price)^2))
 names(SalazarYobani ) <- "SalazarYobani "
 
-#Lambdin_Emily <- read.csv("Lambdin_Emily.csv")
-#LambdinEmily <- sqrt(mean((Lambdin_Emily$x - APRICE$price)^2))
-#names(LambdinEmily) <- "LambdinEmily"
+Lambdin_Emily <- read.csv("Lambdin_Emily.csv")
+LambdinEmily <- sqrt(mean((Lambdin_Emily$x - APRICE$price)^2))
+names(LambdinEmily) <- "LambdinEmily"
 
 
-Harlow_Jade <- read.csv("Harlow_Jade.csv")
-HarlowJade <- sqrt(mean((Harlow_Jade$x - APRICE$price)^2))
-names(HarlowJade) <- "HarlowJade"
+Harlow_Jade3 <- read.csv("Harlow_Jade3.csv")
+HarlowJade3 <- sqrt(mean((Harlow_Jade3$x - APRICE$price)^2))
+names(HarlowJade3) <- "HarlowJade3"
 
 Reid_George <- read.csv("Reid_George.csv")
 ReidGeorge <- sqrt(mean((Reid_George$x - APRICE$price)^2))
@@ -68,11 +68,20 @@ names(ReidGeorge) <- "ReidGeorge"
 Jimenez_Luke <- read.csv("Jimenez_Luke.csv")
 JimenezLuke <- sqrt(mean((Jimenez_Luke$x - APRICE$price)^2))
 names(JimenezLuke) <- "JimenezLuke"
+
+Aidan_Maggor <- read.csv("Aidan_Maggor.csv")
+AidanMaggor <- sqrt(mean((Aidan_Maggor$x - APRICE$price)^2))
+names(AidanMaggor) <- "AidanMaggor"
+
+Carr_David <- read.csv("Carr_David.csv")
+CarrDavid  <- sqrt(mean((Carr_David$x - APRICE$price)^2))
+names(CarrDavid) <- "CarrDavid"
+
 ```
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis, FarraSam, HudsonThomas, GrantAlexia,  UnderwoodJoshua, SalazarYobani, HarlowJade, ReidGeorge,  JimenezLuke))
+Leader <- data.frame(SMSPE = c(BeatThis, FarraSam, HudsonThomas, GrantAlexia1,  UnderwoodJoshua, SalazarYobani, HarlowJade3, ReidGeorge,  JimenezLuke, AidanMaggor, LambdinEmily, CarrDavid))
 
 ```
 
