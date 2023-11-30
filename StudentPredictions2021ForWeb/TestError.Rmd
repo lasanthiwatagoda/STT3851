@@ -65,12 +65,14 @@ Reid_George <- read.csv("Reid_George.csv")
 ReidGeorge <- sqrt(mean((Reid_George$x - APRICE$price)^2))
 names(ReidGeorge) <- "ReidGeorge"
 
-
+Jimenez_Luke <- read.csv("Jimenez_Luke.csv")
+JimenezLuke <- sqrt(mean((Jimenez_Luke$x - APRICE$price)^2))
+names(JimenezLuke) <- "JimenezLuke"
 ```
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis, FarraSam, HudsonThomas, GrantAlexia,  UnderwoodJoshua, SalazarYobani, HarlowJade, ReidGeorge))
+Leader <- data.frame(SMSPE = c(BeatThis, FarraSam, HudsonThomas, GrantAlexia,  UnderwoodJoshua, SalazarYobani, HarlowJade, ReidGeorge,  JimenezLuke))
 
 ```
 
