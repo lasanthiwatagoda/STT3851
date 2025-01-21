@@ -1,7 +1,7 @@
 ---
 title: Chapter 2 - Statistical Learning
 author: Dr. Lasanthi Watagoda
-date: August 24, 2023
+date: January 21, 2025
 output:
   prettydoc::html_pretty:
     toc: true
