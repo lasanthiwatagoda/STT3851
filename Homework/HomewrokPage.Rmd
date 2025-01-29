@@ -20,18 +20,18 @@ output:
 
 ***
 
+
+
+3) [Homework 3](..\Homework\HW3chapter2F2022.pdf) --- Due Tuesday, Feb 4. 
+
+
+***
+
+
+4) [Homework 4](..\Homework\HW4chapter2F2022.pdf) --- Due Tuesday, Feb 11. 
+
+***
 <!--
-
-3) [Homework 3](..\Homework\HW3chapter2F2022.pdf) --- Due Tuesday, Sep 12. 
-
-
-***
-
-
-4) [Homework 4](..\Homework\HW4chapter2F2022.pdf) --- Due Tuesday, Sep 19. 
-
-***
-
 
 5) [Homework 5](..\Homework\HW5chapter3F2022.pdf) --- Due Thursday, September 28
 
