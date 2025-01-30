@@ -589,7 +589,9 @@ always be decomposed into the sum of three fundamental quantities:</p>
 <pre><code>*
 *
 *</code></pre>
-<p><span class="math display">\[\text{Var}(\epsilon)\]</span></p>
+<p><span class="math display">\[\text{Test MSE} = E[y_0-\hat{f}(x_0)]^2
+=   \text{Var}(\hat{f}(x_0)) + \text{Bias}[(\hat{f}(x_0))
+]+\text{Var}(\epsilon)\]</span></p>
 <p>Here the notation ___________ defines the expected test MSE.</p>
 <p>This equation tells us that in order to minimize the expected test
 error, we need to select a statistical learning method that

@@ -433,7 +433,8 @@ The U-shape observed in the test MSE curves in the previous Figures turns out to
     *
     *
   
-$$\text{Var}(\epsilon)$$
+$$\text{Test MSE} = E[y_0-\hat{f}(x_0)]^2 =   \text{Var}(\hat{f}(x_0)) + \text{Bias}[(\hat{f}(x_0))
+]+\text{Var}(\epsilon)$$
 
 
 
