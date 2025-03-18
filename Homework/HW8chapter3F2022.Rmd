@@ -1,7 +1,7 @@
 ---
 title: "STT3851 Homework 8"
 author: "Dr. Lasanthi Watagoda"
-date: Due -- October 19
+date: Due -- March 18
 output: 
     pdf_document: default
     html_document:
