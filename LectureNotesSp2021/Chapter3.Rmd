@@ -1,7 +1,7 @@
 ---
 title: Chapter 3 - Linear Regression
 author: Dr. Lasanthi Watagoda
-date: Sep 19, 2023
+date: Feb 06, 2025
 output:
   rmdformats::readthedown:
     toc_depth: 3
@@ -70,9 +70,9 @@ What is the line of best fit? _____________________
 
 ![](regplot1.png)
 
-  * $y =$ 
-  * $\hat{y} =$ 
-  * $e = y - \hat{y} =$ 
+  * $y = $ 
+  * $\hat{y} = $ 
+  * $e = y - \hat{y} = $ 
   
 We get the LS line (estimates for the model coefficients) by minimizing the sum of squares of residuals (RSS)
 
@@ -87,8 +87,8 @@ We get the LS line (estimates for the model coefficients) by minimizing the sum 
   
   OR
   
-  $$RSS = (y_1-(\beta_0+\beta_1x_1))^2+ (y_2-(\beta_0+\beta_1x_2))^2 +\dots + (y_n-(\beta_0+\beta_1x_n))^2 = 
-  \sum_{i=1}^n(y_i-(\beta_0+\beta_1x_i))^2$$
+  $$RSS = (y_1-(\hat{\beta_0}+\hat{\beta_1}x_1))^2+ (y_2-(\hat{\beta_0}+\hat{\beta_1}x_2))^2 +\dots + (y_n-(\hat{\beta_0}+\hat{\beta_1}x_n))^2 = 
+  \sum_{i=1}^n(y_i-(\hat{\beta_0}+\hat{\beta_1}x_i))^2$$
 
 
 Note: How do we minimize RSS? Derivatives are used to minimize RSS (outside the scope of our class). 
@@ -100,7 +100,11 @@ $$\hat\beta_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\
 
 Where $r =$ Correlation coefficient, $s_y =$ the standard deviation of $y$ variable and $s_x =$ the standard deviation of $x$ variable 
 
+
 $$\hat\beta_0 = \bar{y} - \hat\beta_1\bar{x}$$
+<!-- need to know above two formulas for quizzes--> 
+
+Where $\bar{y}$ mean of $y$ variable and $\bar{x}$ mean of $x$ variable
 
 
 The standard errors associated with $\hat{\beta_0}$ and $\hat{\beta_1}$
@@ -143,6 +147,9 @@ r*sdY/sdX
 
 Find the LS estimates for model coefficients ($\hat{\beta_0}$, $\hat{\beta_1}$) when regressing sales onto TV.
 
+<!--$$\hat\beta_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2} = r\times \frac{s_y}{s_x} = 0.7822244 * \dfrac{5.2174566}{85.8542363}= 0.0475$$
+
+$$\hat\beta_0 = \bar{y} - \hat\beta_1\bar{x} = 14.0225 - 0.0475*147.0425 = 7.0325$$ -->
 &nbsp;
 
   b) Use the `lm()` function to find the LS estimates for model coefficients ($\hat{\beta_0}$, $\hat{\beta_1}$) when regressing sales onto TV. Compare your answers with a) 
@@ -154,11 +161,14 @@ str(AdvertisingData)
 head(AdvertisingData)
 
 AdvertisingModel <- lm(Sales ~ TV, data = AdvertisingData)
-AdvertisingModel 
+AdvertisingModel #intercept is \hat{\beta_0} and under the TV is our \hat{\beta_1}
 summary(AdvertisingModel)
 ```
-  
+ 
+
+ 
   c) State your final simple linear regression model
+
   
   &nbsp;
   
@@ -211,16 +221,16 @@ RSE
   
 ```{r include=FALSE}
 
-
+#Method 1
 xbar <- mean(AdvertisingData$TV)
 
-den <- sum((AdvertisingData$TV - xbar)^2)
+den <- sum((AdvertisingData$TV - xbar)^2) #den is for denominator of the formula
 
 SEB_1 <- sqrt(RSE^2/den)
 
 
 
-
+# method 2
 denominator <- var(AdvertisingData$TV)*((length(y)-1))
 SEbeta1 <- sqrt(RSE^2/denominator)
 SEbeta1
