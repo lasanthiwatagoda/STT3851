@@ -1,6 +1,6 @@
 ---
 title: "Exam 1 grades"
-author: "Dr. Hasthika Rupasinghe"
+author: "Dr. Lasanthi Watagoda"
 date: '`r format(Sys.time(), "%b %d, %Y at %X")`'
 output:
   bookdown::html_document2:
@@ -15,12 +15,12 @@ library(ggplot2)
 ```
 
 
-# STT 3851 Exam 1 grades Spring 2023.{-}
+# STT 3851 Exam 1 grades Spring 2025.{-}
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(plotly)
 library(ggplot2)
-Class2 <- c(60,91,80,100,92,86,69,82,92,84,73,80,72,86,63,64)
+Class2 <- c(69,100,80,90,68,87,84,82,92,72,93,88,83)
 
 
 p2 <- ggplot(data = data.frame(Class2), aes(x = Class2)) + 
