@@ -291,7 +291,7 @@ output:
 
 **Project 01**
 
-* [Project 1](../Rmarkdown/DirectionsMHP2022SP.html). 
+* [Project 1](../Rmarkdown/DirectionsMHP2025SP.html). 
 
 * Submit your html and Rmd files no later than 5 pm April 11th.
 ```
@@ -316,7 +316,7 @@ output:
 
 **April 3:**
 
-* [Distribution of the Exam 1 Grades](GradesDensity.html)
+* [Distribution of the Exam 1 Grades](GradesFixThis.html)
 
 * [Chapter 5 - Resampling Methods](../LectureNotesSp2021/Chapter5.html) --- Take notes in Rmarkdown
 
