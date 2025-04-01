@@ -333,7 +333,7 @@ k_fold_cv_error
         
 **Example 6:**
   
-Fit several (10) regression models with degrees 1 through 10 to predict the `mpg` using `horsepower` using the LOOCV approach. Find the 10-fold CV Errors for each 10 models. Which model would you use as your final model and why?
+Fit several (10) regression models with degrees 1 through 10 to predict the `mpg` using `horsepower` using the K-fold cross validation approach. Find the 10-fold CV Errors for each 10 models. Which model would you use as your final model and why?
 
 ```{r include=FALSE}
 set.seed(2023)
@@ -347,6 +347,7 @@ for (i in 1:10){
 cv_err_vec
 which.min(cv_err_vec)
 cv_err_vec[which.min(cv_err_vec)]
+
 ```
 
 ```{r echo=FALSE}
@@ -383,7 +384,9 @@ This approach is illustrated in the following Figure on a simple data set;
 **Note:** Bootstrap sample size is n, which is the size of the original sample as well. This is usually the case.
 
   > The Bootstrap Idea: The original sample approximates the population from which it was drawn. So resamples from this sample approximate what we would get if we took many samples from the population. The bootstrap distribution of a statistic, based on many resamples, approximates the sampling distribution of the statistic, based on many samples.
-  
+
+<!--
+
 **Example 7:**
 
 We will investigate samples taken from the CDC’s database of births. For the North Carolina data: `NCBirths2004`, we are interested in $\mu$, the true birth weight mean for all North Carolina babies born in 2004 (population mean).
@@ -433,8 +436,8 @@ ggplot(data = data.frame(x = boot_Mean_Wt), aes(x = x)) +
   theme_bw() 
 ```
 
-**Note:** We use * to denote the bootstrap estimates. For example, $\bar{X}^{∗}_1$ would be the mean from the first bootstrap sample.
-  
+
+-->
   
   
   
