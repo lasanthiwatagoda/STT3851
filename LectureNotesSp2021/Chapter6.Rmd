@@ -1,7 +1,7 @@
 ---
 title: Chapter 6 - Linear Model Selection and Regularization
 author: Dr. Lasanthi Watagoda
-date: November 07, 2023
+date: April 03, 2025
 output:
   prettydoc::html_pretty:
     toc: true
