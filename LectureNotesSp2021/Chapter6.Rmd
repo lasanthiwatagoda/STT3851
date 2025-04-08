@@ -142,7 +142,7 @@ By default, `regsubsets()` only reports results up to the best eight-variable mo
 in order to return as many variables as are desired. Let's fit up to a
 19-variable model.  
 
-```{r include=FALSE}
+```{r }
 regfit <- regsubsets (Salary~.,data=Hitters, nvmax =19)
 reg_summary <- summary(regfit)
 reg_summary # Print the summary output
@@ -246,7 +246,7 @@ In a similar fashion we can use the $BIC$ criterion, and indicate the models wit
     
   Step 2: Find the best model only adding one predictor to the previous model. Use RSS, or  $R^2$ to pick the best. Denote this model as $\mathcal{M_2}$
     
-$\vdots$
+ $\vdots$
     
   Step p: Find the best model only adding one predictor to the previous model. Use RSS, or  $R^2$ to pick the best. Denote this model as $\mathcal{M_p}$
   
@@ -327,7 +327,7 @@ ggplot(data, aes(y = CP, x = numVar)) + geom_point(color = "Blue") + geom_line()
     
   Step 2: Find the best model only removing one predictor from the previous model. Use RSS, or  $R^2$ to pick the best. Denote this model as $\mathcal{M_{p-2}}$
     
-    $\vdots$
+  $\vdots$
     
   Step p: Find the best model only removing one predictor from the previous model. Use RSS, or  $R^2$ to pick the best. Denote this model as $\mathcal{M_{0}}$
   
