@@ -542,6 +542,15 @@ mean((ridge_pred - y_test)^2)
 ```
 
 
+Finally, we refit our ridge regression model on the FULL DATA SET, using the value of $\lambda$ chosen by cross validation, and examine the coefiient estimates.
+
+```{r  include=FALSE}
+out= glmnet(x,y,alpha = 0)
+predict(out,type = "coefficients", s=bestlam)[1:20,]
+```
+
+
+
 ## Lasso 
 
 **Disadvantage of Ridge:** Unlike best subset,
@@ -618,7 +627,17 @@ lasso_pred
 sqrt(mean((lasso_pred - y_test)^2))
 ```
 
+However, the lasso has a substantial advantage over ridge regression in that the resulting coefficient estimates are sparse. Here we see that _____ of the 19 coefficient estimates are exactly zero. So the lasso model with λ chosen by cross-validation contains only ____ variables.
 
+
+```{r include=FALSE}
+out <- glmnet(x, y, alpha = 1, lambda = grid)
+lasso.coef <- predict(out, type = "coefficients",s = bestlam)[1:20, ]
+
+lasso.coef
+```
+
+ 
 
 
 
