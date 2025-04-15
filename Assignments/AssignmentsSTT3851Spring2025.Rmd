@@ -377,7 +377,7 @@ output:
 
 * **Project 2:** [Start Here](../Rmarkdown/Project2_F2022.html)
 
-* **Turn in Project 2 *Predictions***- NLT May 2nd, 5:00 pm
+* **Turn in Project 2 *Predictions***- NLT April 22nd, 5:00 pm
 * Send an email to the instructor using a subject of "House Data Predictions" with an attached vector (csv file) of your predictions using the data set `housedataT.csv`.  Note: your vector should contain 4229 predictions. 
 
 * **Turn in Project 2** - NLT May 6th, 5:00 pm
