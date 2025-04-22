@@ -302,7 +302,7 @@ Yourlastname_Yourfirstname <- predict(mod.all, newdata = housedataT)
 
 
 ```{r, eval = FALSE}
-write.csv(Yourlastname_Yourfirstname, file = "Yourlastname_Yourfirstname.csv") # this part will due Dec 1st
+write.csv(Yourlastname_Yourfirstname, file = "Yourlastname_Yourfirstname.csv") 
 ```
 
 

@@ -822,6 +822,23 @@ In contrast, second plot displays the residual plot that results from the quadra
 
 **Other transformations:** If the residual plot indicates that there are non-linear associations in the data, then a simple approach is to use non-linear transformations of the predictors, such as ____________, in the regression model.
 
+```{r include=FALSE}
+library(cowplot)
+model_no_quadratic <- lm(mpg ~ horsepower, data = Auto)
+model_no_quadratic
+model_quadratic <- lm(mpg ~ horsepower + I(horsepower^2), data = Auto)
+model_quadratic
+
+p1<- ggplot(model_no_quadratic, aes(x = .fitted, y = .resid)) + geom_point(color = "red") + theme_bw() 
+
+p2<- ggplot(model_quadratic, aes(x = .fitted, y = .resid)) + geom_point(color = "green") + theme_bw()
+
+plot_grid(p1,p2)
+```
+
+
+
+
 
 > 2. Correlation of error terms.
 
