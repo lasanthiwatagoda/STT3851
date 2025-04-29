@@ -57,7 +57,7 @@ LivesayGabrielle <- sqrt(mean((Livesay_Gabrielle$x - APRICE$price)^2))
 names(LivesayGabrielle) <- "LivesayGabrielle"
 
 
-Johnson_Gavin<- read.csv("Johnson_Gavin.csv")
+Johnson_Gavin<- read.csv("Johnson_Gavin (2).csv")
 JohnsonGavin<- sqrt(mean((Johnson_Gavin$x - APRICE$price)^2))
 names(JohnsonGavin) <- "JohnsonGavin"
 
