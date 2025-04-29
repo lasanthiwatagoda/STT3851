@@ -52,7 +52,7 @@ Sherrill_Payce <- read.csv("Sherrill_Payce (1).csv")
 SherrillPayce <- sqrt(mean((Sherrill_Payce$x - APRICE$price)^2))
 names(SherrillPayce  ) <- "SherrillPayce  "
 
-Livesay_Gabrielle <- read.csv("Livesay_Gabrielle.csv")
+Livesay_Gabrielle <- read.csv("Livesay_Gabrielle2.csv")
 LivesayGabrielle <- sqrt(mean((Livesay_Gabrielle$x - APRICE$price)^2))
 names(LivesayGabrielle) <- "LivesayGabrielle"
 
@@ -69,7 +69,7 @@ etherson_christian <- read.csv("etherson_christian (1).csv")
 ethersonchristian <- sqrt(mean((etherson_christian$x - APRICE$price)^2))
 names(ethersonchristian) <- "ethersonchristian"
 
-Peruso_Alicia <- read.csv("Peruso_Alicia#1.csv")
+Peruso_Alicia <- read.csv("Peruso_Alicia#2.csv")
 PerusoAlicia  <- sqrt(mean((Peruso_Alicia $x - APRICE$price)^2))
 names(PerusoAlicia ) <- "PerusoAlicia "
 
