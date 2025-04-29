@@ -48,8 +48,8 @@ PalmerLogan <- sqrt(mean((Palmer_Logan$x - APRICE$price)^2))
 names(PalmerLogan ) <- "PalmerLogan "
 
 
-Sherrill_Payce <- read.csv("Sherrill_Payce (1).csv")
-SherrillPayce <- sqrt(mean((Sherrill_Payce$x - APRICE$price)^2))
+Sherrill_Payce <- read.csv("Sherrill_Payce (3).csv")
+SherrillPayce <- sqrt(mean((Sherrill_Payce$s1 - APRICE$price)^2))
 names(SherrillPayce  ) <- "SherrillPayce  "
 
 Livesay_Gabrielle <- read.csv("Livesay_Gabrielle2.csv")
@@ -57,7 +57,7 @@ LivesayGabrielle <- sqrt(mean((Livesay_Gabrielle$x - APRICE$price)^2))
 names(LivesayGabrielle) <- "LivesayGabrielle"
 
 
-Johnson_Gavin<- read.csv("Johnson_Gavin (2).csv")
+Johnson_Gavin<- read.csv("Johnson_Gavin.csv(3)")
 JohnsonGavin<- sqrt(mean((Johnson_Gavin$x - APRICE$price)^2))
 names(JohnsonGavin) <- "JohnsonGavin"
 
