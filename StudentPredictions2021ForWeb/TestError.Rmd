@@ -33,8 +33,8 @@ NoiSebastian <- sqrt(mean((Noi_Sebastian$x - APRICE$price)^2))
 names(NoiSebastian) <- "NoiSebastian"
 
 
-Reyes_Roberto <- read.csv("Reyes_Roberto2.csv")
-ReyesRoberto <- sqrt(mean((Reyes_Roberto$x - APRICE$price)^2))
+Reyes_Roberto <- read.csv("Reyes_Roberto3.csv")
+ReyesRoberto <- sqrt(mean((Reyes_Roberto$s1 - APRICE$price)^2))
 names(ReyesRoberto) <- "ReyesRoberto"
 
 
