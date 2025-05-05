@@ -73,8 +73,8 @@ Peruso_Alicia <- read.csv("Peruso_Alicia#3.csv")
 PerusoAlicia  <- sqrt(mean((Peruso_Alicia $x - APRICE$price)^2))
 names(PerusoAlicia ) <- "PerusoAlicia "
 
-spencer_amelia <- read.csv("spencer_amelia.csv")
-spenceramelia <- sqrt(mean((spencer_amelia$x - APRICE$price)^2))
+spencer_amelia <- read.csv("spencer_amelia#2.csv")
+spenceramelia <- sqrt(mean((spencer_amelia$lambda.min - APRICE$price)^2))
 names(spenceramelia) <- "spenceramelia"
 
 Reese_Noah <- read.csv("Reese_Noah.csv")
