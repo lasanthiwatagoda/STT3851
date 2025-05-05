@@ -33,7 +33,7 @@ NoiSebastian <- sqrt(mean((Noi_Sebastian$x - APRICE$price)^2))
 names(NoiSebastian) <- "NoiSebastian"
 
 
-Reyes_Roberto <- read.csv("Reyes_Roberto.csv")
+Reyes_Roberto <- read.csv("Reyes_Roberto2.csv")
 ReyesRoberto <- sqrt(mean((Reyes_Roberto$x - APRICE$price)^2))
 names(ReyesRoberto) <- "ReyesRoberto"
 
@@ -61,27 +61,30 @@ Johnson_Gavin<- read.csv("Johnson_Gavin.csv(3)")
 JohnsonGavin<- sqrt(mean((Johnson_Gavin$x - APRICE$price)^2))
 names(JohnsonGavin) <- "JohnsonGavin"
 
-Gregory_Morgan <- read.csv("Gregory_Morgan_2.csv")
-GregoryMorgan<- sqrt(mean((Gregory_Morgan$s1 - APRICE$price)^2))
+Gregory_Morgan <- read.csv("Gregory_Morgan_5.csv")
+GregoryMorgan<- sqrt(mean((Gregory_Morgan$x - APRICE$price)^2))
 names(GregoryMorgan) <- "GregoryMorgan"
 
 etherson_christian <- read.csv("etherson_christian (1).csv")
 ethersonchristian <- sqrt(mean((etherson_christian$x - APRICE$price)^2))
 names(ethersonchristian) <- "ethersonchristian"
 
-Peruso_Alicia <- read.csv("Peruso_Alicia#2.csv")
+Peruso_Alicia <- read.csv("Peruso_Alicia#3.csv")
 PerusoAlicia  <- sqrt(mean((Peruso_Alicia $x - APRICE$price)^2))
 names(PerusoAlicia ) <- "PerusoAlicia "
 
-#Carr_David <- read.csv("Carr_David.csv")
-#CarrDavid  <- sqrt(mean((Carr_David$x - APRICE$price)^2))
-#names(CarrDavid) <- "CarrDavid"
+spencer_amelia <- read.csv("spencer_amelia.csv")
+spenceramelia <- sqrt(mean((spencer_amelia$x - APRICE$price)^2))
+names(spenceramelia) <- "spenceramelia"
 
+Reese_Noah <- read.csv("Reese_Noah.csv")
+ReeseNoah<- sqrt(mean((Reese_Noah$s1 - APRICE$price)^2))
+names(ReeseNoah) <- "ReeseNoah"
 ```
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis, NoiSebastian,ReyesRoberto,SmithDylan,PalmerLogan,SherrillPayce, LivesayGabrielle,JohnsonGavin,GregoryMorgan,ethersonchristian,PerusoAlicia ))
+Leader <- data.frame(SMSPE = c(BeatThis, NoiSebastian,ReyesRoberto,SmithDylan,PalmerLogan,SherrillPayce, LivesayGabrielle,JohnsonGavin,GregoryMorgan,ethersonchristian,PerusoAlicia,spenceramelia,ReeseNoah ))
 
 ```
 
