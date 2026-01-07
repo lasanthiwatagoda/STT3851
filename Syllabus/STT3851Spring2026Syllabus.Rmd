@@ -1,7 +1,7 @@
 ---
 title: "STT 3851 Syllabus - Spring 2026"
 author: ''
-date: "Spring 2025"
+date: ""
 output:
   html_document:
     css: asu.css
