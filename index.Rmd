@@ -29,7 +29,7 @@ title: "Welcome to Statistical Learning I - Spring 2026"
 
 ## Resources you may find helpful
 
-* [Web site for _An Introduction to Statistical Learning_ (free pdf of book)](https://hastie.su.domains/ISLR2/ISLRv2_corrected_June_2023.pdf.download.html)
+* [Web site for _An Introduction to Statistical Learning_ (free pdf of book)](https://www.statlearning.com/)
 
 * [Web site for _The Elements of Statistical Learning_ (free pdf of book)](http://statweb.stanford.edu/~tibs/ElemStatLearn/)
 
