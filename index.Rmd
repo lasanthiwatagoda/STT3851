@@ -5,7 +5,7 @@ title: "Welcome to Statistical Data Analysis II - Spring 2026"
 
 ***
 
-* The course [`Syllabus`](./Syllabus/STT3851Spring2025Syllabus.html)
+* The course [`Syllabus`](./Syllabus/STT3851Spring2026Syllabus.html)
 
 * [`Course pacing and Assignments`](./AssignmAssignmentsSTT3851Spring2026.html) 
 
