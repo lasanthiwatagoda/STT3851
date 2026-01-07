@@ -1,5 +1,5 @@
 ---
-title: "STT 3851 - Homework Page Spring 2025"
+title: "STT 3851 - Homework Page Spring 2026"
 author: ''
 output:
   html_document:
@@ -10,16 +10,16 @@ output:
 
 ***
 
-1) [Homework 1](..\Homework\HW1chapter1F2022.pdf) --- Due Tuesday, January 21.
+1) [Homework 1](..\Homework\HW1chapter1F2022.pdf) --- Due Tuesday, January 20.
 
 ***
 
 
 
-2) [Homework 2](..\Homework\HW2chapter2F2022.pdf) --- Due Tuesday, January 28. 
+2) [Homework 2](..\Homework\HW2chapter2F2022.pdf) --- Due Tuesday, January 27. 
 
 ***
-
+<!--
 
 
 3) [Homework 3](..\Homework\HW3chapter2F2022.pdf) --- Due Tuesday, Feb 4. 
