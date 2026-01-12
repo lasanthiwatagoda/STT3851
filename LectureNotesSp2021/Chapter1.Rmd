@@ -1,7 +1,7 @@
 ---
 title: Introduction to Statistical Learning
 author: Dr. Lasanthi Watagoda
-date: January 14, 2025
+date: January 13, 2026
 output:
   prettydoc::html_pretty:
     toc: true
