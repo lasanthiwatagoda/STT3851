@@ -83,7 +83,7 @@ This course conforms with all Appalachian State University policies with respect
 
 **Computers and Software**
 
-This course will use the RStudio server  (https://mathr.math.appstate.edu/) that has the programs listed below and more installed.
+This course will use the RStudio server  (https://mathr.appstate.edu/) that has the programs listed below and more installed.
 
 * [R](http://cran.r-project.org) 
 * [Git](http://git-scm.com/downloads) 
