@@ -29,7 +29,7 @@ based on various features (_________) of the insured-age, sex, income, credit ra
 
 There is no perfect $f$, so we have to allow for error. Let ____ the error. Then we want a function $f$ for which
 
-$$Y=f(X_1,X_2,\dots,X_p)$$
+$$Y=f(X_1,X_2,\dots,X_p) +\epsilon.$$
   
 Where, 
 
@@ -47,6 +47,8 @@ We would like to pick the $f$ that makes the error $\epsilon$ as small as possib
   
   * The number of predictors is denoted by ____
   
+
+
 
 ```{example}
 Example:
@@ -129,6 +131,8 @@ interested in answering the following questions:
   
   3)
   &nbsp;
+
+  
   
 ```{example}
 Example:
@@ -189,9 +193,9 @@ There are many linear and non-linear approaches for estimating $f$. Here we only
 data points.
   * These observations are called the _________ because we will use these 
 observations to train, or teach, our method how to estimate $f$.
-  * Let __ represent the value of the ___ predictor, or input, for observation __, where
+  * Let $X_{ij}$ represent the value of the ___ predictor, or input, for observation __, where
 $i = 1, 2,...,n$ and $j = 1, 2,...,p$.
-  * Let __ represent the response variable for the __ observation.
+  * Let __ represent the response variable for the $i^{th}$__ observation.
   
 
 Example:
@@ -201,6 +205,9 @@ Consider the Wage data set.
   1) What is $n$?
   2) How many predictors are there?
   3) What is $x_{2,5}$
+  
+
+  
 
 
 ```{r include=FALSE}
