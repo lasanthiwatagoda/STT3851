@@ -182,11 +182,6 @@ predicted_sales <- predict(AdvertisingModel, newx)
 
 predicted_sales
 
-
-
-
-
-
 newx <- data.frame(TV = c(20, 30, 50))
 
 predicted_sales <- predict(AdvertisingModel, newx)
@@ -262,10 +257,13 @@ range(AdvertisingData$TV)
 A $100(1-\alpha)\%$ (example: 95%) confidence interval is defined as a range of values such that with  $100(1-\alpha)\%$ (example: 95%) probability, the range will contain the true unknown value of the parameter.
 
 For linear regression, the $100(1-\alpha)\%$ confidence interval for $\beta_1$ takes the form
+$$ \hat{\beta_1}\pm z^*SE(\hat{\beta_1}) = (\hat{\beta_1} - z^*SE(\hat{\beta_1}), \hat{\beta_1} + z^*SE(\hat{\beta_1}))$$
 
 &nbsp;
 
 That is, there is approximately a 95% chance that the interval
+
+$$\hat{\beta_1}\pm 1.96*SE(\hat{\beta_1}) = (\hat{\beta_1} - 1.96*SE(\hat{\beta_1}), \hat{\beta_1} + 1.96*SE(\hat{\beta_1})) $$
 
 
 &nbsp;
@@ -298,9 +296,9 @@ number of units sold on `TV` advertising budget for the   `Advertising` data.
 | `Intercept` | 7.0325 | 0.4578 | 15.36  | < 0.0001 |
 | `TV` | 0.0475 | 0.0027 | 17.67 | < 0.0001 |
 
-  a) Find a 90\% confidence interval for $\beta_0$
+  a) Find a 90\% confidence interval for $\beta_0$ and interpret your results.
 &nbsp;
-  b) Find a 90\% confidence interval for $\beta_1$
+  b) Find a 90\% confidence interval for $\beta_1$ and interpret your results.
 &nbsp;
 
 **Example 5:**
@@ -506,9 +504,9 @@ summary(Advertising_MLR_Model)
 ```
 
    2. Write the MLR equation
-   
-   $\hat{sales} =2.93889+.045765TV+.188530Radio-0.00103Newspaper$
+
   
+ 
   3. Interpret each coefficient
 ```{r}
 range_TV <- range(AdvertisingData$TV)
