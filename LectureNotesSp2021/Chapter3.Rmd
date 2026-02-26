@@ -421,6 +421,11 @@ On the other hand, if ___ is very far from ____ for one or more observations, th
 Units of RSE is same as the unites of the $y$ variable.
     
 **Example 8:** In the case of the advertising data, find the RSE using R. Interpret this value.
+```{r include=FALSE}
+AdvertisingModel <- lm(Sales ~ TV, data = AdvertisingData)
+summary(AdvertisingModel)
+
+```
 
 Actual _____ in deviate from the true regression line by approximately _____ units, on average.
 
@@ -447,7 +452,11 @@ of variability in $Y$ that can be explained using $X$.
 
 
 **Example 9:** In the case of the advertising data, find the $R^2$ using R. Interpret this value.
+```{r include=FALSE}
+AdvertisingModel <- lm(Sales ~ TV, data = AdvertisingData)
+summary(AdvertisingModel)
 
+```
 Using R, verify that $R^2 = r^2$. 
 
 ```{r include=FALSE}
@@ -508,6 +517,8 @@ summary(Advertising_MLR_Model)
   
  
   3. Interpret each coefficient
+
+  
 ```{r}
 range_TV <- range(AdvertisingData$TV)
 range_TV
@@ -521,7 +532,7 @@ range_newspaper
 Here, our estimate does not have a real meaning.  
   
 
-### Correlation matrix
+### Correlation Matrix
 A correlation matrix is a table of correlation coefficients for a set of variables used to determine if a relationship exists between the variables. The coefficient indicates both the strength of the relationship as well as the direction (positive vs. negative correlations)
 
 ```{r warning=FALSE, message =FALSE, include=FALSE}
@@ -560,13 +571,13 @@ We now address each of these questions in turn.
 Recall that in the simple linear regression setting, in order to determine whether there is a relationship between the response and the predictor we can simply check whether ________. 
 
 In the multiple regression setting with $p$ predictors, we need to ask whether all of the regression coefficients are zero,
-i.e. whether _______________. 
+i.e. whether_______________. 
 
 As in the simple linear regression setting, we use a hypothesis test to answer this question. We test the null hypothesis,
 
-&nbsp;
+&nbsp;$H_0 : 
 
-&nbsp;
+&nbsp;$H_a : 
 
 
 This hypothesis test is performed by computing the F-statistic,
@@ -578,10 +589,21 @@ In our class, we will use R or a given R output to get the F-statistic.
 **Example 11:** Conduct a hypothesis test to check if there is a relationship between `Sales` and the predictor variables `Radio`, `TV` and `Newspaper`. Use the MLR obtained by regressing `Sales` onto `Radio`, `TV` and `Newspaper`.
 
 
-```{r warning=FALSE, message =FALSE, include=FALSE}
+```{r warning=FALSE, message =FALSE,include=FALSE}
 AdvertisingMLRmodel <- lm(Sales ~ TV + Radio + Newspaper, data = AdvertisingData)
 summary(AdvertisingMLRmodel)
 ```
+
+Step 1:
+
+$H_0 : \beta_1 =\beta_2 =\beta_3 =0$
+
+$H_a : \text{at least one}  \beta_j  \text{not equal to zero}$
+
+Step 2: F-statistic 570.3
+Step 3: P-value < $2.2* 10^{-16}$
+
+Step 4: Decision p_value <0.05 Reject $H_0$ There is a linear relationship between sales and predictor variables, TV, Radio and NP.
 
 &nbsp;
 
@@ -594,13 +616,13 @@ the response, in order to fit a single model involving only those predictors, is
 **Three: Model Fit**
 
   1. Use $R^2$
-  2. Use $RSE = $
+  2. Use $RSE =$
   
 **Four: Predictions**
   
   * Confidence interval for *average* $Y$:
 
-We can compute a confidence interval in order to determine how close ____ will be to ____. Confidence Interval will provide an interval estimate for the *average* $Y$.
+We can compute a confidence interval in order to determine how close  ____ will be to  ____. Confidence Interval will provide an interval estimate for the *average* $Y$.
   
   
 **Example 12:** Find a 95% CI for *average* sales when regressing `Sales` onto `Radio`, and `TV`, given that 
@@ -609,6 +631,7 @@ We can compute a confidence interval in order to determine how close ____ will b
 ```{r warning=FALSE, message =FALSE, include=FALSE}
 
 AdvertisingModel2 <- lm(Sales ~ TV + Radio, data = AdvertisingData)
+AdvertisingModel2 
 newx <- data.frame(TV = c(100), Radio = c(20))
 
 predict(AdvertisingModel2, newx)
@@ -623,11 +646,11 @@ in each city, the 95% confidence interval for *average* sales is ________.
 
 Prediction Interval will provide an interval estimate for the $Y$ given a new observation $X$.
 
-**Example 13:** Find a 95\% PI for sales when regressing `Sales` onto `Radio`, and `TV`, given that 
+**Example 13:** Find a 95\% PI (Prediction Interval) for sales when regressing `Sales` onto `Radio`, and `TV`, given that 
 \$100,000 is spent on TV advertising and \$20,000 is spent on radio advertising in a *particular* city.
 
 
-```{r warning=FALSE, message =FALSE, include=FALSE}
+```{r warning=FALSE, message =FALSE,include=FALSE}
 AdvertisingModel2 <- lm(Sales ~ TV + Radio, data = AdvertisingData)
 newx <- data.frame(TV = c(100), Radio = c(20))
 
@@ -650,11 +673,10 @@ We use the `Credit` data set from the `ISLR` library to illustrate this idea.
 library(ISLR)
 data(Credit)
 head(Credit)
-
 str(Credit)
 ```
 
-In this data set we have ___ qualitative variables. Namely, __________.
+In this data set we have ___ qualitative variables. Namely, Married,Student,Ethnicity,and Gender__________.
 
 To answer the problem above, we use the variable `Gender` to predict the `Balance`.
 
@@ -714,9 +736,14 @@ estimated to be $509.80.
 model_qualitative1 <- lm(Balance ~ Married, data = Credit)
 summary(model_qualitative1)
 ```
+What is the baseline category for the `married` variable in this model?
+
+&nbsp;
 model:
 
 &nbsp;
+
+
 
 Interpretation:
 
@@ -738,7 +765,7 @@ summary(model_qualitative2)
   
   2. Write the equation of the model
 
-
+<!--
 \begin{equation}
 \hat{Blanace} = 531.00 -18.69 \times (Asian) - 12.5 \times (Caucasian) =  \begin{cases} 
       531.00 -18.69 \times (1) - 12.5 \times (0) & \text{if person is Asian} \\
@@ -749,7 +776,7 @@ summary(model_qualitative2)
    \end{cases}
 \end{equation}
 
-
+-->
   3. Interpret the coefficients
   
 <!--
