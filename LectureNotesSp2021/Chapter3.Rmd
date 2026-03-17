@@ -695,6 +695,8 @@ x_i =  \begin{cases}
    \end{cases}
 \end{equation}
 
+
+
 and use this variable as a predictor in the regression equation. This results in the model
 
 \begin{equation}
@@ -732,7 +734,8 @@ estimated to be $509.80.
 
 **Example 14:** Suppose that we wish to investigate differences in credit card balance using marital status, ignoring the other variables for the moment. Fit a model and interpret its coefficients.
 
-```{r include=FALSE}
+```{r  include=FALSE}
+str(Credit)
 model_qualitative1 <- lm(Balance ~ Married, data = Credit)
 summary(model_qualitative1)
 ```
@@ -740,8 +743,17 @@ What is the baseline category for the `married` variable in this model?
 
 &nbsp;
 model:
+<!--
+\begin{equatoin}
+\hat{Blanace} = 523.29 -5.347\times (Married_YES)  =  \begin{cases} 
+     523.29 -5.347& \text{if  person is Married} \\
 
+       523.29   & \text{if  person is not Married} 
+   \end{cases}
+\end{equatoin}
 &nbsp;
+
+-->
 
 
 
@@ -827,6 +839,10 @@ summary(model_interaction)
 
 Perform a hypothesis test to check whether the interaction effect term is useful in the model.
 
+
+
+
+
 &nbsp;
 
 
@@ -866,6 +882,9 @@ Fit the model with a quadratic term in R
 ```{r include=FALSE}
 model_quadratic <- lm(mpg ~ horsepower + I(horsepower^2), data = Auto)
 summary(model_quadratic)
+
+#model <- lm(mpg ~ horsepower, data = Auto)
+#summary(model)
 ```
 
 
@@ -894,7 +913,7 @@ may occur. Most common among these are the following:
 
 Construct two residual plots for regressing `mpg` onto `horsepower` with and without a quadratic term.
 
-```{r}
+```{r warning=FALSE}
 library(cowplot)
 model_no_quadratic <- lm(mpg ~ horsepower, data = Auto)
 model_no_quadratic
@@ -915,12 +934,30 @@ In contrast, second plot displays the residual plot that results from the quadra
 **Other transformations:** If the residual plot indicates that there are non-linear associations in the data, then a simple approach is to use non-linear transformations of the predictors, such as ____________, in the regression model.
 
 
+```{r }
+#model with log(x) transformation
+model_log_term <- lm(mpg ~ I(log(horsepower)), data = Auto)
+model_log_term
+summary(model_log_term)
+p1<- ggplot(model_log_term, aes(x = .fitted, y = .resid)) + geom_point(color = "blue") + theme_bw() 
+
+
+model_sqrt_term <- lm(mpg ~ I(sqrt(horsepower)) , data = Auto)
+model_sqrt_term 
+
+summary(model_sqrt_term)
+p2<- ggplot(model_sqrt_term , aes(x = .fitted, y = .resid)) + geom_point(color = "lightblue") + theme_bw()
+
+plot_grid(p1,p2)
+```
+
+
 > 2. Correlation of error terms.
 
 An important assumption of the linear regression model is that the error
 terms, $\epsilon_1, \epsilon_2,\epsilon_3, \dots ,\epsilon_n$, are uncorrelated.
 
-```{r include=FALSE}
+```{r }
 rank <- seq(1:nrow(Auto))
 ggplot(model_quadratic, aes(y = .resid, x = rank)) + geom_point(color = "blue") + geom_line(color = "gray") + theme_bw() 
 ```
@@ -934,7 +971,7 @@ error terms have a constant variance, $Var(\epsilon_i) = \sigma^2$.
 
 One can identify non-constant variances in the errors, or **heteroscedasticity**, from the presence of a _______ shape in the  residual plot.
 
-```{r include=FALSE}
+```{r}
 
 model_quadratic <- lm(mpg ~ horsepower + I(horsepower^2), data = Auto)
 model_quadratic
@@ -957,6 +994,16 @@ summary(model_lnY)
 ggplot(model_lnY, aes(x = .fitted, y = .resid)) + geom_point(color = "steelblue") + theme_bw()
 
 ```  
+
+```{r}
+
+model_sqrtY_term <- lm(sqrt(mpg) ~ horsepower + I(horsepower^2), data = Auto)
+summary(model_sqrtY_term)
+
+ggplot(model_sqrtY_term, aes(x = .fitted, y = .resid)) + geom_point(color = "purple") + theme_bw()
+```
+
+
 
 > 4. Outliers
 
@@ -994,7 +1041,7 @@ always equal to $(p+1)/n$.
 
 **Example 18:**
 
-```{r}
+```{r include=FALSE}
 library(ISLR)
 library(ggplot2)
 data(Credit)
@@ -1077,7 +1124,7 @@ The first is a regression of balance on age and limit, and the second is a regre
 A simple way to detect collinearity is to look at the correlation matrix
 of the predictors.
 
-```{r warning=FALSE, message=FALSE}
+```{r warning=FALSE, message=FALSE, include=FALSE}
 library(dplyr)
 Credit %>%
   select(Limit, Age, Rating) %>% 
