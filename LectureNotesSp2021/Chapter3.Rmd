@@ -957,7 +957,7 @@ plot_grid(p1,p2)
 An important assumption of the linear regression model is that the error
 terms, $\epsilon_1, \epsilon_2,\epsilon_3, \dots ,\epsilon_n$, are uncorrelated.
 
-```{r }
+```{r include=FALSE}
 rank <- seq(1:nrow(Auto))
 ggplot(model_quadratic, aes(y = .resid, x = rank)) + geom_point(color = "blue") + geom_line(color = "gray") + theme_bw() 
 ```
@@ -995,7 +995,7 @@ ggplot(model_lnY, aes(x = .fitted, y = .resid)) + geom_point(color = "steelblue"
 
 ```  
 
-```{r}
+```{r include=FALSE}
 
 model_sqrtY_term <- lm(sqrt(mpg) ~ horsepower + I(horsepower^2), data = Auto)
 summary(model_sqrtY_term)
@@ -1094,7 +1094,7 @@ Collinearity refers to the situation in which two or more predictor variables ar
 
 **Example 19:**
 
-```{r}
+```{r include=FALSE}
 library(ISLR)
 library(ggplot2)
 data(Credit)
