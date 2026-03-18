@@ -1041,7 +1041,7 @@ always equal to $(p+1)/n$.
 
 **Example 18:**
 
-```{r include=FALSE}
+```{r }
 library(ISLR)
 library(ggplot2)
 data(Credit)
