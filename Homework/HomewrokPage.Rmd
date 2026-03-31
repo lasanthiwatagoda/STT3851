@@ -48,19 +48,19 @@ output:
 7) [Homework 7](..\Homework\HW7chapter3F2022.pdf) --- Due Tuesday, March 18. 
 
 ***
-<!--
-
-8) [Homework 8](..\Homework\HW8chapter3F2022.pdf) --- Due Tuesday, March 18. 
-
-***
 
 
-9) [Homework 9](..\Homework\HW9chapter5F2022.pdf) --- Due Tuesday, April 08. 
+8) [Homework 8](..\Homework\HW8chapter3F2022.pdf) --- Due Tuesday, April 7th. 
 
 ***
 
 
-10) [Homework 10](..\Homework\HW10chapter6F2022.pdf) --- Due Tuesday, April 22 
+9) [Homework 9](..\Homework\HW9chapter5F2022.pdf) --- Due Tuesday, April 14. 
+
+***
+
+
+10) [Homework 10](..\Homework\HW10chapter6F2022.pdf) --- Due Tuesday, April 21 
 
 ***
 
