@@ -130,9 +130,11 @@ head(Hitters)
 
 Hitters <- na.omit(Hitters)
 dim(Hitters)
+```
 
 
-library (leaps)
+```{r include=FALSE}
+library(leaps)
 regfit <- regsubsets(Salary~., data = Hitters)
 
 summary(regfit)
@@ -142,7 +144,7 @@ By default, `regsubsets()` only reports results up to the best eight-variable mo
 in order to return as many variables as are desired. Let's fit up to a
 19-variable model.  
 
-```{r }
+```{r include=FALSE}
 regfit <- regsubsets (Salary~.,data=Hitters, nvmax =19)
 reg_summary <- summary(regfit)
 reg_summary # Print the summary output
