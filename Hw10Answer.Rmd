@@ -1,0 +1,311 @@
+---
+title: "Hw10Answer"
+output: pdf_document
+---
+
+```{r}
+############################################################
+# Homework
+# Chapter 6 - Linear Model Selection and Regularization
+############################################################
+
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(ISLR)
+library(MASS)
+library(leaps)
+library(glmnet)
+
+############################################################
+# 1) Predict per capita crime rate in the Boston data set
+############################################################
+
+data(Boston)
+names(Boston)
+dim(Boston)
+head(Boston)
+?Boston
+set.seed(2026)
+
+train <- sample(1:nrow(Boston), nrow(Boston)/2)
+test <- (-train)
+
+Boston.train <- Boston[train, ]
+Boston.test <- Boston[test]
+
+############################################################
+# Best subset selection
+############################################################
+
+regfit <- regsubsets(crim ~ ., data = Boston.train, nvmax = 13)
+reg_summary <- summary(regfit)
+
+names(reg_summary)
+
+reg_summary$cp
+reg_summary$bic
+reg_summary$adjr2
+
+which.min(reg_summary$cp)
+which.min(reg_summary$bic)
+which.max(reg_summary$adjr2)
+
+coef(regfit, which.min(reg_summary$cp))
+coef(regfit, which.min(reg_summary$bic))
+coef(regfit, which.max(reg_summary$adjr2))
+```
+
+```{r}
+data <- data.frame(adjR2 = reg_summary$adjr2, numVar = seq(1,13))
+
+ggplot(data, aes(y = adjR2, x = numVar)) + 
+  geom_point(color = "Red") + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:13), name = "Number of variables")
+```
+
+```{r}
+data <- data.frame(CP = reg_summary$cp, numVar = seq(1,13))
+
+ggplot(data, aes(y = CP, x = numVar)) + 
+  geom_point(color = "Blue") + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:13), name = "Number of variables")
+```
+
+```{r}
+data <- data.frame(BIC = reg_summary$bic, numVar = seq(1,13))
+
+ggplot(data, aes(y = BIC, x = numVar)) + 
+  geom_point(color = "Dark Green") + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:13), name = "Number of variables")
+```
+
+```{r}
+## Forward Stepwise Selection
+regfit_fwd <- regsubsets(crim ~ ., data = Boston.train,
+                         nvmax = 13, method = "forward")
+
+fwd_summary <- summary(regfit_fwd)
+fwd_summary 
+which.min(fwd_summary$cp)
+which.min(fwd_summary$bic)
+
+coef(regfit_fwd, which.min(fwd_summary$cp))
+coef(regfit_fwd, which.min(fwd_summary$bic))
+```
+
+```{r}
+## Backward Elemination
+regfit_bwd <- regsubsets(crim ~ ., data = Boston.train,
+                         nvmax = 13, method = "backward")
+
+bwd_summary <- summary(regfit_bwd)
+
+which.min(bwd_summary$cp)
+which.min(bwd_summary$bic)
+
+coef(regfit_bwd, which.min(bwd_summary$cp))
+coef(regfit_bwd, which.min(bwd_summary$bic))
+```
+
+```{r}
+#Ridge Regression 
+library(MASS)
+library(glmnet)
+
+data(Boston)
+
+set.seed(1)
+
+train <- sample(1:nrow(Boston), nrow(Boston)/2)
+test <- (-train)
+
+x <- model.matrix(crim ~ ., Boston)[, -1]
+y <- Boston$crim
+
+x.train <- x[train, ]
+x.test  <- x[test, ]
+y.train <- y[train]
+y.test  <- y[test]
+
+grid <- 10^seq(10, -2, length = 100)
+
+ridge_model <- glmnet(x.train, y.train, alpha = 0, lambda = grid)
+
+cv_ridge <- cv.glmnet(x.train, y.train, alpha = 0, lambda = grid)
+bestlam <- cv_ridge$lambda.min
+bestlam
+
+ridge_pred <- predict(ridge_model, s = bestlam, newx = x.test)
+
+mean((y.test - ridge_pred)^2)
+
+coef(ridge_model, s = bestlam)
+```
+
+```{r}
+
+```
+
+```{r}
+
+#Lasso Regression
+lasso_model <- glmnet(x.train, y.train, alpha = 1, lambda = grid)
+
+cv_lasso <- cv.glmnet(x.train, y.train, alpha = 1)
+
+bestlam <- cv_lasso$lambda.min
+bestlam
+```
+
+```{r}
+#Predictions + Test MSE
+lasso_pred <- predict(lasso_model, s = bestlam, newx = x.test)
+
+mean((y.test - lasso_pred)^2)
+```
+
+```{r}
+#Coefficients:
+predict(lasso_model, type = "coefficients", s = bestlam)
+```
+Q2
+
+```{r}
+############################################################
+# 2) Simulation and best subset selection
+############################################################
+
+library(leaps)
+library(ggplot2)
+
+set.seed(2026)
+
+n <- 100
+x <- rnorm(n)
+eps <- rnorm(n)
+```
+
+```{r}
+beta0 <- 1
+beta1 <- 2
+beta2 <- -3
+beta3 <- 1.5
+
+y <- beta0 + beta1*x + beta2*x^2 + beta3*x^3 + eps
+```
+
+```{r}
+sim.data <- data.frame(
+  y = y,
+  x1 = x,
+  x2 = x^2,
+  x3 = x^3,
+  x4 = x^4,
+  x5 = x^5,
+  x6 = x^6,
+  x7 = x^7,
+  x8 = x^8,
+  x9 = x^9,
+  x10 = x^10
+)
+
+head(sim.data)
+```
+
+
+############################################################
+
+Best subset selection
+############################################################
+```{r}
+regfit <- regsubsets(y ~ ., data = sim.data, nvmax = 10)
+reg_summary <- summary(regfit)
+
+reg_summary$cp
+reg_summary$bic
+reg_summary$adjr2
+```
+```{r}
+which.min(reg_summary$cp)
+coef(regfit, which.min(reg_summary$cp))
+
+which.min(reg_summary$bic)
+coef(regfit, which.min(reg_summary$bic))
+
+which.max(reg_summary$adjr2)
+coef(regfit, which.max(reg_summary$adjr2))
+
+data <- data.frame(CP = reg_summary$cp, numVar = seq(1,10))
+
+ggplot(data, aes(y = CP, x = numVar)) + 
+  geom_point(color = "Blue") + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:10), name = "Number of variables")
+
+data <- data.frame(BIC = reg_summary$bic, numVar = seq(1,10))
+
+ggplot(data, aes(y = BIC, x = numVar)) + 
+  geom_point(color = "Red") + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:10), name = "Number of variables")
+
+data <- data.frame(adjR2 = reg_summary$adjr2, numVar = seq(1,10))
+
+ggplot(data, aes(y = adjR2, x = numVar)) + 
+  geom_point(color = "Dark Green") + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:10), name = "Number of variables")
+
+
+```
+
+############################################################
+
+Forward selection
+############################################################
+
+```{r}
+regfit_fwd <- regsubsets(y ~ ., data = sim.data, nvmax = 10, method = "forward")
+fwd_summary <- summary(regfit_fwd)
+
+which.min(fwd_summary$cp)
+coef(regfit_fwd, which.min(fwd_summary$cp))
+
+which.min(fwd_summary$bic)
+coef(regfit_fwd, which.min(fwd_summary$bic))
+
+which.max(fwd_summary$adjr2)
+coef(regfit_fwd, which.max(fwd_summary$adjr2))
+```
+
+
+############################################################
+
+Backward selection
+############################################################
+
+```{r}
+regfit_bwd <- regsubsets(y ~ ., data = sim.data, nvmax = 10, method = "backward")
+bwd_summary <- summary(regfit_bwd)
+
+which.min(bwd_summary$cp)
+coef(regfit_bwd, which.min(bwd_summary$cp))
+
+which.min(bwd_summary$bic)
+coef(regfit_bwd, which.min(bwd_summary$bic))
+
+which.max(bwd_summary$adjr2)
+coef(regfit_bwd, which.max(bwd_summary$adjr2))
+```
+
+The true model contains $x$, $x^2$, and $x^3$. I used best subset selection, forward selection, and backward selection to choose among models containing $x, x^2, \dots, x^{10}$. I compared the models using $C_p$, BIC, and adjusted $R^2$. The best models should be close to the true cubic model, so I expect the selected predictors to include mainly $x$, $x^2$, and $x^3$.
+

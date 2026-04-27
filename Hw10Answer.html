@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Hw10Answer</title>
+
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STT 3851</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="https://lasanthiwatagoda.github.io/resources.html">Resources</a>
+</li>
+<li>
+  <a href="https://lasanthiwatagoda.github.io/for-students.html">For Students</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://lasanthiwatagoda.github.io">Lasanthi Watagoda</a>
+</li>
+<li>
+  <a href="https://github.com/lasanthiwatagoda/STT3851/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Hw10Answer</h1>
+
+</div>
+
+
+<pre class="r"><code>############################################################
+# Homework
+# Chapter 6 - Linear Model Selection and Regularization
+############################################################
+
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(ISLR)
+library(MASS)
+library(leaps)
+library(glmnet)</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## Loaded glmnet 4.1-10</code></pre>
+<pre class="r"><code>############################################################
+# 1) Predict per capita crime rate in the Boston data set
+############################################################
+
+data(Boston)
+names(Boston)</code></pre>
+<pre><code>##  [1] &quot;crim&quot;    &quot;zn&quot;      &quot;indus&quot;   &quot;chas&quot;    &quot;nox&quot;     &quot;rm&quot;      &quot;age&quot;    
+##  [8] &quot;dis&quot;     &quot;rad&quot;     &quot;tax&quot;     &quot;ptratio&quot; &quot;black&quot;   &quot;lstat&quot;   &quot;medv&quot;</code></pre>
+<pre class="r"><code>dim(Boston)</code></pre>
+<pre><code>## [1] 506  14</code></pre>
+<pre class="r"><code>head(Boston)</code></pre>
+<pre><code>##      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat
+## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98
+## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14
+## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03
+## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94
+## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33
+## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21
+##   medv
+## 1 24.0
+## 2 21.6
+## 3 34.7
+## 4 33.4
+## 5 36.2
+## 6 28.7</code></pre>
+<pre class="r"><code>?Boston
+set.seed(2026)
+
+train &lt;- sample(1:nrow(Boston), nrow(Boston)/2)
+test &lt;- (-train)
+
+Boston.train &lt;- Boston[train, ]
+Boston.test &lt;- Boston[test]
+
+############################################################
+# Best subset selection
+############################################################
+
+regfit &lt;- regsubsets(crim ~ ., data = Boston.train, nvmax = 13)
+reg_summary &lt;- summary(regfit)
+
+names(reg_summary)</code></pre>
+<pre><code>## [1] &quot;which&quot;  &quot;rsq&quot;    &quot;rss&quot;    &quot;adjr2&quot;  &quot;cp&quot;     &quot;bic&quot;    &quot;outmat&quot; &quot;obj&quot;</code></pre>
+<pre class="r"><code>reg_summary$cp</code></pre>
+<pre><code>##  [1] 39.015602 17.807748 10.191700 10.055914  5.984885  5.674122  5.620910
+##  [8]  6.380961  7.092859  8.331998 10.152672 12.000779 14.000000</code></pre>
+<pre class="r"><code>reg_summary$bic</code></pre>
+<pre><code>##  [1] -194.6171 -210.3384 -214.1632 -210.7562 -211.3665 -208.2113 -204.8099
+##  [8] -200.5728 -196.3932 -191.6628 -186.3190 -180.9464 -175.4138</code></pre>
+<pre class="r"><code>reg_summary$adjr2</code></pre>
+<pre><code>##  [1] 0.5546984 0.5889425 0.6022784 0.6040168 0.6119521 0.6140199 0.6156967
+##  [8] 0.6160938 0.6165710 0.6162067 0.6149030 0.6135440 0.6119283</code></pre>
+<pre class="r"><code>which.min(reg_summary$cp)</code></pre>
+<pre><code>## [1] 7</code></pre>
+<pre class="r"><code>which.min(reg_summary$bic)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>which.max(reg_summary$adjr2)</code></pre>
+<pre><code>## [1] 9</code></pre>
+<pre class="r"><code>coef(regfit, which.min(reg_summary$cp))</code></pre>
+<pre><code>## (Intercept)          zn         nox         dis         rad     ptratio 
+## 17.19797009  0.02774213 -8.02858262 -0.71748470  0.44855429 -0.22713664 
+##       black        medv 
+## -0.01210287 -0.13137647</code></pre>
+<pre class="r"><code>coef(regfit, which.min(reg_summary$bic))</code></pre>
+<pre><code>## (Intercept)         rad       black       lstat 
+##  1.83503161  0.42470541 -0.01199417  0.11905384</code></pre>
+<pre class="r"><code>coef(regfit, which.max(reg_summary$adjr2))</code></pre>
+<pre><code>##  (Intercept)           zn          nox           rm          dis          rad 
+## 21.214006893  0.033473870 -7.352180402 -0.620047873 -0.765016529  0.507838175 
+##          tax      ptratio        black         medv 
+## -0.004065564 -0.207460442 -0.012509717 -0.108337854</code></pre>
+<pre class="r"><code>data &lt;- data.frame(adjR2 = reg_summary$adjr2, numVar = seq(1,13))
+
+ggplot(data, aes(y = adjR2, x = numVar)) + 
+  geom_point(color = &quot;Red&quot;) + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:13), name = &quot;Number of variables&quot;)</code></pre>
+<p><img src="Hw10Answer_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>data &lt;- data.frame(CP = reg_summary$cp, numVar = seq(1,13))
+
+ggplot(data, aes(y = CP, x = numVar)) + 
+  geom_point(color = &quot;Blue&quot;) + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:13), name = &quot;Number of variables&quot;)</code></pre>
+<p><img src="Hw10Answer_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>data &lt;- data.frame(BIC = reg_summary$bic, numVar = seq(1,13))
+
+ggplot(data, aes(y = BIC, x = numVar)) + 
+  geom_point(color = &quot;Dark Green&quot;) + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:13), name = &quot;Number of variables&quot;)</code></pre>
+<p><img src="Hw10Answer_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>## Forward Stepwise Selection
+regfit_fwd &lt;- regsubsets(crim ~ ., data = Boston.train,
+                         nvmax = 13, method = &quot;forward&quot;)
+
+fwd_summary &lt;- summary(regfit_fwd)
+fwd_summary </code></pre>
+<pre><code>## Subset selection object
+## Call: regsubsets.formula(crim ~ ., data = Boston.train, nvmax = 13, 
+##     method = &quot;forward&quot;)
+## 13 Variables  (and intercept)
+##         Forced in Forced out
+## zn          FALSE      FALSE
+## indus       FALSE      FALSE
+## chas        FALSE      FALSE
+## nox         FALSE      FALSE
+## rm          FALSE      FALSE
+## age         FALSE      FALSE
+## dis         FALSE      FALSE
+## rad         FALSE      FALSE
+## tax         FALSE      FALSE
+## ptratio     FALSE      FALSE
+## black       FALSE      FALSE
+## lstat       FALSE      FALSE
+## medv        FALSE      FALSE
+## 1 subsets of each size up to 13
+## Selection Algorithm: forward
+##           zn  indus chas nox rm  age dis rad tax ptratio black lstat medv
+## 1  ( 1 )  &quot; &quot; &quot; &quot;   &quot; &quot;  &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot; &quot; &quot; &quot;     &quot; &quot;   &quot; &quot;   &quot; &quot; 
+## 2  ( 1 )  &quot; &quot; &quot; &quot;   &quot; &quot;  &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot; &quot; &quot; &quot;     &quot;*&quot;   &quot; &quot;   &quot; &quot; 
+## 3  ( 1 )  &quot; &quot; &quot; &quot;   &quot; &quot;  &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot; &quot; &quot; &quot;     &quot;*&quot;   &quot;*&quot;   &quot; &quot; 
+## 4  ( 1 )  &quot; &quot; &quot; &quot;   &quot; &quot;  &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot; &quot; &quot; &quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot; 
+## 5  ( 1 )  &quot; &quot; &quot; &quot;   &quot; &quot;  &quot; &quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot; &quot; &quot; &quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot; 
+## 6  ( 1 )  &quot;*&quot; &quot; &quot;   &quot; &quot;  &quot; &quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot; &quot; &quot; &quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot; 
+## 7  ( 1 )  &quot;*&quot; &quot; &quot;   &quot; &quot;  &quot;*&quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot; &quot; &quot; &quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot; 
+## 8  ( 1 )  &quot;*&quot; &quot; &quot;   &quot; &quot;  &quot;*&quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot; &quot; &quot;*&quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot; 
+## 9  ( 1 )  &quot;*&quot; &quot; &quot;   &quot; &quot;  &quot;*&quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot; 
+## 10  ( 1 ) &quot;*&quot; &quot; &quot;   &quot; &quot;  &quot;*&quot; &quot;*&quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot; 
+## 11  ( 1 ) &quot;*&quot; &quot; &quot;   &quot; &quot;  &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot; 
+## 12  ( 1 ) &quot;*&quot; &quot; &quot;   &quot;*&quot;  &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot; 
+## 13  ( 1 ) &quot;*&quot; &quot;*&quot;   &quot;*&quot;  &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot;     &quot;*&quot;   &quot;*&quot;   &quot;*&quot;</code></pre>
+<pre class="r"><code>which.min(fwd_summary$cp)</code></pre>
+<pre><code>## [1] 7</code></pre>
+<pre class="r"><code>which.min(fwd_summary$bic)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>coef(regfit_fwd, which.min(fwd_summary$cp))</code></pre>
+<pre><code>## (Intercept)          zn         nox         dis         rad       black 
+## 10.31354212  0.03348107 -6.16201628 -0.64447204  0.42218750 -0.01211967 
+##       lstat        medv 
+##  0.04352237 -0.08730874</code></pre>
+<pre class="r"><code>coef(regfit_fwd, which.min(fwd_summary$bic))</code></pre>
+<pre><code>## (Intercept)         rad       black       lstat 
+##  1.83503161  0.42470541 -0.01199417  0.11905384</code></pre>
+<pre class="r"><code>## Backward Elemination
+regfit_bwd &lt;- regsubsets(crim ~ ., data = Boston.train,
+                         nvmax = 13, method = &quot;backward&quot;)
+
+bwd_summary &lt;- summary(regfit_bwd)
+
+which.min(bwd_summary$cp)</code></pre>
+<pre><code>## [1] 7</code></pre>
+<pre class="r"><code>which.min(bwd_summary$bic)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>coef(regfit_bwd, which.min(bwd_summary$cp))</code></pre>
+<pre><code>## (Intercept)          zn         nox         dis         rad     ptratio 
+## 17.19797009  0.02774213 -8.02858262 -0.71748470  0.44855429 -0.22713664 
+##       black        medv 
+## -0.01210287 -0.13137647</code></pre>
+<pre class="r"><code>coef(regfit_bwd, which.min(bwd_summary$bic))</code></pre>
+<pre><code>## (Intercept)         rad       black        medv 
+##  5.33399572  0.43968482 -0.01293127 -0.07926857</code></pre>
+<pre class="r"><code>#Ridge Regression 
+library(MASS)
+library(glmnet)
+
+data(Boston)
+
+set.seed(1)
+
+train &lt;- sample(1:nrow(Boston), nrow(Boston)/2)
+test &lt;- (-train)
+
+x &lt;- model.matrix(crim ~ ., Boston)[, -1]
+y &lt;- Boston$crim
+
+x.train &lt;- x[train, ]
+x.test  &lt;- x[test, ]
+y.train &lt;- y[train]
+y.test  &lt;- y[test]
+
+grid &lt;- 10^seq(10, -2, length = 100)
+
+ridge_model &lt;- glmnet(x.train, y.train, alpha = 0, lambda = grid)
+
+cv_ridge &lt;- cv.glmnet(x.train, y.train, alpha = 0, lambda = grid)
+bestlam &lt;- cv_ridge$lambda.min
+bestlam</code></pre>
+<pre><code>## [1] 0.2848036</code></pre>
+<pre class="r"><code>ridge_pred &lt;- predict(ridge_model, s = bestlam, newx = x.test)
+
+mean((y.test - ridge_pred)^2)</code></pre>
+<pre><code>## [1] 41.11039</code></pre>
+<pre class="r"><code>coef(ridge_model, s = bestlam)</code></pre>
+<pre><code>## 14 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##              s=0.2848036
+## (Intercept) 18.140757808
+## zn           0.038173197
+## indus       -0.128810638
+## chas        -0.635484698
+## nox         -7.786504040
+## rm           0.313622767
+## age         -0.006252433
+## dis         -0.905109443
+## rad          0.501074876
+## tax          0.000604591
+## ptratio     -0.372650784
+## black       -0.013395992
+## lstat        0.270010867
+## medv        -0.170623733</code></pre>
+<pre class="r"><code>#Lasso Regression
+lasso_model &lt;- glmnet(x.train, y.train, alpha = 1, lambda = grid)
+
+cv_lasso &lt;- cv.glmnet(x.train, y.train, alpha = 1)
+
+bestlam &lt;- cv_lasso$lambda.min
+bestlam</code></pre>
+<pre><code>## [1] 0.06805595</code></pre>
+<pre class="r"><code>#Predictions + Test MSE
+lasso_pred &lt;- predict(lasso_model, s = bestlam, newx = x.test)
+
+mean((y.test - lasso_pred)^2)</code></pre>
+<pre><code>## [1] 40.89875</code></pre>
+<pre class="r"><code>#Coefficients:
+predict(lasso_model, type = &quot;coefficients&quot;, s = bestlam)</code></pre>
+<pre><code>## 14 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##              s=0.06805595
+## (Intercept)  1.767486e+01
+## zn           3.528237e-02
+## indus       -1.180702e-01
+## chas        -4.322661e-01
+## nox         -7.207686e+00
+## rm           4.075291e-02
+## age         -6.850447e-05
+## dis         -7.699866e-01
+## rad          5.243530e-01
+## tax          .           
+## ptratio     -3.504167e-01
+## black       -1.307812e-02
+## lstat        2.552919e-01
+## medv        -1.480791e-01</code></pre>
+<p>Q2</p>
+<pre class="r"><code>############################################################
+# 2) Simulation and best subset selection
+############################################################
+
+library(leaps)
+library(ggplot2)
+
+set.seed(2026)
+
+n &lt;- 100
+x &lt;- rnorm(n)
+eps &lt;- rnorm(n)</code></pre>
+<pre class="r"><code>beta0 &lt;- 1
+beta1 &lt;- 2
+beta2 &lt;- -3
+beta3 &lt;- 1.5
+
+y &lt;- beta0 + beta1*x + beta2*x^2 + beta3*x^3 + eps</code></pre>
+<pre class="r"><code>sim.data &lt;- data.frame(
+  y = y,
+  x1 = x,
+  x2 = x^2,
+  x3 = x^3,
+  x4 = x^4,
+  x5 = x^5,
+  x6 = x^6,
+  x7 = x^7,
+  x8 = x^8,
+  x9 = x^9,
+  x10 = x^10
+)
+
+head(sim.data)</code></pre>
+<pre><code>##             y          x1          x2            x3           x4            x5
+## 1   2.6560353  0.52058907 0.271012983   0.141086397 7.344804e-02  3.823625e-02
+## 2  -7.0383665 -1.07969076 1.165732142  -1.258630225 1.358931e+00 -1.467226e+00
+## 3   0.9965789  0.13923812 0.019387253   0.002699445 3.758656e-04  5.233481e-05
+## 4  -0.3036066 -0.08474878 0.007182357  -0.000608696 5.158625e-05 -4.371872e-06
+## 5  -1.1150616 -0.66663962 0.444408377  -0.296260229 1.974988e-01 -1.316605e-01
+## 6 -46.3553836 -2.51608903 6.330704017 -15.928614942 4.007781e+01 -1.008393e+02
+##             x6            x7           x8            x9          x10
+## 1 1.990537e-02  1.036252e-02 5.394614e-03  2.808377e-03 1.462010e-03
+## 2 1.584150e+00 -1.710392e+00 1.846695e+00 -1.993859e+00 2.152751e+00
+## 3 7.287001e-06  1.014628e-06 1.412749e-07  1.967085e-08 2.738933e-09
+## 4 3.705108e-07 -3.140034e-08 2.661141e-09 -2.255284e-10 1.911326e-11
+## 5 8.777012e-02 -5.851104e-02 3.900578e-02 -2.600280e-02 1.733449e-02
+## 6 2.537208e+02 -6.383841e+02 1.606231e+03 -4.041421e+03 1.016857e+04</code></pre>
+<div id="section" class="section level60">
+<p class="heading"></p>
+<p>Best subset selection
+############################################################</p>
+<pre class="r"><code>regfit &lt;- regsubsets(y ~ ., data = sim.data, nvmax = 10)
+reg_summary &lt;- summary(regfit)
+
+reg_summary$cp</code></pre>
+<pre><code>##  [1] 1729.690361  131.873267    1.267560    2.843273    1.477805    3.301974
+##  [7]    5.266254    7.066483    9.000037   11.000000</code></pre>
+<pre class="r"><code>reg_summary$bic</code></pre>
+<pre><code>##  [1] -134.3484 -338.7172 -422.5622 -418.4130 -417.5000 -413.0916 -408.5264
+##  [8] -404.1453 -399.6147 -395.0096</code></pre>
+<pre class="r"><code>reg_summary$adjr2</code></pre>
+<pre><code>##  [1] 0.7595962 0.9699508 0.9874628 0.9873885 0.9877163 0.9876087 0.9874790
+##  [8] 0.9873697 0.9872389 0.9870955</code></pre>
+<pre class="r"><code>which.min(reg_summary$cp)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>coef(regfit, which.min(reg_summary$cp))</code></pre>
+<pre><code>## (Intercept)          x1          x2          x3 
+##    1.199541    1.982978   -3.082474    1.483252</code></pre>
+<pre class="r"><code>which.min(reg_summary$bic)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>coef(regfit, which.min(reg_summary$bic))</code></pre>
+<pre><code>## (Intercept)          x1          x2          x3 
+##    1.199541    1.982978   -3.082474    1.483252</code></pre>
+<pre class="r"><code>which.max(reg_summary$adjr2)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>coef(regfit, which.max(reg_summary$adjr2))</code></pre>
+<pre><code>##  (Intercept)           x1           x2           x3           x7           x9 
+##  1.153458376  1.505035961 -3.021550423  2.014648454 -0.060698709  0.007851161</code></pre>
+<pre class="r"><code>data &lt;- data.frame(CP = reg_summary$cp, numVar = seq(1,10))
+
+ggplot(data, aes(y = CP, x = numVar)) + 
+  geom_point(color = &quot;Blue&quot;) + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:10), name = &quot;Number of variables&quot;)</code></pre>
+<p><img src="Hw10Answer_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code>data &lt;- data.frame(BIC = reg_summary$bic, numVar = seq(1,10))
+
+ggplot(data, aes(y = BIC, x = numVar)) + 
+  geom_point(color = &quot;Red&quot;) + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:10), name = &quot;Number of variables&quot;)</code></pre>
+<p><img src="Hw10Answer_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
+<pre class="r"><code>data &lt;- data.frame(adjR2 = reg_summary$adjr2, numVar = seq(1,10))
+
+ggplot(data, aes(y = adjR2, x = numVar)) + 
+  geom_point(color = &quot;Dark Green&quot;) + 
+  geom_line() + 
+  theme_bw() +
+  scale_x_continuous(breaks = c(1:10), name = &quot;Number of variables&quot;)</code></pre>
+<p><img src="Hw10Answer_files/figure-html/unnamed-chunk-16-3.png" width="672" /></p>
+</div>
+<div id="section-1" class="section level60">
+<p class="heading"></p>
+<p>Forward selection
+############################################################</p>
+<pre class="r"><code>regfit_fwd &lt;- regsubsets(y ~ ., data = sim.data, nvmax = 10, method = &quot;forward&quot;)
+fwd_summary &lt;- summary(regfit_fwd)
+
+which.min(fwd_summary$cp)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>coef(regfit_fwd, which.min(fwd_summary$cp))</code></pre>
+<pre><code>## (Intercept)          x1          x2          x3 
+##    1.199541    1.982978   -3.082474    1.483252</code></pre>
+<pre class="r"><code>which.min(fwd_summary$bic)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>coef(regfit_fwd, which.min(fwd_summary$bic))</code></pre>
+<pre><code>## (Intercept)          x1          x2          x3 
+##    1.199541    1.982978   -3.082474    1.483252</code></pre>
+<pre class="r"><code>which.max(fwd_summary$adjr2)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>coef(regfit_fwd, which.max(fwd_summary$adjr2))</code></pre>
+<pre><code>##  (Intercept)           x1           x2           x3           x5           x9 
+##  1.164872842  1.368848580 -3.035187795  2.375792387 -0.248422576  0.003112008</code></pre>
+</div>
+<div id="section-2" class="section level60">
+<p class="heading"></p>
+<p>Backward selection
+############################################################</p>
+<pre class="r"><code>regfit_bwd &lt;- regsubsets(y ~ ., data = sim.data, nvmax = 10, method = &quot;backward&quot;)
+bwd_summary &lt;- summary(regfit_bwd)
+
+which.min(bwd_summary$cp)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>coef(regfit_bwd, which.min(bwd_summary$cp))</code></pre>
+<pre><code>## (Intercept)          x1          x2          x3 
+##    1.199541    1.982978   -3.082474    1.483252</code></pre>
+<pre class="r"><code>which.min(bwd_summary$bic)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>coef(regfit_bwd, which.min(bwd_summary$bic))</code></pre>
+<pre><code>## (Intercept)          x1          x2          x3 
+##    1.199541    1.982978   -3.082474    1.483252</code></pre>
+<pre class="r"><code>which.max(bwd_summary$adjr2)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>coef(regfit_bwd, which.max(bwd_summary$adjr2))</code></pre>
+<pre><code>##  (Intercept)           x1           x2           x3           x7           x9 
+##  1.153458376  1.505035961 -3.021550423  2.014648454 -0.060698709  0.007851161</code></pre>
+<p>The true model contains <span class="math inline">\(x\)</span>, <span
+class="math inline">\(x^2\)</span>, and <span
+class="math inline">\(x^3\)</span>. I used best subset selection,
+forward selection, and backward selection to choose among models
+containing <span class="math inline">\(x, x^2, \dots, x^{10}\)</span>. I
+compared the models using <span class="math inline">\(C_p\)</span>, BIC,
+and adjusted <span class="math inline">\(R^2\)</span>. The best models
+should be close to the true cubic model, so I expect the selected
+predictors to include mainly <span class="math inline">\(x\)</span>,
+<span class="math inline">\(x^2\)</span>, and <span
+class="math inline">\(x^3\)</span>.</p>
+</div>
+
+<div id="footer">
+     <p><strong>Lasanthi Watagoda</strong> </br>
+			Assistant Professor of Statistics </br>
+      <a href="mailto:lasanthi@appstate.edu"> lasanthi@appstate.edu</a>  </br>
+      <img src="images/asu-logo-white-600.png" style="background-color:black; width:180px; float:left;" width =  /> 
+</p>
+        
+        <p><a href="https://lasanthiwatagoda.youcanbook.me/" data-ycbm-modal="true"><img src="https://youcanbook.me/resources/pics/ycbm-button.png" style="border-style:none;"/></a>
+        </p>
+      
+        
+        <p>
+    <strong>Mailing Address</strong><br />      
+    <a href = "http://www.appstate.edu/"> Appalachian State University</a><br />
+		<a href= "https://mathsci.appstate.edu/"> Department of Mathematical Sciences</a><br />
+		Walker Hall 340<br />
+		121 Bodenheimer Dr<br />
+		Boone, NC 28608
+		</p> 
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
