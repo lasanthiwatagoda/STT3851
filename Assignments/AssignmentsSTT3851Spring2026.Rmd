@@ -385,7 +385,7 @@ output:
 * Also turn in the all the model you have tried as a single `.Rmd` and a single `.html` file. Section names should read for example: Model 1: Forward selection model. A brief description of the model should be included as well. 
 
 
-* [Project 2 Leaderboard](../StudentPredictions2021ForWeb/TestError.html)
+* [Project 2 Leaderboard](../StudentPredictions2026ForWeb/TestError.html)
 
 
 ***
@@ -579,7 +579,7 @@ output:
 * Make sure a single `.Rmd` with the sections outlined in the [Example Paper](../BDbetaTemplate/TemplateBookDown.html) is in your `Project2` directory under your private course repository.
 * Send an email to the instructor using a subject of "House Data Predictions" with an attached vector (csv file) of your predictions using the data set `housedataTEST.csv`.  Note: your vector should contain 4229 predictions. 
 
-* [Project 2 Leaderboard](../StudentPredictions2018ForWeb/TestError.html)
+* [Project 2 Leaderboard](../StudentPredictions2026ForWeb/TestError.html)
 
 
 **May 2:**

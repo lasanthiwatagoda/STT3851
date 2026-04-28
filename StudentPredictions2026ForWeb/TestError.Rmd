@@ -23,43 +23,42 @@ APRICE <- read.csv("price.csv")
 
 
 ### You should at least beat what I gave to start with
-#yourlastname_yourfirstname <- read.csv("yourlastname_yourfirstname.csv")
-#BeatThis <- sqrt(mean((yourlastname_yourfirstname$x - APRICE$price)^2))
-#names(BeatThis) <- "BeatThis"
+yourlastname_yourfirstname <- read.csv("yourlastname_yourfirstname.csv")
+BeatThis <- sqrt(mean((yourlastname_yourfirstname$x - APRICE$price)^2))
+names(BeatThis) <- "BeatThis"
 
 #
-#Noi_Sebastian <- read.csv("Noi_Sebastian3.csv")
-#NoiSebastian <- sqrt(mean((Noi_Sebastian$x - APRICE$price)^2))
-#names(NoiSebastian) <- "NoiSebastian"
+Balesky_Andrew <- read.csv("Balesky_Andrew.csv")
+BaleskyAndrew  <- sqrt(mean((Balesky_Andrew$x - APRICE$price)^2))
+names(BaleskyAndrew) <- "BaleskyAndrew"
 
 
-#Reyes_Roberto <- read.csv("Reyes_Roberto3.csv")
-#ReyesRoberto <- sqrt(mean((Reyes_Roberto$s1 - APRICE$price)^2))
-#names(ReyesRoberto) <- "ReyesRoberto"
+bassett_keriann <- read.csv("bassett_keriann.csv")
+bassettkeriann<- sqrt(mean((bassett_keriann$x - APRICE$price)^2))
+names(bassettkeriann) <- "bassettkeriann"
+
+Williams_kai <- read.csv("Williams_kai.csv")
+Williamskai<- sqrt(mean((Williams_kai$x - APRICE$price)^2))
+names(Williamskai) <- "Williamskai"
 
 
-##Smith_Dylan <- read.csv("Smith_Dylan (3).csv")
-#SmithDylan <- sqrt(mean((Smith_Dylan$s1 - APRICE$price)^2))
-#names(SmithDylan) <- "SmithDylan"
+Fisher_Natalie <- read.csv("Fisher_Natalie.csv")
+FisherNatalie  <- sqrt(mean((Fisher_Natalie$x - APRICE$price)^2))
+names(FisherNatalie ) <- "FisherNatalie"
 
 
-#Palmer_Logan <- read.csv("Palmer_Logan.csv")
-#PalmerLogan <- sqrt(mean((Palmer_Logan$x - APRICE$price)^2))
-#names(PalmerLogan ) <- "PalmerLogan "
+Whalen_Peter <- read.csv("Whalen_Peter.csv")
+WhalenPeter<- sqrt(mean((Whalen_Peter$x - APRICE$price)^2))
+names(WhalenPeter) <- "WhalenPeter"
+
+Guinn_Bronson <- read.csv("Guinn_Bronson.csv")
+GuinnBronson<- sqrt(mean((Guinn_Bronson$x - APRICE$price)^2))
+names(GuinnBronson) <- "GuinnBronson"
 
 
-#Sherrill_Payce <- read.csv("Sherrill_Payce (2) (1).csv")
-#SherrillPayce <- sqrt(mean((Sherrill_Payce$s1 - APRICE$price)^2))
-##names(SherrillPayce  ) <- "SherrillPayce  "
-
-#Livesay_Gabrielle <- read.csv("Livesay_Gabrielle2.csv")
-#LivesayGabrielle <- sqrt(mean((Livesay_Gabrielle$x - APRICE$price)^2))
-#names(LivesayGabrielle) <- "LivesayGabrielle"
-
-
-#Johnson_Gavin<- read.csv("Johnson_Gavin.csv(3)")
-#JohnsonGavin<- sqrt(mean((Johnson_Gavin$x - APRICE$price)^2))
-#names(JohnsonGavin) <- "JohnsonGavin"
+Gummow_Lucy-2<- read.csv("Gummow_Lucy-2")
+GummowLucy-2<- sqrt(mean((Gummow_Lucy-2$x - APRICE$price)^2))
+names(GummowLucy-2) <- "GummowLucy-2"
 
 #Gregory_Morgan <- read.csv("Gregory_Morgan_5.csv")
 #GregoryMorgan<- sqrt(mean((Gregory_Morgan$x - APRICE$price)^2))
@@ -84,7 +83,8 @@ APRICE <- read.csv("price.csv")
 
 
 ```{r, echo = FALSE}
-#Leader <- data.frame(SMSPE = c(BeatThis, #NoiSebastian,ReyesRoberto,SmithDylan,PalmerLogan,SherrillPayce, #LivesayGabrielle,JohnsonGavin,GregoryMorgan,ethersonchristian,PerusoAlicia,spenceramelia,ReeseNoah ))
+Leader <- data.frame(SMSPE = c(BeatThis,BaleskyAndrew,bassettkeriann,Williamskai,FisherNatalie,WhalenPeter,GuinnBronson,GummowLucy-2))
+#ReyesRoberto,SmithDylan,PalmerLogan,SherrillPayce, #LivesayGabrielle,JohnsonGavin,GregoryMorgan,ethersonchristian,PerusoAlicia,spenceramelia,ReeseNoah ))
 
 ```
 
@@ -93,5 +93,5 @@ APRICE <- read.csv("price.csv")
 ```
 
 ```{r, echo = FALSE}
-#knitr::kable(Leader[order(Leader$SMSPE), , drop = FALSE], col.names = "$\\sqrt{MSPE}$", align = "l")
+knitr::kable(Leader[order(Leader$SMSPE), , drop = FALSE], col.names = "$\\sqrt{MSPE}$", align = "l")
 ```
