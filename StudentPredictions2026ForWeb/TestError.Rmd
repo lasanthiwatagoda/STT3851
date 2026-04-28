@@ -56,25 +56,26 @@ GuinnBronson<- sqrt(mean((Guinn_Bronson$x - APRICE$price)^2))
 names(GuinnBronson) <- "GuinnBronson"
 
 
-Gummow_Lucy-2<- read.csv("Gummow_Lucy-2")
-GummowLucy-2<- sqrt(mean((Gummow_Lucy-2$x - APRICE$price)^2))
-names(GummowLucy-2) <- "GummowLucy-2"
+#Gummow_Lucy-2<- read.csv("Gummow_Lucy-2")
+#GummowLucy-2<- sqrt(mean((Gummow_Lucy-2$x - APRICE$price)^2))
+#names(GummowLucy-2) <- "GummowLucy-2"
 
-#Gregory_Morgan <- read.csv("Gregory_Morgan_5.csv")
-#GregoryMorgan<- sqrt(mean((Gregory_Morgan$x - APRICE$price)^2))
-#names(GregoryMorgan) <- "GregoryMorgan"
+Leswing_Derek <- read.csv("Leswing_Derek.csv")
+LeswingDerek <- sqrt(mean((Leswing_Derek$x - APRICE$price)^2))
+names(LeswingDerek) <- "LeswingDerek"
 
-#etherson_christian <- read.csv("etherson_christian (1).csv")
-#ethersonchristian <- sqrt(mean((etherson_christian$x - APRICE$price)^2))
-#names(ethersonchristian) <- "ethersonchristian"
 
-#Peruso_Alicia <- read.csv("Peruso_Alicia#3.csv")
-#PerusoAlicia  <- sqrt(mean((Peruso_Alicia $x - APRICE$price)^2))
-#names(PerusoAlicia ) <- "PerusoAlicia "
+Stetson_Cole <- read.csv("Stetson_Cole.csv")
+StetsonCole <- sqrt(mean((Stetson_Cole$x - APRICE$price)^2))
+names(StetsonCole) <- "StetsonCole"
 
-#spencer_amelia <- read.csv("spencer_amelia#2.csv")
-#spenceramelia <- sqrt(mean((spencer_amelia$lambda.min - APRICE$price)^2))
-#names(spenceramelia) <- "spenceramelia"
+Moodie_Chad <- read.csv("Moodie_Chad.csv")
+MoodieChad  <- sqrt(mean((Moodie_Chad$x - APRICE$price)^2))
+names(MoodieChad) <- "MoodieChad "
+
+Lauver_Camden <- read.csv("Lauver_Camden.csv")
+LauverCamden <- sqrt(mean((Lauver_Camden$x - APRICE$price)^2))
+names(LauverCamden) <- "LauverCamden"
 
 #Reese_Noah <- read.csv("Reese_Noah.csv")
 #ReeseNoah<- sqrt(mean((Reese_Noah$s1 - APRICE$price)^2))
@@ -83,7 +84,7 @@ names(GummowLucy-2) <- "GummowLucy-2"
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis,BaleskyAndrew,bassettkeriann,Williamskai,FisherNatalie,WhalenPeter,GuinnBronson,GummowLucy-2))
+Leader <- data.frame(SMSPE = c(BeatThis,BaleskyAndrew,bassettkeriann,Williamskai,FisherNatalie,WhalenPeter,GuinnBronson,LeswingDerek,StetsonCole,MoodieChad,LauverCamden))
 #ReyesRoberto,SmithDylan,PalmerLogan,SherrillPayce, #LivesayGabrielle,JohnsonGavin,GregoryMorgan,ethersonchristian,PerusoAlicia,spenceramelia,ReeseNoah ))
 
 ```
