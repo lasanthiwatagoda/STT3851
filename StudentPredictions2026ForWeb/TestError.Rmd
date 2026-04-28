@@ -77,14 +77,27 @@ Lauver_Camden <- read.csv("Lauver_Camden.csv")
 LauverCamden <- sqrt(mean((Lauver_Camden$x - APRICE$price)^2))
 names(LauverCamden) <- "LauverCamden"
 
-#Reese_Noah <- read.csv("Reese_Noah.csv")
-#ReeseNoah<- sqrt(mean((Reese_Noah$s1 - APRICE$price)^2))
-#names(ReeseNoah) <- "ReeseNoah"
+White_Cassidy <- read.csv("White_Cassidy.csv")
+WhiteCassidy <- sqrt(mean((White_Cassidy$x - APRICE$price)^2))
+names(WhiteCassidy) <- "WhiteCassidy"
+
+Colella_Joseph<- read.csv("Colella_Joseph.csv")
+ColellaJoseph <- sqrt(mean((Colella_Joseph$x - APRICE$price)^2))
+names(ColellaJoseph) <- "ColellaJoseph"
+
+Keith_Alan<-read.csv("Keith_Alan.csv")
+KeithAlan <- sqrt(mean((Keith_Alan$x - APRICE$price)^2))
+names(KeithAlan) <- "KeithAlan"
+
+Gummow_Lucy<-read.csv("Gummow_Lucy.csv")
+GummowLucy<- sqrt(mean((Gummow_Lucy$x - APRICE$price)^2))
+names(GummowLucy) <- "GummowLucy"
+
 ```
 
 
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis,BaleskyAndrew,bassettkeriann,Williamskai,FisherNatalie,WhalenPeter,GuinnBronson,LeswingDerek,StetsonCole,MoodieChad,LauverCamden))
+Leader <- data.frame(SMSPE = c(BeatThis,BaleskyAndrew,bassettkeriann,Williamskai,FisherNatalie,WhalenPeter,GuinnBronson,LeswingDerek,StetsonCole,MoodieChad,LauverCamden,WhiteCassidy,ColellaJoseph,KeithAlan,GummowLucy))
 #ReyesRoberto,SmithDylan,PalmerLogan,SherrillPayce, #LivesayGabrielle,JohnsonGavin,GregoryMorgan,ethersonchristian,PerusoAlicia,spenceramelia,ReeseNoah ))
 
 ```
