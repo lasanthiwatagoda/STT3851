@@ -28,7 +28,7 @@ BeatThis <- sqrt(mean((yourlastname_yourfirstname$x - APRICE$price)^2))
 names(BeatThis) <- "BeatThis"
 
 #
-Balesky_Andrew <- read.csv("Balesky_Andrew.csv")
+Balesky_Andrew <- read.csv("Balesky_Andrew1.csv")
 BaleskyAndrew  <- sqrt(mean((Balesky_Andrew$x - APRICE$price)^2))
 names(BaleskyAndrew) <- "BaleskyAndrew"
 
