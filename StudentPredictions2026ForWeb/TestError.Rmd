@@ -65,7 +65,7 @@ LeswingDerek <- sqrt(mean((Leswing_Derek$x - APRICE$price)^2))
 names(LeswingDerek) <- "LeswingDerek"
 
 
-Stetson_Cole <- read.csv("Stetson_Cole.csv")
+Stetson_Cole <- read.csv("Stetson_Cole_0430.csv")
 StetsonCole <- sqrt(mean((Stetson_Cole$s - APRICE$price)^2))
 names(StetsonCole) <- "StetsonCole"
 
