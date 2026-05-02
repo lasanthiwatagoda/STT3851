@@ -85,8 +85,8 @@ Colella_Joseph<- read.csv("Colella_Joseph.csv")
 ColellaJoseph <- sqrt(mean((Colella_Joseph$x - APRICE$price)^2))
 names(ColellaJoseph) <- "ColellaJoseph"
 
-Keith_Alan<-read.csv("Keith_Alan.csv")
-KeithAlan <- sqrt(mean((Keith_Alan$x - APRICE$price)^2))
+Keith_Alan<-read.csv("Keith_Alan (2).csv")
+KeithAlan <- sqrt(mean((Keith_Alan$price - APRICE$price)^2))
 names(KeithAlan) <- "KeithAlan"
 
 Gummow_Lucy<-read.csv("Gummow_Lucy.csv")
