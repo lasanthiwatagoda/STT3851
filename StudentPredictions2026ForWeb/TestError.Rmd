@@ -33,7 +33,7 @@ BaleskyAndrew  <- sqrt(mean((Balesky_Andrew$x - APRICE$price)^2))
 names(BaleskyAndrew) <- "BaleskyAndrew"
 
 
-bassett_keriann <- read.csv("bassett_keriann.csv")
+bassett_keriann <- read.csv("bassett_keriann2.csv")
 bassettkeriann<- sqrt(mean((bassett_keriann$x - APRICE$price)^2))
 names(bassettkeriann) <- "bassettkeriann"
 
