@@ -93,11 +93,17 @@ Gummow_Lucy<-read.csv("Gummow_Lucy.csv")
 GummowLucy<- sqrt(mean((Gummow_Lucy$x - APRICE$price)^2))
 names(GummowLucy) <- "GummowLucy"
 
+Fountain_Ethan <- read.csv("Fountain_Ethan.csv")
+FountainEthan <- sqrt(mean((Fountain_Ethan$x - APRICE$price)^2))
+names(FountainEthan) <- "FountainEthan"
+
 ```
 
 
+
+
 ```{r, echo = FALSE}
-Leader <- data.frame(SMSPE = c(BeatThis,BaleskyAndrew,bassettkeriann,Williamskai,FisherNatalie,WhalenPeter,GuinnBronson,LeswingDerek,StetsonCole,MoodieChad,LauverCamden,WhiteCassidy,ColellaJoseph,KeithAlan,GummowLucy))
+Leader <- data.frame(SMSPE = c(BeatThis,BaleskyAndrew,bassettkeriann,Williamskai,FisherNatalie,WhalenPeter,GuinnBronson,LeswingDerek,StetsonCole,MoodieChad,LauverCamden,WhiteCassidy,ColellaJoseph,KeithAlan,GummowLucy,FountainEthan))
 #ReyesRoberto,SmithDylan,PalmerLogan,SherrillPayce, #LivesayGabrielle,JohnsonGavin,GregoryMorgan,ethersonchristian,PerusoAlicia,spenceramelia,ReeseNoah ))
 
 ```
